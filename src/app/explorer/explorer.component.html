@@ -1,0 +1,15 @@
+<h2>Saisons</h2>
+
+<div *ngFor="let season of seasons; let i = index">
+  Saison {{ i+1 }} : {{ season.title }}
+  <div *ngFor="let chapter of season.chapters">
+    <div *ngIf="chapter.parts">
+      <div *ngFor="let part of chapter.parts">
+        {{ part.title }} ({{part.nbEpisodes}})
+      </div>
+    </div>
+    <div *ngIf="chapter.episodes">
+      {{ chapter.title }}
+    </div>
+  </div>
+</div>
