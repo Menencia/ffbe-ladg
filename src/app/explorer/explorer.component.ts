@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SEASONS } from '../data/seasons';
 import { Season } from '../models/season';
+import { Chapter } from '../models/chapter';
+import { Part } from '../models/part';
 
 @Component({
   selector: 'app-explorer',
@@ -22,6 +24,10 @@ export class ExplorerComponent implements OnInit {
       );
     });
     this.seasons = seasons;
+  }
+
+  seeEpisodes(partOrChapter: Part|Chapter) {
+    console.log(partOrChapter.episodes);
   }
 
 }

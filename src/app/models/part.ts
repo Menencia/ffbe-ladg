@@ -1,5 +1,9 @@
 import { Episode } from './episode';
 
+import * as _ from 'lodash';
+import * as moment from 'moment';
+import 'moment-duration-format';
+
 export class Part {
 
   title: string;
@@ -20,6 +24,14 @@ export class Part {
 
   get nbEpisodes() {
     return this.episodes.length;
+  }
+
+  get totalDuration() {
+    const total = _.sumBy(this.episodes, (k: Episode) => {
+      const {video: {duration}} = k;
+      return moment.duration(duration);
+    });
+    return moment.duration(total, 'milliseconds').format();
   }
 
 }

@@ -7,6 +7,8 @@ interface Video {
 export class Episode {
 
   title: string;
+  region: string;
+  isTown: boolean;
   video: Video;
 
   static load(data) {
