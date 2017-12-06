@@ -2,14 +2,7 @@
 
 <div *ngFor="let season of seasons; let i = index">
   Saison {{ i+1 }} : {{ season.title }}
-  <div *ngFor="let chapter of season.chapters">
-    <div *ngIf="chapter.parts">
-      <div *ngFor="let part of chapter.parts" (click)="seeEpisodes(part)">
-        {{ part.title }} ({{part.nbEpisodes}}) [{{ part.totalDuration }}]
-      </div>
-    </div>
-    <div *ngIf="chapter.episodes" (click)="seeEpisodes(chapter)">
-      {{ chapter.title }}
-    </div>
+  <div *ngFor="let chapter of season.chapters" (click)="seeEpisodes(chapter)">
+    [{{ chapter.ref }}] {{ chapter.title }} ({{chapter.nbEpisodes}}) [{{ chapter.totalDuration }}]
   </div>
 </div>

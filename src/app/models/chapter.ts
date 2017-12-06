@@ -1,28 +1,34 @@
-import { Part } from './part';
 import { Episode } from './episode';
+
+import * as _ from 'lodash';
+import * as moment from 'moment';
+import 'moment-duration-format';
 
 export class Chapter {
 
   title: string;
-  parts: Part[] = [];
+  ref: string;
   episodes: Episode[] = [];
   url: string;
 
   static load(data) {
     const c = new Chapter();
     c.title = data.title;
-    if (data.parts) {
-      data.parts.forEach(part => {
-        c.parts.push(Part.load(part));
-      });
-    }
-    if (data.episodes) {
-      data.episodes.forEach(episode => {
-        c.episodes.push(Episode.load(episode));
-      });
-    }
+    c.ref = data.ref;
     c.url = data.url;
     return c;
+  }
+
+  get nbEpisodes() {
+    return this.episodes.length;
+  }
+
+  get totalDuration() {
+    const total = _.sumBy(this.episodes, (k: Episode) => {
+      const {video: {duration}} = k;
+      return moment.duration(duration);
+    });
+    return moment.duration(total, 'milliseconds').format();
   }
 
 }

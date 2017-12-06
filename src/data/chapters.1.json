@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Grandshelt",
+    "season": 1,
+    "ref": "I/I",
+    "isPart": true,
+    "yt": "PLja8pBKimcSZOhQEE726JiqBLVnjrmLwE"
+  },
+  {
+    "title": "Lanzelt",
+    "season": 1,
+    "ref": "I/II",
+    "isPart": true,
+    "yt": "PLja8pBKimcSbPLuMjzCLcMU-d47Q3zvfB"
+  },
+  {
+    "title": "Les Kolobos",
+    "season": 1,
+    "ref": "I/III",
+    "isPart": true,
+    "yt": "PLja8pBKimcSabqDFyyHQLfzeUdQdgkVMi"
+  },
+  {
+    "title": "Dirnado",
+    "season": 1,
+    "ref": "II",
+    "yt": "PLja8pBKimcSZd_ZyucxgnritagPhpfvKT"
+  }
+]
