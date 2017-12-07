@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Season } from '../models/season';
 import { Chapter } from '../models/chapter';
-import { Part } from '../models/part';
 import { HttpClient } from '@angular/common/http';
 import { Episode } from '../models/episode';
 
@@ -19,15 +18,6 @@ export class ExplorerComponent implements OnInit {
 
   ngOnInit() {
     this.loadSeasons();
-    // this.http.get('data/story-events.json')
-    //  .subscribe(data => this.loadEpisodesSE(data));
-    /*const seasons = [];
-    data.forEach((season: any) => {
-      seasons.push(
-        Season.load(season)
-      );
-    });
-    this.seasons = seasons;*/
   }
 
   loadSeasons() {
@@ -36,7 +26,9 @@ export class ExplorerComponent implements OnInit {
         dataSeasons.forEach(d => {
           const season: Season = Season.load(d);
           this.seasons.push(season);
-          this.loadChapters(season);
+          if (!d['no-chapters']) {
+            this.loadChapters(season);
+          }
         });
       });
   }
@@ -48,7 +40,9 @@ export class ExplorerComponent implements OnInit {
           const chapter: Chapter = Chapter.load(d);
           chapter.ref = season.ref + '/' + chapter.ref;
           season.chapters.push(chapter);
-          this.loadEpisodes(chapter);
+          if (!d['no-episodes']) {
+            this.loadEpisodes(chapter);
+          }
         });
       });
   }
@@ -57,8 +51,9 @@ export class ExplorerComponent implements OnInit {
     const ref = chapter.ref.replace(/\//g, '-').toLowerCase();
     this.http.get(`data/episodes.${ref}.json`)
       .subscribe((dataEpisodes: any[]) => {
-        dataEpisodes.forEach(d => {
+        dataEpisodes.forEach((d, index) => {
           const episode: Episode = Episode.load(d);
+          episode.ref = chapter.ref + '/' + index;
           chapter.episodes.push(episode);
         });
       });

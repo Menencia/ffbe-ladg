@@ -1,4 +1,3 @@
-import { Part } from './part';
 import { Episode } from './episode';
 
 export class StoryEvent {

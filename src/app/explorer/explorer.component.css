@@ -1,0 +1,17 @@
+.season {
+  margin-bottom: 10px;
+}
+
+.season > div.row {
+  border-bottom: 1px solid #eee;
+}
+
+.headers {
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+.chapter:hover {
+  background-color: #eee;
+  cursor: pointer;
+}

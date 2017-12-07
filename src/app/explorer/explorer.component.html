@@ -1,8 +1,48 @@
-<h2>Saisons</h2>
+<h2>Histoire</h2>
 
-<div *ngFor="let season of seasons; let i = index">
-  Saison {{ i+1 }} : {{ season.title }}
-  <div *ngFor="let chapter of season.chapters" (click)="seeEpisodes(chapter)">
-    [{{ chapter.ref }}] {{ chapter.title }} ({{chapter.nbEpisodes}}) [{{ chapter.totalDuration }}]
+<div class="container">
+  <div *ngFor="let season of seasons; let i = index" class="season">
+    <div class="row">
+      <div class="col-sm">
+        Saison {{ i+1 }}
+      </div>
+      <div class="col-sm">
+        {{ season.title }}
+      </div>
+    </div>
+    <div class="row headers">
+      <div class="col-sm">ref</div>
+      <div class="col-sm">Titre</div>
+      <div class="col-sm">Vidéos</div>
+      <div class="col-sm">Durée</div>
+      <div class="col-sm">Épisodes</div>
+      <div class="col-sm">Date</div>
+    </div>
+    <div *ngFor="let chapter of season.chapters" (click)="seeEpisodes(chapter)" class="chapter">
+      <div class="row">
+        <div class="col-sm">
+          {{ chapter.ref }}
+        </div>
+        <div class="col-sm">
+          {{ chapter.title }}
+        </div>
+        <div class="col-sm">
+          <a href="https://www.youtube.com/playlist?list={{ chapter.yt }}" *ngIf="chapter.yt">YT</a>
+        </div>
+        <div class="col-sm">
+          {{ chapter.totalDuration }}
+        </div>
+        <div class="col-sm">
+          {{ chapter.nbEpisodes }}
+        </div>
+        <div class="col-sm">
+          {{ chapter.date }}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<h2>Événements de l'histoire</h2>
+
+(soon)
