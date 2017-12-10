@@ -1,0 +1,44 @@
+<div>
+  <a routerLink="/story">Retour</a>
+</div>
+
+<ul>
+  <li>Réf. : {{ chapter.ref }}</li>
+  <li>Titre : {{ chapter.title }}</li>
+  <li>Publication : {{ chapter.date }}</li>
+  <li>Nombre d'épisodes : {{ chapter.nbEpisodes }}</li>
+  <li>Durée totale : {{ chapter.totalDuration }}</li>
+</ul>
+
+<h2>Episodes</h2>
+
+<div class="container">
+  <div>
+    <div class="row headers">
+      <div class="col-sm">ref</div>
+      <div class="col-sm">Titre</div>
+      <div class="col-sm">Durée</div>
+      <div class="col-sm">Région</div>
+      <div class="col-sm">Version</div>
+    </div>
+    <div *ngFor="let episode of chapter.episodes; let i = index" class="episode">
+      <div class="row">
+        <div class="col-sm">
+          {{ episode.ref }}
+        </div>
+        <div class="col-sm">
+          {{ episode.title }}
+        </div>
+        <div class="col-sm">
+          {{ episode.video.duration }}
+        </div>
+        <div class="col-sm">
+          {{ episode.region }}
+        </div>
+        <div class="col-sm">
+          {{ episode.video.version }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

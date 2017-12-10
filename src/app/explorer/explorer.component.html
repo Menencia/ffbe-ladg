@@ -18,7 +18,7 @@
       <div class="col-sm">Épisodes</div>
       <div class="col-sm">Date</div>
     </div>
-    <div *ngFor="let chapter of season.chapters" (click)="seeEpisodes(chapter)" class="chapter">
+    <div *ngFor="let chapter of season.chapters" (click)="goChapter(chapter)" class="chapter">
       <div class="row">
         <div class="col-sm">
           {{ chapter.ref }}

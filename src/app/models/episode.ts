@@ -1,5 +1,5 @@
 interface Video {
-  url: string;
+  yt: string;
   duration: string;
   version: number;
 }
@@ -15,6 +15,7 @@ export class Episode {
   static load(data) {
     const e = new Episode();
     e.title = data.title;
+    e.region = data.region;
     e.video = data.video;
     return e;
   }

@@ -4,17 +4,26 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ExplorerComponent } from './explorer/explorer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { ChapterComponent } from './chapter/chapter.component';
+import { EpisodeComponent } from './episode/episode.component';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExplorerComponent
+    ExplorerComponent,
+    ChapterComponent,
+    EpisodeComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
