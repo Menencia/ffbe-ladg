@@ -33,4 +33,8 @@ export class Chapter {
     return moment.duration(total, 'milliseconds').format();
   }
 
+  getIDforURL() {
+    return this.ref.replace(/\//g, '-');
+  }
+
 }

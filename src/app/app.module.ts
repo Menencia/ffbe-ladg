@@ -8,13 +8,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { ChapterComponent } from './chapter/chapter.component';
 import { EpisodeComponent } from './episode/episode.component';
 import { DataService } from './data.service';
+import { ChapterPipe } from './chapter.pipe';
+import { PartPipe } from './part.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ExplorerComponent,
     ChapterComponent,
-    EpisodeComponent
+    EpisodeComponent,
+    ChapterPipe,
+    PartPipe
   ],
   imports: [
     BrowserModule,
