@@ -1,41 +1,14 @@
-<h2>Histoire</h2>
-
 <div class="container">
+
+  <h2>Histoire</h2>
+
   <div *ngFor="let season of seasons; let i = index" class="season">
     <h3>Saison {{ i+1 }} : {{ season.title }}</h3>
-    <table>
-      <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th>Titre</th>
-        <th>Épisodes</th>
-        <th>Date</th>
-      </tr>
-      <tr *ngFor="let chapter of season.chapters; let i = index">
-        <td>
-          #{{ i+1 }}
-        </td>
-        <td>
-          {{ chapter.ref | chapter }}
-        </td>
-        <td>
-          {{ chapter.ref | part }}
-        </td>
-        <td>
-          <a routerLink="/chapter/{{chapter.getIDforURL()}}">{{ chapter.title }}</a>
-        </td>
-        <td>
-          {{ chapter.nbEpisodes }}
-        </td>
-        <td>
-          {{ chapter.date }}
-        </td>
-      </tr>
-    </table>
+    <app-table-chapters [chapters]="season.chapters" [isEvent]="false"></app-table-chapters>
   </div>
+
+  <h3>Événements de l'histoire</h3>
+
+  <app-table-chapters [chapters]="events" [isEvent]="true"></app-table-chapters>
+
 </div>
-
-<h2>Événements de l'histoire</h2>
-
-(soon)

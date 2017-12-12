@@ -10,6 +10,7 @@ import { EpisodeComponent } from './episode/episode.component';
 import { DataService } from './data.service';
 import { ChapterPipe } from './chapter.pipe';
 import { PartPipe } from './part.pipe';
+import { TableChaptersComponent } from './table-chapters/table-chapters.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PartPipe } from './part.pipe';
     ChapterComponent,
     EpisodeComponent,
     ChapterPipe,
-    PartPipe
+    PartPipe,
+    TableChaptersComponent
   ],
   imports: [
     BrowserModule,

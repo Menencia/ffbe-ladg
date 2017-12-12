@@ -5,7 +5,7 @@ import { Season } from './models/season';
 import { Chapter } from './models/chapter';
 import { Episode } from './models/episode';
 
-import { SEASONS } from './data/seasons';
+import { STORY } from './data/seasons';
 
 import * as _ from 'lodash';
 
@@ -17,9 +17,11 @@ export class DataService {
   public seasons: Season[] = [];
   public chapters: Chapter[] = [];
   public episodes: Episode[] = [];
+  public events: Chapter[] = [];
 
   constructor(public http: HttpClient) {
-    this.buildSeasons(SEASONS);
+    this.buildSeasons(STORY.seasons);
+    this.buildEvents(STORY.events);
   }
 
   buildSeasons(dataSeasons) {
@@ -51,6 +53,14 @@ export class DataService {
     });
   }
 
+  buildEvents(dataEvents) {
+    dataEvents.forEach((dChapter: any) => {
+      const chapter = Chapter.load(dChapter);
+      this.buildChapters(dChapter, chapter);
+      this.events.push(chapter);
+    });
+  }
+
   getSeasons() {
     return this.seasons;
   }
@@ -70,5 +80,7 @@ export class DataService {
     return episode;
   }
 
-
+  getEvents() {
+    return this.events;
+  }
 }

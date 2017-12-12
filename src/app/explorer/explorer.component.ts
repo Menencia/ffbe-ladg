@@ -14,6 +14,7 @@ import { DataService } from '../data.service';
 export class ExplorerComponent implements OnInit {
 
   public seasons: Season[] = [];
+  public events: Chapter[] = [];
 
   constructor(
     public http: HttpClient,
@@ -23,6 +24,7 @@ export class ExplorerComponent implements OnInit {
 
   ngOnInit() {
     this.seasons = this.data.getSeasons();
+    this.events = this.data.getEvents();
   }
 
   goChapter(chapter: Chapter) {
