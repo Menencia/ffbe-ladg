@@ -11,6 +11,7 @@ import { DataService } from './data.service';
 import { ChapterPipe } from './chapter.pipe';
 import { PartPipe } from './part.pipe';
 import { TableChaptersComponent } from './table-chapters/table-chapters.component';
+import { YoutubePlayerModule } from 'ngx-youtube-player';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TableChaptersComponent } from './table-chapters/table-chapters.componen
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    YoutubePlayerModule
   ],
   providers: [
     DataService

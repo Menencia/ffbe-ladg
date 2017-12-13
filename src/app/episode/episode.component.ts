@@ -15,6 +15,7 @@ export class EpisodeComponent implements OnInit {
   public season: Season;
   public chapter: Chapter;
   public episode: Episode;
+  public player: YT.Player;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -33,6 +34,15 @@ export class EpisodeComponent implements OnInit {
     this.season = season;
     this.chapter = chapter;
     this.episode = episode;
+  }
+
+  savePlayer(player) {
+    this.player = player;
+    console.log('player instance', player);
+  }
+
+  onStateChange(event) {
+    console.log('player state', event.data);
   }
 
 }

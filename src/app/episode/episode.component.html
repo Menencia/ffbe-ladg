@@ -3,3 +3,9 @@
   <li class="breadcrumb-item"><a routerLink="/chapter/{{ chapter.getID() }}">{{ chapter.title }}</a></li>
   <li class="breadcrumb-item active">{{ episode.title }}</li>
 </ol>
+
+<youtube-player
+  [videoId]="episode.video.yt"
+  (ready)="savePlayer($event)"
+  (change)="onStateChange($event)"
+></youtube-player>
