@@ -1,14 +1,14 @@
-<div class="container">
+<ol class="breadcrumb">
+  <li class="breadcrumb-item active">Histoire</li>
+</ol>
 
-  <h2>Histoire</h2>
+<h2>Histoire</h2>
 
-  <div *ngFor="let season of seasons; let i = index" class="season">
-    <h3>Saison {{ i+1 }} : {{ season.title }}</h3>
-    <app-table-chapters [chapters]="season.chapters" [isEvent]="false"></app-table-chapters>
-  </div>
-
-  <h3>Événements de l'histoire</h3>
-
-  <app-table-chapters [chapters]="events" [isEvent]="true"></app-table-chapters>
-
+<div *ngFor="let season of seasons; let i = index" class="season">
+  <h3>Saison {{ i+1 }} : {{ season.title }}</h3>
+  <app-table-chapters [chapters]="season.chapters" [isEvent]="false"></app-table-chapters>
 </div>
+
+<h3>Événements de l'histoire</h3>
+
+<app-table-chapters [chapters]="events" [isEvent]="true"></app-table-chapters>

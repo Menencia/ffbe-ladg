@@ -20,4 +20,8 @@ export class Episode {
     return e;
   }
 
+  getID() {
+    return this.ref.replace(/\//g, '-');
+  }
+
 }

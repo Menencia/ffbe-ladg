@@ -69,15 +69,20 @@ export class DataService {
     const [seasonRef, ...others] = chapterRef.split('-');
     const season = _.find(this.seasons, {ref: seasonRef});
     const chapter = _.find(season.chapters, {ref: chapterRef.replace(/-/g, '/')});
-    return chapter;
+    return {season, chapter};
   }
 
-  getEpisode(episodeRef) {
-    const [seasonRef, ...others] = episodeRef.split('-');
+  getEpisode(episodeID) {
+    const [seasonRef, ...others] = episodeID.split('-');
     const season = _.find(this.seasons, {ref: seasonRef});
-    const chapter = _.find(season.chapters, {ref: _.initial(episodeRef).replace(/-/g, '/')});
-    const episode = _.find(chapter.episodes, {ref: episodeRef.replace(/-/g, '/')});
-    return episode;
+
+    const chapterRef = _.concat([seasonRef], _.initial(others)).join('/');
+    const chapter = _.find(season.chapters, {ref: chapterRef});
+
+    const episodeRef = episodeID.replace(/-/g, '/');
+    const episode = _.find(chapter.episodes, {ref: episodeRef});
+
+    return {season, chapter, episode};
   }
 
   getEvents() {

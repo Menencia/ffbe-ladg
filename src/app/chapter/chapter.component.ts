@@ -4,6 +4,7 @@ import { ParamMap } from '@angular/router/src/shared';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from '../data.service';
 import { Chapter } from '../models/chapter';
+import { Season } from '../models/season';
 
 @Component({
   selector: 'app-chapter',
@@ -12,6 +13,7 @@ import { Chapter } from '../models/chapter';
 })
 export class ChapterComponent implements OnInit {
 
+  public season: Season;
   public chapter: Chapter;
 
   constructor(
@@ -22,17 +24,16 @@ export class ChapterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('chapter route');
-
     this.activatedRoute.params
       .subscribe((params: any) => {
         this.loadChapter(params.chapter);
       });
-
   }
 
   loadChapter(c) {
-    this.chapter = this.data.getChapter(c);
+    const {season, chapter} = this.data.getChapter(c);
+    this.season = season;
+    this.chapter = chapter;
   }
 
 }

@@ -13,7 +13,7 @@
       </td>
       <td *ngIf="!isEvent">
         <ng-container *ngIf="!chapter.title && chapter.ref.split('/').length === 2; else elseChapter">
-          <a routerLink="/chapter/{{chapter.getIDforURL()}}">{{ chapter.ref | chapter }}</a>
+          <a routerLink="/chapter/{{chapter.getID()}}">{{ chapter.ref | chapter }}</a>
         </ng-container>
         <ng-template #elseChapter>
           {{ chapter.ref | chapter }}
@@ -21,14 +21,14 @@
       </td>
       <td *ngIf="!isEvent">
         <ng-container *ngIf="!chapter.title && chapter.ref.split('/').length === 3; else elsePart">
-          <a routerLink="/chapter/{{chapter.getIDforURL()}}">{{ chapter.ref | part }}</a>
+          <a routerLink="/chapter/{{chapter.getID()}}">{{ chapter.ref | part }}</a>
         </ng-container>
         <ng-template #elsePart>
           {{ chapter.ref | part }}
         </ng-template>
       </td>
       <td>
-        <a routerLink="/chapter/{{chapter.getIDforURL()}}">{{ chapter.title }}</a>
+        <a routerLink="/chapter/{{chapter.getID()}}">{{ chapter.title }}</a>
       </td>
       <td>
         {{ chapter.nbEpisodes }}

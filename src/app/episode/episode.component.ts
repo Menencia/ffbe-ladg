@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../data.service';
+import { Season } from '../models/season';
+import { Chapter } from '../models/chapter';
+import { Episode } from '../models/episode';
 
 @Component({
   selector: 'app-episode',
@@ -7,10 +12,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EpisodeComponent implements OnInit {
 
-  constructor() { }
+  public season: Season;
+  public chapter: Chapter;
+  public episode: Episode;
+
+  constructor(
+    public activatedRoute: ActivatedRoute,
+    public data: DataService
+  ) { }
 
   ngOnInit() {
-    console.log('episode route');
+    this.activatedRoute.params
+    .subscribe((params: any) => {
+      this.loadEpisode(params.episode);
+    });
+  }
+
+  loadEpisode(e) {
+    const {season, chapter, episode} = this.data.getEpisode(e);
+    this.season = season;
+    this.chapter = chapter;
+    this.episode = episode;
   }
 
 }

@@ -1,6 +1,7 @@
-<div>
-  <a routerLink="/story">Retour</a>
-</div>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a routerLink="/story">Histoire</a></li>
+  <li class="breadcrumb-item active">{{ chapter.title }}</li>
+</ol>
 
 <ul>
   <li>Réf. : {{ chapter.ref }}</li>
@@ -13,32 +14,35 @@
 <h2>Episodes</h2>
 
 <div class="container">
-  <div>
-    <div class="row headers">
-      <div class="col-sm">ref</div>
-      <div class="col-sm">Titre</div>
-      <div class="col-sm">Durée</div>
-      <div class="col-sm">Région</div>
-      <div class="col-sm">Version</div>
-    </div>
-    <div *ngFor="let episode of chapter.episodes; let i = index" class="episode">
-      <div class="row">
-        <div class="col-sm">
-          {{ episode.ref }}
-        </div>
-        <div class="col-sm">
-          {{ episode.title }}
-        </div>
-        <div class="col-sm">
-          {{ episode.video.duration }}
-        </div>
-        <div class="col-sm">
-          {{ episode.region }}
-        </div>
-        <div class="col-sm">
-          {{ episode.video.version }}
-        </div>
-      </div>
-    </div>
-  </div>
+
+  <table>
+    <tr>
+      <th></th>
+      <th>Titre</th>
+      <th>Vidéo</th>
+      <th>Durée</th>
+      <th>Région</th>
+      <th>Version</th>
+    </tr>
+    <tr *ngFor="let episode of chapter.episodes; let i = index">
+      <td>
+        #{{ i+1 }}
+      </td>
+      <td>
+        <a routerLink="/episode/{{ episode.getID() }}">{{ episode.title }}</a>
+      </td>
+      <td>
+          <a href="" target="_blank">YT</a>
+      </td>
+      <td>
+        {{ episode.video.duration }}
+      </td>
+      <td>
+        {{ episode.region }}
+      </td>
+      <td>
+        {{ episode.video.version }}
+      </td>
+    </tr>
+  </table>
 </div>
