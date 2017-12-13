@@ -7,11 +7,11 @@ import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 
 @Component({
-  selector: 'app-explorer',
-  templateUrl: './explorer.component.html',
-  styleUrls: ['./explorer.component.css']
+  selector: 'app-story',
+  templateUrl: './story.component.html',
+  styleUrls: ['./story.component.css']
 })
-export class ExplorerComponent implements OnInit {
+export class StoryComponent implements OnInit {
 
   public seasons: Season[] = [];
   public events: Chapter[] = [];

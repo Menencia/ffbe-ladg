@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { ExplorerComponent } from './explorer/explorer.component';
-import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
+import { StoryComponent } from './story/story.component';
 import { ChapterComponent } from './chapter/chapter.component';
 import { EpisodeComponent } from './episode/episode.component';
 import { DataService } from './data.service';
@@ -15,7 +15,7 @@ import { TableChaptersComponent } from './table-chapters/table-chapters.componen
 @NgModule({
   declarations: [
     AppComponent,
-    ExplorerComponent,
+    StoryComponent,
     ChapterComponent,
     EpisodeComponent,
     ChapterPipe,
