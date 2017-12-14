@@ -19,7 +19,6 @@
     <tr>
       <th></th>
       <th>Titre</th>
-      <th>Vidéo</th>
       <th>Durée</th>
       <th>Région</th>
       <th>Version</th>
@@ -30,9 +29,6 @@
       </td>
       <td>
         <a routerLink="/episode/{{ episode.getID() }}">{{ episode.title }}</a>
-      </td>
-      <td>
-          <a href="" target="_blank">YT</a>
       </td>
       <td>
         {{ episode.video.duration }}
