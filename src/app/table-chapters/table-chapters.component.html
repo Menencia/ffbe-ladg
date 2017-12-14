@@ -1,8 +1,8 @@
 <table>
     <tr>
       <th></th>
-      <th *ngIf="!isEvent"></th>
-      <th *ngIf="!isEvent"></th>
+      <th></th>
+      <th></th>
       <th>Titre</th>
       <th>Épisodes</th>
       <th>Date</th>
@@ -11,7 +11,7 @@
       <td>
         #{{ i+1 }}
       </td>
-      <td *ngIf="!isEvent">
+      <td>
         <ng-container *ngIf="!chapter.title && chapter.ref.split('/').length === 2; else elseChapter">
           <a routerLink="/chapter/{{chapter.getID()}}">{{ chapter.ref | chapter }}</a>
         </ng-container>
@@ -19,7 +19,7 @@
           {{ chapter.ref | chapter }}
         </ng-template>
       </td>
-      <td *ngIf="!isEvent">
+      <td>
         <ng-container *ngIf="!chapter.title && chapter.ref.split('/').length === 3; else elsePart">
           <a routerLink="/chapter/{{chapter.getID()}}">{{ chapter.ref | part }}</a>
         </ng-container>

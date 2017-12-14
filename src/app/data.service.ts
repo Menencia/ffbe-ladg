@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Season } from './models/season';
 import { Chapter } from './models/chapter';
 import { Episode } from './models/episode';
+import { EpisodeSE } from './models/episode-se';
+import { StoryEvent } from './models/story-event';
 
 import { STORY } from './data/seasons';
 
@@ -16,8 +18,8 @@ export class DataService {
 
   public seasons: Season[] = [];
   public chapters: Chapter[] = [];
-  public episodes: Episode[] = [];
-  public events: Chapter[] = [];
+  public episodes: EpisodeSE[] = [];
+  public events: StoryEvent[] = [];
 
   constructor(public http: HttpClient) {
     this.buildSeasons(STORY.seasons);
@@ -54,10 +56,20 @@ export class DataService {
   }
 
   buildEvents(dataEvents) {
-    dataEvents.forEach((dChapter: any) => {
-      const chapter = Chapter.load(dChapter);
-      this.buildChapters(dChapter, chapter);
-      this.events.push(chapter);
+    dataEvents.forEach((dEvent: any) => {
+      const event = StoryEvent.load(dEvent);
+      this.buildEvent(dEvent, event);
+      this.events.push(event);
+    });
+  }
+
+  buildEvent(dEvent, event) {
+    // tslint:disable-next-line:curly
+    if (!dEvent.episodes) return false;
+    dEvent.episodes.forEach((dEventEpisode: any, index: number) => {
+      const eventEpisode = EpisodeSE.load(dEventEpisode);
+      eventEpisode.ref = event.ref + '/' + (index + 1);
+      event.episodes.push(eventEpisode);
     });
   }
 
@@ -72,6 +84,12 @@ export class DataService {
     return {season, chapter};
   }
 
+  getStoryEvent(storyEventRef) {
+    storyEventRef = storyEventRef.replace('-', '/');
+    const storyEvent = _.find(this.events, {ref: storyEventRef});
+    return {storyEvent};
+  }
+
   getEpisode(episodeID) {
     const [seasonRef, ...others] = episodeID.split('-');
     const season = _.find(this.seasons, {ref: seasonRef});
@@ -83,6 +101,16 @@ export class DataService {
     const episode = _.find(chapter.episodes, {ref: episodeRef});
 
     return {season, chapter, episode};
+  }
+
+  getEpisodeSE(episodeID) {
+    const chapterRef = _.initial(episodeID.split('-')).join('/');
+    const storyEvent = _.find(this.events, {ref: chapterRef});
+
+    const episodeRef = episodeID.replace(/-/g, '/');
+    const episodeSE = _.find(storyEvent.episodes, {ref: episodeRef});
+
+    return {storyEvent, episodeSE};
   }
 
   getEvents() {

@@ -11,9 +11,6 @@ export class TableChaptersComponent implements OnInit {
   @Input()
   chapters: Chapter[];
 
-  @Input()
-  isEvent: boolean;
-
   constructor() { }
 
   ngOnInit() {

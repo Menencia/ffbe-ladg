@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Episode } from '../models/episode';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
+import { StoryEvent } from '../models/story-event';
 
 @Component({
   selector: 'app-story',
@@ -14,7 +15,7 @@ import { DataService } from '../data.service';
 export class StoryComponent implements OnInit {
 
   public seasons: Season[] = [];
-  public events: Chapter[] = [];
+  public events: StoryEvent[] = [];
 
   constructor(
     public http: HttpClient,
@@ -25,6 +26,7 @@ export class StoryComponent implements OnInit {
   ngOnInit() {
     this.seasons = this.data.getSeasons();
     this.events = this.data.getEvents();
+    console.log(this.events);
   }
 
   goChapter(chapter: Chapter) {
