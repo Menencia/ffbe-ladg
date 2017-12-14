@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
   <li class="breadcrumb-item"><a routerLink="/story">Histoire</a></li>
-  <li class="breadcrumb-item"><a routerLink="/story-event/{{ storyEvent.getID() }}">{{ storyEvent.title }}</a></li>
-  <li class="breadcrumb-item active">{{ episodeSE.title }}</li>
+  <li class="breadcrumb-item"><a routerLink="/story-event/{{ storyEvent.getID() }}">{{ storyEvent.getTitle() }}</a></li>
+  <li class="breadcrumb-item active">{{ episodeSE.getTitle() }}</li>
 </ol>
 
 <youtube-player

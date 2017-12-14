@@ -37,4 +37,22 @@ export class Chapter {
     return this.ref.replace(/\//g, '-');
   }
 
+  getTitle() {
+    let string = '';
+    const [season, chapter, part] = this.ref.split('/');
+    string += 'Chapitre ' + chapter;
+    if (part) {
+      string += ' - Partie ' + part;
+    }
+    if (this.title) {
+      string += ' - ' + this.title;
+    }
+    return string;
+  }
+
+  getSeasonNumber() {
+    const [season] = this.ref.split('/');
+    return season;
+  }
+
 }

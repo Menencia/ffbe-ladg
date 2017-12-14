@@ -37,4 +37,11 @@ export class StoryEvent {
     return this.ref.replace(/\//g, '-');
   }
 
+  getTitle() {
+    let string = '';
+    const [number] = this.ref.split('/').slice(-1);
+    string += `#${number} - ${this.title}`;
+    return string;
+  }
+
 }
