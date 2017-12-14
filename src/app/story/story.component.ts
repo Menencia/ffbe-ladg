@@ -26,7 +26,6 @@ export class StoryComponent implements OnInit {
   ngOnInit() {
     this.seasons = this.data.getSeasons();
     this.events = this.data.getEvents();
-    console.log(this.events);
   }
 
   goChapter(chapter: Chapter) {
