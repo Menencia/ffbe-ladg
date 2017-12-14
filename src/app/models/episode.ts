@@ -16,6 +16,7 @@ export class Episode {
     const e = new Episode();
     e.title = data.title;
     e.region = data.region;
+    e.isTown = data.isTown;
     e.video = data.video;
     return e;
   }

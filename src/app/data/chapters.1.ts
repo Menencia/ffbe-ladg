@@ -1,4 +1,5 @@
 import { EPISODES as EPISODES_1_1 } from './episodes.1_1_1';
+import { EPISODES as EPISODES_1_2 } from './episodes.1_1_2';
 
 export const CHAPTERS = [
   {
@@ -14,7 +15,8 @@ export const CHAPTERS = [
     ref: 'I/II',
     isPart: true,
     yt: 'PLja8pBKimcSbPLuMjzCLcMU-d47Q3zvfB',
-    date: '29 juin 2016'
+    date: '29 juin 2016',
+    episodes: EPISODES_1_2
   },
   {
     title: 'Les Kolobos',

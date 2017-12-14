@@ -34,7 +34,7 @@
         {{ episode.video.duration }}
       </td>
       <td>
-        {{ episode.region }}
+        {{ episode.region }} <span *ngIf="episode.isTown">🏠</span>
       </td>
       <td>
         {{ episode.video.version }}
