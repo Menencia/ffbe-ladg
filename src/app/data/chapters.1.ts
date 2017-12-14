@@ -1,5 +1,6 @@
 import { EPISODES as EPISODES_1_1 } from './episodes.1_1_1';
 import { EPISODES as EPISODES_1_2 } from './episodes.1_1_2';
+import { EPISODES as EPISODES_1_3 } from './episodes.1_1_3';
 
 export const CHAPTERS = [
   {
@@ -23,7 +24,8 @@ export const CHAPTERS = [
     ref: 'I/III',
     isPart: true,
     yt: 'PLja8pBKimcSabqDFyyHQLfzeUdQdgkVMi',
-    date: '28 juillet 2016'
+    date: '28 juillet 2016',
+    episodes: EPISODES_1_3
   },
   {
     title: 'Dirnado',
