@@ -28,7 +28,7 @@ export class Chapter {
   get totalDuration() {
     const total = _.sumBy(this.episodes, (k: Episode) => {
       const {video: {duration}} = k;
-      return moment.duration(duration);
+      return moment.duration('00:' + duration);
     });
     return moment.duration(total, 'milliseconds').format();
   }
