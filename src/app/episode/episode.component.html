@@ -5,6 +5,11 @@
   <li class="breadcrumb-item active">{{ episode.getTitle() }}</li>
 </ol>
 
+<div class="submenu">
+  <button type="button" class="btn" (click)="previous()" *ngIf="episodePrevious">Épisode précédent</button>
+  <button type="button" class="btn btn-primary" (click)="next()" *ngIf="episodeNext">Épisode suivant</button>
+</div>
+
 <youtube-player
   width="360"
   height="641"
