@@ -48,7 +48,7 @@ export const EPISODES = [
     title: 'Voix ensorcelante',
     region: 'Tour des sirènes',
     video: {
-      yt: 'rahpbUUyfAA',
+      yt: 'ZXJxoits4HQ',
       duration: '4:10',
       version: 5
     }

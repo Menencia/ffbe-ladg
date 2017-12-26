@@ -50,7 +50,7 @@ export const EPISODES = [
     title: 'L\'objectif du voyage',
     region: 'Terres désolées de Kol',
     video: {
-      yt: '3haW1zyfBUw',
+      yt: 'A1FABkmC80s',
       duration: '3:35',
       version: 5
     }
