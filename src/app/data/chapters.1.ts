@@ -3,6 +3,7 @@ import { EPISODES as EPISODES_1_2 } from './episodes.1_1_2';
 import { EPISODES as EPISODES_1_3 } from './episodes.1_1_3';
 import { EPISODES as EPISODES_2 } from './episodes.1_2';
 import { EPISODES as EPISODES_3 } from './episodes.1_3';
+import { EPISODES as EPISODES_4 } from './episodes.1_4';
 
 export const CHAPTERS = [
   {
@@ -41,7 +42,6 @@ export const CHAPTERS = [
     ref: 'III',
     yt: 'PLja8pBKimcSbF5JhUO2kOJCRttM63-qB9',
     date: '27 octobre 2016',
-    maxEpisodes: 20,
     episodes: EPISODES_3
   },
   {
@@ -49,7 +49,8 @@ export const CHAPTERS = [
     ref: 'IV',
     yt: 'PLja8pBKimcSaUd00ML08G9tqewj0LgrMI',
     date: '28 décembre 2016',
-    maxEpisodes: 19
+    maxEpisodes: 19,
+    episodes: EPISODES_4
   },
   {
     title: 'Nation magique de Mysidia',
