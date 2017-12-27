@@ -11,6 +11,7 @@ export class StoryEvent {
   episodes: EpisodeSE[] = [];
   yt: string;
   date: string;
+  maxEpisodes: number;
 
   static load(data) {
     const c = new StoryEvent();
@@ -18,6 +19,7 @@ export class StoryEvent {
     c.ref = data.ref;
     c.yt = data.yt;
     c.date = data.date;
+    c.maxEpisodes = data.maxEpisodes;
     return c;
   }
 

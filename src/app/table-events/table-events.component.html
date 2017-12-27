@@ -13,7 +13,12 @@
       <a routerLink="/story-event/{{chapter.getID()}}">{{ chapter.title }}</a>
     </td>
     <td>
-      {{ chapter.nbEpisodes }}
+      <ng-container *ngIf="chapter.maxEpisodes">
+        {{ chapter.nbEpisodes }} / {{ chapter.maxEpisodes }}
+      </ng-container>
+      <ng-container *ngIf="!chapter.maxEpisodes">
+        {{ chapter.nbEpisodes }}
+      </ng-container>
     </td>
     <td>
       {{ chapter.date }}

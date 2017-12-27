@@ -3,6 +3,30 @@ import { EPISODES as EPISODES_SE_6 } from './episodes.se-6';
 
 export const CHAPTERS = [
   {
+    ref: 'SE/1',
+    title: 'La Congrégation',
+    date: '9 juin 2017',
+    maxEpisodes: 10
+  },
+  {
+    ref: 'SE/2',
+    title: 'Une promesse au-delà du temps',
+    date: '15 juillet 2017',
+    maxEpisodes: 10
+  },
+  {
+    ref: 'SE/3',
+    title: 'L\'heure de la vengeance',
+    date: '4 août 2017',
+    maxEpisodes: 10
+  },
+  {
+    ref: 'SE/4',
+    title: 'Souvenirs du champ de bataille',
+    date: '25 août 2017',
+    maxEpisodes: 10
+  },
+  {
     ref: 'SE/5',
     title: 'Gardien de l\'ordre',
     yt: 'PLja8pBKimcSa5s_We3vXY-uSVZDoexhNH',

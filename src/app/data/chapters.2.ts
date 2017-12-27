@@ -8,6 +8,7 @@ export const CHAPTERS = [
   },
   {
     ref: 'I/II',
-    date: '7 décembre 2017'
+    date: '7 décembre 2017',
+    maxEpisodes: 8
   }
 ];
