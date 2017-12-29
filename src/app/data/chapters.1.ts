@@ -89,7 +89,6 @@ export const CHAPTERS = [
     ref: 'VII/III',
     yt: 'PLja8pBKimcSaGN9-ioCC1vAjCriZW5Oci',
     date: '29 septembre 2017',
-    maxEpisodes: 10,
     episodes: EPISODES_7_3
   }
 ];
