@@ -17,6 +17,7 @@ export const CHAPTERS = [
     isPart: true,
     yt: 'PLja8pBKimcSZOhQEE726JiqBLVnjrmLwE',
     date: '29 juin 2016',
+    image: 'ffbe_1-1-1.jpg',
     episodes: EPISODES_1_1
   },
   {
@@ -25,6 +26,7 @@ export const CHAPTERS = [
     isPart: true,
     yt: 'PLja8pBKimcSbPLuMjzCLcMU-d47Q3zvfB',
     date: '29 juin 2016',
+    image: 'ffbe_1-1-2.jpg',
     episodes: EPISODES_1_2
   },
   {
@@ -33,6 +35,7 @@ export const CHAPTERS = [
     isPart: true,
     yt: 'PLja8pBKimcSabqDFyyHQLfzeUdQdgkVMi',
     date: '28 juillet 2016',
+    image: 'ffbe_1-1-3.jpg',
     episodes: EPISODES_1_3
   },
   {
@@ -40,6 +43,7 @@ export const CHAPTERS = [
     ref: 'II',
     yt: 'PLja8pBKimcSZd_ZyucxgnritagPhpfvKT',
     date: '25 août 2016',
+    image: 'ffbe_1-2.jpg',
     episodes: EPISODES_2
   },
   {
@@ -47,6 +51,7 @@ export const CHAPTERS = [
     ref: 'III',
     yt: 'PLja8pBKimcSbF5JhUO2kOJCRttM63-qB9',
     date: '27 octobre 2016',
+    image: 'ffbe_1-3.jpg',
     episodes: EPISODES_3
   },
   {
@@ -54,6 +59,7 @@ export const CHAPTERS = [
     ref: 'IV',
     yt: 'PLja8pBKimcSaUd00ML08G9tqewj0LgrMI',
     date: '28 décembre 2016',
+    image: 'ffbe_1-4.jpg',
     episodes: EPISODES_4
   },
   {
@@ -61,6 +67,7 @@ export const CHAPTERS = [
     ref: 'V',
     yt: 'PLja8pBKimcSbrB_LuZbGy3cn-ySOWR0eR',
     date: '30 mars 2017',
+    image: 'ffbe_1-5.jpg',
     episodes: EPISODES_5
   },
   {
@@ -68,6 +75,7 @@ export const CHAPTERS = [
     ref: 'VI',
     yt: 'PLja8pBKimcSYHjUw3d9VOn1wRP0gyLSgd',
     date: '25 mai 2017',
+    image: 'ffbe_1-6.jpg',
     episodes: EPISODES_6
   },
   {
@@ -75,6 +83,7 @@ export const CHAPTERS = [
     ref: 'VII/I',
     yt: 'PLja8pBKimcSYLuQa1wiOiUFOmILHnWHpz',
     date: '20 juillet 2017',
+    image: 'ffbe_1-7-1.jpg',
     episodes: EPISODES_7_1
   },
   {
@@ -82,6 +91,7 @@ export const CHAPTERS = [
     ref: 'VII/II',
     yt: 'PLja8pBKimcSbbck6FLOpyKLLdIYp3swiT',
     date: '31 août 2017',
+    image: 'ffbe_1-7-2.jpg',
     episodes: EPISODES_7_2
   },
   {
@@ -89,6 +99,7 @@ export const CHAPTERS = [
     ref: 'VII/III',
     yt: 'PLja8pBKimcSaGN9-ioCC1vAjCriZW5Oci',
     date: '29 septembre 2017',
+    image: 'ffbe_1-7-3.jpg',
     episodes: EPISODES_7_3
   }
 ];

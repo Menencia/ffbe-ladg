@@ -5,6 +5,7 @@ export const CHAPTERS = [
   {
     ref: 'I/I',
     date: '17 novembre 2017',
+    image: 'ffbe_2-1-1.jpg',
     episodes: EPISODES_1_1
   },
   {

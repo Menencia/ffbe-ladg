@@ -4,6 +4,8 @@
   <li class="breadcrumb-item active">{{ chapter.getTitle() }}</li>
 </ol>
 
+<img [src]="'assets/'+chapter.image" *ngIf="chapter.image" />
+
 <ul>
   <li>Réf. : {{ chapter.ref }}</li>
   <li>Titre : {{ chapter.title }}</li>

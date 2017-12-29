@@ -12,6 +12,7 @@ export class Chapter {
   yt: string;
   date: string;
   maxEpisodes: number;
+  image: string;
 
   static load(data) {
     const c = new Chapter();
@@ -20,6 +21,7 @@ export class Chapter {
     c.yt = data.yt;
     c.date = data.date;
     c.maxEpisodes = data.maxEpisodes;
+    c.image = data.image;
     return c;
   }
 
