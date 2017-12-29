@@ -10,7 +10,12 @@
       #{{ i+1 }}
     </td>
     <td>
-      <a routerLink="/story-event/{{chapter.getID()}}">{{ chapter.title }}</a>
+      <ng-container *ngIf="chapter.notAvailable">
+        <em>{{ chapter.title }}</em>
+      </ng-container>
+      <ng-container *ngIf="!chapter.notAvailable">
+        <a routerLink="/story-event/{{chapter.getID()}}">{{ chapter.title }}</a>
+      </ng-container>
     </td>
     <td>
       <ng-container *ngIf="chapter.maxEpisodes">

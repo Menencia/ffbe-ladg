@@ -12,6 +12,7 @@ export class StoryEvent {
   yt: string;
   date: string;
   maxEpisodes: number;
+  notAvailable: boolean;
 
   static load(data) {
     const c = new StoryEvent();
@@ -20,6 +21,7 @@ export class StoryEvent {
     c.yt = data.yt;
     c.date = data.date;
     c.maxEpisodes = data.maxEpisodes;
+    c.notAvailable = data.notAvailable;
     return c;
   }
 
