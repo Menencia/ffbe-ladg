@@ -86,9 +86,9 @@ export const EPISODES = [
     title: 'Endroit de rêve',
     region: 'Usine d\'aéronefs de Mobrise',
     video: {
-      yt: 'huMQ5a1seuE',
-      duration: '10:09',
-      version: 2
+      yt: 'oV9v7uhvxII',
+      duration: '9:34',
+      version: 6
     }
   },
   {
