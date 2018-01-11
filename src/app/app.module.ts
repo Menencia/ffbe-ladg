@@ -15,6 +15,9 @@ import { YoutubePlayerModule } from 'ngx-youtube-player';
 import { EpisodeSEComponent } from './episode-se/episode-se.component';
 import { StoryEventComponent } from './story-event/story-event.component';
 import { TableEventsComponent } from './table-events/table-events.component';
+import { EpisodeSSEComponent } from './episode-sse/episode-sse.component';
+import { SpecialEventComponent } from './special-event/special-event.component';
+import { TableSpecialComponent } from './table-special/table-special.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { TableEventsComponent } from './table-events/table-events.component';
     TableChaptersComponent,
     EpisodeSEComponent,
     StoryEventComponent,
-    TableEventsComponent
+    EpisodeSSEComponent,
+    SpecialEventComponent,
+    TableEventsComponent,
+    TableSpecialComponent
   ],
   imports: [
     BrowserModule,

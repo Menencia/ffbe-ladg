@@ -1,0 +1,40 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a routerLink="/story">Spécial</a></li>
+  <li class="breadcrumb-item active">{{ specialEvent.getTitle() }}</li>
+</ol>
+
+<ul>
+  <li>Réf. : {{ specialEvent.ref }}</li>
+  <li>Titre : {{ specialEvent.title }}</li>
+  <li>Publication : {{ specialEvent.date }}</li>
+  <li>Nombre d'épisodes : {{ specialEvent.nbEpisodes }}</li>
+  <li>Durée totale : {{ specialEvent.totalDuration }}</li>
+</ul>
+
+<h2>Episodes</h2>
+
+<div class="container">
+
+  <table>
+    <tr>
+      <th></th>
+      <th>Titre</th>
+      <th>Durée</th>
+      <th>Version</th>
+    </tr>
+    <tr *ngFor="let episode of specialEvent.episodes; let i = index">
+      <td>
+        #{{ i+1 }}
+      </td>
+      <td>
+        <a routerLink="/episode-sse/{{ episode.getID() }}">{{ episode.title }}</a>
+      </td>
+      <td>
+        {{ episode.video.duration }}
+      </td>
+      <td>
+        {{ episode.video.version }}
+      </td>
+    </tr>
+  </table>
+</div>

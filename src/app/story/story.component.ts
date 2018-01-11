@@ -16,6 +16,7 @@ export class StoryComponent implements OnInit {
 
   public seasons: Season[] = [];
   public events: StoryEvent[] = [];
+  public special: StoryEvent[] = [];
 
   constructor(
     public http: HttpClient,
@@ -26,6 +27,7 @@ export class StoryComponent implements OnInit {
   ngOnInit() {
     this.seasons = this.data.getSeasons();
     this.events = this.data.getEvents();
+    this.special = this.data.getSpecial();
   }
 
   goChapter(chapter: Chapter) {

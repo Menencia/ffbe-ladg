@@ -1,0 +1,32 @@
+<table>
+  <tr>
+    <th></th>
+    <th>Titre</th>
+    <th>Épisodes</th>
+    <th>Date</th>
+  </tr>
+  <tr *ngFor="let chapter of special; let i = index">
+    <td>
+      #{{ i+1 }}
+    </td>
+    <td>
+      <ng-container *ngIf="chapter.notAvailable">
+        <em>{{ chapter.title }}</em>
+      </ng-container>
+      <ng-container *ngIf="!chapter.notAvailable">
+        <a routerLink="/special-event/{{chapter.getID()}}">{{ chapter.title }}</a>
+      </ng-container>
+    </td>
+    <td>
+      <ng-container *ngIf="chapter.maxEpisodes">
+        {{ chapter.nbEpisodes }} / {{ chapter.maxEpisodes }}
+      </ng-container>
+      <ng-container *ngIf="!chapter.maxEpisodes">
+        {{ chapter.nbEpisodes }}
+      </ng-container>
+    </td>
+    <td>
+      {{ chapter.date }}
+    </td>
+  </tr>
+</table>

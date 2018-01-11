@@ -20,10 +20,12 @@ export class DataService {
   public chapters: Chapter[] = [];
   public episodes: EpisodeSE[] = [];
   public events: StoryEvent[] = [];
+  public special: StoryEvent[] = [];
 
   constructor(public http: HttpClient) {
     this.buildSeasons(STORY.seasons);
     this.buildEvents(STORY.events);
+    this.buildSpecial(STORY.special);
   }
 
   buildSeasons(dataSeasons) {
@@ -73,8 +75,12 @@ export class DataService {
     });
   }
 
-  getSeasons() {
-    return this.seasons;
+  buildSpecial(dataSpecial) {
+    dataSpecial.forEach((dSpecial: any) => {
+      const event = StoryEvent.load(dSpecial);
+      this.buildEvent(dSpecial, event);
+      this.special.push(event);
+    });
   }
 
   getChapter(chapterRef) {
@@ -88,6 +94,12 @@ export class DataService {
     storyEventRef = storyEventRef.replace('-', '/');
     const storyEvent = _.find(this.events, {ref: storyEventRef});
     return {storyEvent};
+  }
+
+  getSpecialEvent(specialEventRef) {
+    specialEventRef = specialEventRef.replace('-', '/');
+    const specialEvent = _.find(this.special, {ref: specialEventRef});
+    return {specialEvent};
   }
 
   getEpisode(episodeID) {
@@ -113,7 +125,25 @@ export class DataService {
     return {storyEvent, episodeSE};
   }
 
+  getEpisodeSSE(episodeID) {
+    const chapterRef = _.initial(episodeID.split('-')).join('/');
+    const specialEvent = _.find(this.special, {ref: chapterRef});
+
+    const episodeRef = episodeID.replace(/-/g, '/');
+    const episodeSSE = _.find(specialEvent.episodes, {ref: episodeRef});
+
+    return {specialEvent, episodeSSE};
+  }
+
+  getSeasons() {
+    return this.seasons;
+  }
+
   getEvents() {
     return this.events;
+  }
+
+  getSpecial() {
+    return this.special;
   }
 }

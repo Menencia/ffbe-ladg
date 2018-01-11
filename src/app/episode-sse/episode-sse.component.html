@@ -1,0 +1,13 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a routerLink="/story">Spécial</a></li>
+  <li class="breadcrumb-item"><a routerLink="/special-event/{{ specialEvent.getID() }}">{{ specialEvent.getTitle() }}</a></li>
+  <li class="breadcrumb-item active">{{ episodeSSE.getTitle() }}</li>
+</ol>
+
+<youtube-player
+  width="360"
+  height="641"
+  [videoId]="episodeSSE.video.yt"
+  (ready)="savePlayer($event)"
+  (change)="onStateChange($event)"
+></youtube-player>

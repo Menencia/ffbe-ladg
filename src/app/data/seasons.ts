@@ -1,6 +1,7 @@
 import { CHAPTERS as CHAPTERS_S1 } from './chapters.1';
 import { CHAPTERS as CHAPTERS_S2 } from './chapters.2';
 import { CHAPTERS as CHAPTERS_EVENTS } from './events';
+import { CHAPTERS as SPECIAL_EVENTS } from './special-events';
 
 export const STORY = {
   seasons: [
@@ -15,5 +16,6 @@ export const STORY = {
       chapters: CHAPTERS_S2
     }
   ],
-  events: CHAPTERS_EVENTS
+  events: CHAPTERS_EVENTS,
+  special: SPECIAL_EVENTS
 };
