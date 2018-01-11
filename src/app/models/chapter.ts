@@ -13,6 +13,7 @@ export class Chapter {
   date: string;
   maxEpisodes: number;
   image: string;
+  notAvailable: boolean;
 
   static load(data) {
     const c = new Chapter();
@@ -22,6 +23,7 @@ export class Chapter {
     c.date = data.date;
     c.maxEpisodes = data.maxEpisodes;
     c.image = data.image;
+    c.notAvailable = data.notAvailable;
     return c;
   }
 
