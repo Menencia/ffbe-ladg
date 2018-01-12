@@ -22,7 +22,7 @@
         {{ chapter.nbEpisodes }} / {{ chapter.maxEpisodes }}
       </ng-container>
       <ng-container *ngIf="!chapter.maxEpisodes">
-        {{ chapter.nbEpisodes }}
+        <span *ngIf="chapter.nbEpisodes > 0">{{ chapter.nbEpisodes }}</span>
       </ng-container>
     </td>
     <td>

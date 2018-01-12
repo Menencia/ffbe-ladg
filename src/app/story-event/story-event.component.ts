@@ -33,7 +33,6 @@ export class StoryEventComponent implements OnInit {
 
   loadStoryEvent(c) {
     const {storyEvent} = this.data.getStoryEvent(c);
-    console.log(storyEvent);
     this.storyEvent = storyEvent;
   }
 
