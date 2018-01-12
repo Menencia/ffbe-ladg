@@ -1,5 +1,6 @@
 import { EPISODES as EPISODES_SE_5 } from './episodes.se-5';
 import { EPISODES as EPISODES_SE_6 } from './episodes.se-6';
+import { EPISODES as EPISODES_SE_7 } from './episodes.se-7';
 
 export const CHAPTERS = [
   {
@@ -43,7 +44,8 @@ export const CHAPTERS = [
   {
     ref: 'SE/7',
     title: 'Voie du guerrier',
+    yt: 'PLja8pBKimcSaPC2Q5wyTwJI5f2u0kyrX2',
     date: '12 janvier 2018',
-    notAvailable: true
+    episodes: EPISODES_SE_7
   }
 ];
