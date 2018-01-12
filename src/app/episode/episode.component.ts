@@ -25,7 +25,7 @@ export class EpisodeComponent {
     public route: ActivatedRoute,
     public data: DataService,
     public router: Router
-  ) { 
+  ) {
     route.params.subscribe((params: any) => {
       this.loadEpisode(params.episode);
     });
@@ -55,29 +55,29 @@ export class EpisodeComponent {
   getPrevious() {
     const episodeIndex = _.findIndex(this.chapter.episodes, this.episode);
     let episodePrevious: Episode;
-    if (episodeIndex-1 >= 0) {
-      episodePrevious = this.chapter.episodes[episodeIndex-1];
+    if (episodeIndex - 1 >= 0) {
+      episodePrevious = this.chapter.episodes[episodeIndex - 1];
     } else {
       const chapterIndex = _.findIndex(this.season.chapters, this.chapter);
       let chapterPrevious: Chapter;
-      if (chapterIndex-1 >= 0) {
-        chapterPrevious = this.season.chapters[chapterIndex-1];
+      if (chapterIndex - 1 >= 0) {
+        chapterPrevious = this.season.chapters[chapterIndex - 1];
         episodePrevious = _.last(chapterPrevious.episodes);
       }
     }
     return episodePrevious;
   }
-  
+
   getNext() {
     const episodeIndex = _.findIndex(this.chapter.episodes, this.episode);
     let episodeNext: Episode;
-    if (episodeIndex+1 < this.chapter.episodes.length) {
-      episodeNext = this.chapter.episodes[episodeIndex+1];
+    if (episodeIndex + 1 < this.chapter.episodes.length) {
+      episodeNext = this.chapter.episodes[episodeIndex + 1];
     } else {
       const chapterIndex = _.findIndex(this.season.chapters, this.chapter);
       let chapterNext: Chapter;
-      if (chapterIndex+1 < this.season.chapters.length) {
-        chapterNext = this.season.chapters[chapterIndex+1];
+      if (chapterIndex + 1 < this.season.chapters.length) {
+        chapterNext = this.season.chapters[chapterIndex + 1];
         episodeNext = chapterNext.episodes[0];
       }
     }
