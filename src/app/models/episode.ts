@@ -13,7 +13,7 @@ export class Episode {
   video: Video;
 
   static load(data) {
-    const e = new Episode();
+    const e = new this;
     e.title = data.title;
     e.region = data.region;
     e.isTown = data.isTown;

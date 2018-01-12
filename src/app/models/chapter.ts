@@ -16,7 +16,7 @@ export class Chapter {
   notAvailable: boolean;
 
   static load(data) {
-    const c = new Chapter();
+    const c = new this;
     c.title = data.title;
     c.ref = data.ref;
     c.yt = data.yt;
