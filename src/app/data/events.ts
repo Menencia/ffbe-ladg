@@ -46,6 +46,7 @@ export const CHAPTERS = [
     title: 'Voie du guerrier',
     yt: 'PLja8pBKimcSaPC2Q5wyTwJI5f2u0kyrX2',
     date: '12 janvier 2018',
-    episodes: EPISODES_SE_7
+    episodes: EPISODES_SE_7,
+    maxEpisodes: 10
   }
 ];
