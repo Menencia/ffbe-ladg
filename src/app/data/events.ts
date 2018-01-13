@@ -49,6 +49,7 @@ export const CHAPTERS = [
     yt: 'PLja8pBKimcSaPC2Q5wyTwJI5f2u0kyrX2',
     date: '12 janvier 2018',
     episodes: EPISODES_SE_7,
-    image: 'ffbe_se-7.jpg'
+    image: 'ffbe_se-7.jpg',
+    featured: true
   }
 ];

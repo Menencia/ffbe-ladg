@@ -14,6 +14,7 @@ export class Chapter {
   maxEpisodes: number;
   image: string;
   notAvailable: boolean;
+  featured: boolean;
 
   static load(data) {
     const c = new this;
@@ -24,6 +25,7 @@ export class Chapter {
     c.maxEpisodes = data.maxEpisodes;
     c.image = data.image;
     c.notAvailable = data.notAvailable;
+    c.featured = data.featured;
     return c;
   }
 
