@@ -62,5 +62,21 @@ export const EPISODES = [
       duration: '3:49',
       version: 6
     }
+  },
+  {
+    title: 'Vérité du passé',
+    video: {
+      yt: 'jtpD0dvrzRc',
+      duration: '4:44',
+      version: 6
+    }
+  },
+  {
+    title: 'Le comédien et le guerrier',
+    video: {
+      yt: 'vhZSKfSPWmc',
+      duration: '7:38',
+      version: 6
+    }
   }
 ];
