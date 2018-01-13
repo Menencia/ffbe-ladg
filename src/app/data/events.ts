@@ -32,6 +32,7 @@ export const CHAPTERS = [
     title: 'Gardien de l\'ordre',
     yt: 'PLja8pBKimcSa5s_We3vXY-uSVZDoexhNH',
     date: '3 novembre 2017',
+    image: 'ffbe_se-5.jpg',
     episodes: EPISODES_SE_5
   },
   {
@@ -39,6 +40,7 @@ export const CHAPTERS = [
     title: 'Destin du dragonnier',
     yt: 'PLja8pBKimcSZIQ74voAqb5251GM8RbO3E',
     date: '1 décembre 2017',
+    image: 'ffbe_se-6.jpg',
     episodes: EPISODES_SE_6
   },
   {
@@ -47,6 +49,7 @@ export const CHAPTERS = [
     yt: 'PLja8pBKimcSaPC2Q5wyTwJI5f2u0kyrX2',
     date: '12 janvier 2018',
     episodes: EPISODES_SE_7,
+    image: 'ffbe_se-7.jpg',
     maxEpisodes: 10
   }
 ];

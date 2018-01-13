@@ -6,6 +6,7 @@ export const CHAPTERS = [
     title: 'Hiver éternel',
     yt: 'PLja8pBKimcSbmTIXOR_6smNOhfe9MC4rY',
     date: '22 décembre 2017',
+    image: 'ffbe_sse-1.jpg',
     episodes: EPISODES_SSE_1
   }
 ];

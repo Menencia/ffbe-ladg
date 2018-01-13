@@ -46,5 +46,21 @@ export const EPISODES = [
       duration: '7:16',
       version: 6
     }
+  },
+  {
+    title: 'Descendants des ninjas',
+    video: {
+      yt: 'QrxhxWtT2HI',
+      duration: '3:03',
+      version: 6
+    }
+  },
+  {
+    title: 'Nouveaux souvenirs',
+    video: {
+      yt: 'LS7at_MNWv4',
+      duration: '3:49',
+      version: 6
+    }
   }
 ];

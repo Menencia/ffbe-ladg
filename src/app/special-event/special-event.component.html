@@ -3,6 +3,8 @@
   <li class="breadcrumb-item active">{{ specialEvent.getTitle() }}</li>
 </ol>
 
+<img [src]="'assets/'+specialEvent.image" *ngIf="specialEvent.image" />
+
 <ul>
   <li>Réf. : {{ specialEvent.ref }}</li>
   <li>Titre : {{ specialEvent.title }}</li>

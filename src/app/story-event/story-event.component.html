@@ -3,6 +3,8 @@
   <li class="breadcrumb-item active">{{ storyEvent.getTitle() }}</li>
 </ol>
 
+<img [src]="'assets/'+storyEvent.image" *ngIf="storyEvent.image" />
+
 <ul>
   <li>Réf. : {{ storyEvent.ref }}</li>
   <li>Titre : {{ storyEvent.title }}</li>
