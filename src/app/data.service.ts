@@ -41,6 +41,7 @@ export class DataService {
     if (!dSeason.chapters) return false;
     dSeason.chapters.forEach(dChapter => {
       const chapter = Chapter.load(dChapter);
+      chapter.season = season;
       chapter.ref = season.ref + '/' + chapter.ref;
       this.buildEpisodes(dChapter, chapter);
       season.chapters.push(chapter);
@@ -52,6 +53,7 @@ export class DataService {
     if (!dChapter.episodes) return false;
     dChapter.episodes.forEach((dEpisode: any, index: number) => {
       const episode = Episode.load(dEpisode);
+      episode.chapter = chapter;
       episode.ref = chapter.ref + '/' + (index + 1);
       chapter.episodes.push(episode);
     });
@@ -70,6 +72,7 @@ export class DataService {
     if (!dEvent.episodes) return false;
     dEvent.episodes.forEach((dEventEpisode: any, index: number) => {
       const eventEpisode = EpisodeSE.load(dEventEpisode);
+      eventEpisode.chapter = event;
       eventEpisode.ref = event.ref + '/' + (index + 1);
       event.episodes.push(eventEpisode);
     });

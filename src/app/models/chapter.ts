@@ -3,10 +3,12 @@ import { Episode } from './episode';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import 'moment-duration-format';
+import { Season } from './season';
 
 export class Chapter {
 
   title: string;
+  season: Season|null;
   ref: string;
   episodes: Episode[] = [];
   yt: string;

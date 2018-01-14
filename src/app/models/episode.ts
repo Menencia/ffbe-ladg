@@ -1,3 +1,5 @@
+import { Chapter } from './chapter';
+
 interface Video {
   yt: string;
   duration: string;
@@ -7,6 +9,7 @@ interface Video {
 export class Episode {
 
   title: string;
+  chapter: Chapter;
   ref: string;
   region: string;
   isTown: boolean;

@@ -96,4 +96,9 @@ export class EpisodeComponent {
     }
   }
 
+  goLink(episode) {
+    const link = 'https://www.youtube.com/watch?v=' + episode.video.yt + '&list=' + episode.chapter.yt;
+    window.open(link, '_blank');
+  }
+
 }
