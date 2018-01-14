@@ -10,7 +10,7 @@
 
 <ul>
   <li><strong>Réf. :</strong> {{ chapter.ref }}</li>
-  <li><strong>Titre :</strong> {{ chapter.title }}</li>
+  <li *ngIf="chapter.title"><strong>Titre :</strong> {{ chapter.title }}</li>
   <li><strong>Publication :</strong> {{ chapter.date }}</li>
   <li><strong>Nombre d'épisodes :</strong> {{ chapter.nbEpisodes }}</li>
   <li><strong>Durée totale :</strong> {{ chapter.totalDuration }}</li>
