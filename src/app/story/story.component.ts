@@ -9,8 +9,7 @@ import { StoryEvent } from '../models/story-event';
 
 @Component({
   selector: 'app-story',
-  templateUrl: './story.component.html',
-  styleUrls: ['./story.component.css']
+  templateUrl: './story.component.html'
 })
 export class StoryComponent implements OnInit {
 

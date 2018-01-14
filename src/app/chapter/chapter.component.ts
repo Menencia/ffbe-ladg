@@ -8,8 +8,7 @@ import { Season } from '../models/season';
 
 @Component({
   selector: 'app-chapter',
-  templateUrl: './chapter.component.html',
-  styleUrls: ['./chapter.component.css']
+  templateUrl: './chapter.component.html'
 })
 export class ChapterComponent implements OnInit {
 

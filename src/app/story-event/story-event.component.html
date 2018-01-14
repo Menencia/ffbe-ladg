@@ -5,12 +5,14 @@
 
 <img [src]="'assets/'+storyEvent.image" *ngIf="storyEvent.image" />
 
+<h2>Informations</h2>
+
 <ul>
-  <li>Réf. : {{ storyEvent.ref }}</li>
-  <li>Titre : {{ storyEvent.title }}</li>
-  <li>Publication : {{ storyEvent.date }}</li>
-  <li>Nombre d'épisodes : {{ storyEvent.nbEpisodes }}</li>
-  <li>Durée totale : {{ storyEvent.totalDuration }}</li>
+  <li><strong>Réf. :</strong> {{ storyEvent.ref }}</li>
+  <li><strong>Titre :</strong> {{ storyEvent.title }}</li>
+  <li><strong>Publication :</strong> {{ storyEvent.date }}</li>
+  <li><strong>Nombre d'épisodes :</strong> {{ storyEvent.nbEpisodes }}</li>
+  <li><strong>Durée totale :</strong> {{ storyEvent.totalDuration }}</li>
 </ul>
 
 <h2>Episodes</h2>

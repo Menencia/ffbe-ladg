@@ -9,8 +9,7 @@ import { SpecialEvent } from '../models/special-event';
 
 @Component({
   selector: 'app-special-event',
-  templateUrl: './special-event.component.html',
-  styleUrls: ['./special-event.component.css']
+  templateUrl: './special-event.component.html'
 })
 export class SpecialEventComponent implements OnInit {
 

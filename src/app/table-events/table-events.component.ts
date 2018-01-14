@@ -4,7 +4,7 @@ import { StoryEvent } from '../models/story-event';
 @Component({
   selector: 'app-table-events',
   templateUrl: './table-events.component.html',
-  styleUrls: ['./table-events.component.css']
+  styleUrls: ['./table-events.component.scss']
 })
 export class TableEventsComponent implements OnInit {
 

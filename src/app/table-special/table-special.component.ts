@@ -3,8 +3,7 @@ import { SpecialEvent } from '../models/special-event';
 
 @Component({
   selector: 'app-table-special',
-  templateUrl: './table-special.component.html',
-  styleUrls: ['./table-special.component.css']
+  templateUrl: './table-special.component.html'
 })
 export class TableSpecialComponent implements OnInit {
 

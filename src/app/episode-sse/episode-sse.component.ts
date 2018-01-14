@@ -10,7 +10,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-episode-sse',
   templateUrl: './episode-sse.component.html',
-  styleUrls: ['./episode-sse.component.css']
+  styleUrls: ['./episode-sse.component.scss']
 })
 export class EpisodeSSEComponent implements OnInit {
 

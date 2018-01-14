@@ -6,12 +6,14 @@
 
 <img [src]="'assets/'+chapter.image" *ngIf="chapter.image" />
 
+<h2>Informations</h2>
+
 <ul>
-  <li>Réf. : {{ chapter.ref }}</li>
-  <li>Titre : {{ chapter.title }}</li>
-  <li>Publication : {{ chapter.date }}</li>
-  <li>Nombre d'épisodes : {{ chapter.nbEpisodes }}</li>
-  <li>Durée totale : {{ chapter.totalDuration }}</li>
+  <li><strong>Réf. :</strong> {{ chapter.ref }}</li>
+  <li><strong>Titre :</strong> {{ chapter.title }}</li>
+  <li><strong>Publication :</strong> {{ chapter.date }}</li>
+  <li><strong>Nombre d'épisodes :</strong> {{ chapter.nbEpisodes }}</li>
+  <li><strong>Durée totale :</strong> {{ chapter.totalDuration }}</li>
 </ul>
 
 <h2>Episodes</h2>

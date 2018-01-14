@@ -3,8 +3,7 @@ import { Chapter } from '../models/chapter';
 
 @Component({
   selector: 'app-table-chapters',
-  templateUrl: './table-chapters.component.html',
-  styleUrls: ['./table-chapters.component.css']
+  templateUrl: './table-chapters.component.html'
 })
 export class TableChaptersComponent implements OnInit {
 

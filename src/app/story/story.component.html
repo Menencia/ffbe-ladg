@@ -1,3 +1,5 @@
+<h2>Bienvenue</h2>
+
 <p><strong>Ce projet consiste à voir/revoir toutes les scènes de l'histoire du jeu Final Fantasy Brave
   Exvius au format vidéo.</strong> <em>FFBE</em> est un jeu mobile, réalisé par SquareEnix/Gumi, sorti en juin 2016
   sur Android et iOS. Le jeu possède une histoire originale, narrant les aventures de Rain et Lasswell,
@@ -22,17 +24,17 @@
   <li><strong>(À venir) :</strong> la correction des fautes les plus dramatiques</li>
 </ul>
 
-<h2>Histoire</h2>
+<h2>Histoire principale</h2>
 
 <div *ngFor="let season of seasons; let i = index" class="season">
   <h3>Saison {{ i+1 }} : {{ season.title }}</h3>
   <app-table-chapters [chapters]="season.chapters"></app-table-chapters>
 </div>
 
-<h3>Événements de l'histoire</h3>
+<h2>Événements de l'histoire</h2>
 
 <app-table-events [events]="events"></app-table-events>
 
-<h3>Autres</h3>
+<h2>Autres</h2>
 
 <app-table-special [special]="special"></app-table-special>
