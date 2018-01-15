@@ -2,9 +2,9 @@ export const EPISODES = [
   {
     title: 'Après l\'Invincible',
     video: {
-      yt: 'KYU0gfBzsDQ',
-      duration: '2:32',
-      version: 2
+      yt: 'ErO9LPTlpDU',
+      duration: '2:14',
+      version: 6
     }
   },
   {

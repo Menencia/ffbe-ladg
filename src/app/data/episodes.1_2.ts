@@ -113,9 +113,9 @@ export const EPISODES = [
     title: 'Aldore et Hess',
     region: 'Temple du Vent',
     video: {
-      yt: 'nbk9HOqEZZk',
-      duration: '7:00',
-      version: 2
+      yt: 'ErHwotA6vFg',
+      duration: '6:24',
+      version: 6
     }
   }
 ];
