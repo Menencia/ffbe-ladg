@@ -18,6 +18,9 @@ export class Chapter {
   notAvailable: boolean;
   featured: boolean;
 
+  _previousChapter: Chapter;
+  _nextChapter: Chapter;
+
   static load(data) {
     const c = new this;
     c.title = data.title;
@@ -63,6 +66,28 @@ export class Chapter {
   getSeasonNumber() {
     const [season] = this.ref.split('/');
     return season;
+  }
+
+  get previousChapter() {
+    if (!this._previousChapter) {
+      const chapters = this.season.chapters;
+      const index = _.findIndex(chapters, this);
+      if (index >= 0) {
+        this._previousChapter = chapters[index - 1];
+      }
+    }
+    return this._previousChapter;
+  }
+
+  get nextChapter() {
+    if (!this._nextChapter) {
+      const chapters = this.season.chapters;
+      const index = _.findIndex(chapters, this);
+      if (index < chapters.length) {
+        this._nextChapter = chapters[index + 1];
+      }
+    }
+    return this._nextChapter;
   }
 
 }

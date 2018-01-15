@@ -8,7 +8,8 @@ import { Season } from '../models/season';
 
 @Component({
   selector: 'app-chapter',
-  templateUrl: './chapter.component.html'
+  templateUrl: './chapter.component.html',
+  styleUrls: ['chapter.component.scss']
 })
 export class ChapterComponent implements OnInit {
 
@@ -19,7 +20,8 @@ export class ChapterComponent implements OnInit {
     public route: Router,
     public activatedRoute: ActivatedRoute,
     public http: HttpClient,
-    public data: DataService
+    public data: DataService,
+    public router: Router
   ) { }
 
   ngOnInit() {
@@ -33,6 +35,19 @@ export class ChapterComponent implements OnInit {
     const {season, chapter} = this.data.getChapter(c);
     this.season = season;
     this.chapter = chapter;
+  }
+
+  previous() {
+    this.router.navigate(['/chapter/', this.chapter.previousChapter.ref.replace(/\//g, '-')]);
+  }
+
+  next() {
+    this.router.navigate(['/chapter/', this.chapter.nextChapter.ref.replace(/\//g, '-')]);
+  }
+
+  goLink(chapter) {
+    const link = 'https://www.youtube.com/playlist?list=' + chapter.yt;
+    window.open(link, '_blank');
   }
 
 }
