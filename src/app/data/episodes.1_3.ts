@@ -39,18 +39,18 @@ export const EPISODES = [
     region: 'Ville aquatique d\'Olderion',
     isTown: true,
     video: {
-      yt: 'SQj_zfcJCD8',
-      duration: '4:25',
-      version: 2
+      yt: '7n49p0Ix1J0',
+      duration: '3:48',
+      version: 6
     }
   },
   {
     title: 'Avantages et inconvénients',
     region: 'Vieil Olderion',
     video: {
-      yt: 'SBalDnJMZ2w',
-      duration: '6:02',
-      version: 2
+      yt: 'L0n3CnGWVZU',
+      duration: '5:22',
+      version: 6
     }
   },
   {
@@ -66,9 +66,9 @@ export const EPISODES = [
     title: 'Le bon choix',
     region: 'Grotte marine',
     video: {
-      yt: 'jlZz9cRVdn8',
-      duration: '2:51',
-      version: 2
+      yt: 'E57qz404ueI',
+      duration: '2:25',
+      version: 6
     }
   },
   {
@@ -94,9 +94,9 @@ export const EPISODES = [
     region: 'Ville aquatique d\'Olderion',
     isTown: true,
     video: {
-      yt: 'pFKqqzYIQis',
-      duration: '2:15',
-      version: 2
+      yt: 'tndKDf7lf3s',
+      duration: '1:54',
+      version: 6
     }
   },
   {
@@ -159,9 +159,9 @@ export const EPISODES = [
     region: 'Village d\'Amore',
     isTown: true,
     video: {
-      yt: 'Tf7FOUnmzLY',
-      duration: '7:45',
-      version: 2
+      yt: 'WsA2i0QCm8E',
+      duration: '6:55',
+      version: 6
     }
   },
   {
@@ -178,9 +178,9 @@ export const EPISODES = [
     region: 'Ville aquatique d\'Olderion',
     isTown: true,
     video: {
-      yt: 'uXBicapJA1U',
-      duration: '9:35',
-      version: 2
+      yt: 'QjYsIUnBfFE',
+      duration: '7:30',
+      version: 6
     }
   }
 ];
