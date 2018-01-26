@@ -36,7 +36,7 @@ export const EPISODES = [
     }
   },
   {
-    title: '???',
+    originalTitle: 'Fighting Stars',
     region: 'Passage sous terre',
     video: {
       yt: '4Lmyl4Y00rA',

@@ -38,6 +38,20 @@ export class Chapter {
     return this.episodes.length;
   }
 
+  getEpisodes() {
+    return _.filter(this.episodes, e => e.video && e.video.yt !== '');
+  }
+
+  displayNbEpisodes() {
+    const max = this.episodes.length;
+    const availables = this.getEpisodes().length;
+    if (max === availables) {
+      return max;
+    } else {
+      return availables + '/' + max;
+    }
+  }
+
   get totalDuration() {
     const total = _.sumBy(this.episodes, (k: Episode) => {
       const {video: {duration}} = k;

@@ -1,5 +1,6 @@
 import { EPISODES as EPISODES_1_1 } from './episodes.2_1_1';
 import { EPISODES as EPISODES_1_2 } from './episodes.2_1_2';
+import { EPISODES as EPISODES_1_3 } from './episodes.2_1_3';
 
 export const CHAPTERS = [
   {
@@ -15,5 +16,13 @@ export const CHAPTERS = [
     date: '7 décembre 2017',
     image: 'ffbe_2-1-2.jpg',
     episodes: EPISODES_1_2
+  },
+  {
+    ref: 'I/III',
+    yt: 'PLja8pBKimcSbS6hrcLxvvc2O7OwzcNtI5',
+    date: '25 janvier 2018',
+    image: 'ffbe_2-1-3.jpg',
+    episodes: EPISODES_1_3,
+    featured: true
   }
 ];

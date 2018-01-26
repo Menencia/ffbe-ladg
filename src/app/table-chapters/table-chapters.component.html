@@ -31,12 +31,8 @@
         <a routerLink="/chapter/{{chapter.getID()}}">{{ chapter.title }}</a>
       </td>
       <td>
-        <ng-container *ngIf="chapter.maxEpisodes">
-          {{ chapter.nbEpisodes }} / {{ chapter.maxEpisodes }}
-        </ng-container>
-        <ng-container *ngIf="!chapter.maxEpisodes">
-         {{ chapter.nbEpisodes }}
-        </ng-container>
+        {{ chapter.displayNbEpisodes() }}
+        <span *ngIf="chapter.featured" class="featured">new</span>
       </td>
       <td>
         {{ chapter.date }}

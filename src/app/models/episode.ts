@@ -9,6 +9,7 @@ interface Video {
 export class Episode {
 
   title: string;
+  originalTitle: string;
   chapter: Chapter;
   ref: string;
   region: string;
@@ -18,6 +19,7 @@ export class Episode {
   static load(data) {
     const e = new this;
     e.title = data.title;
+    e.originalTitle = data.originalTitle;
     e.region = data.region;
     e.isTown = data.isTown;
     e.video = data.video;
@@ -34,6 +36,8 @@ export class Episode {
     string += '#' + number;
     if (this.title) {
       string += ' - ' + this.title;
+    } else if (this.originalTitle) {
+      string += ' - ' + this.originalTitle;
     }
     return string;
   }

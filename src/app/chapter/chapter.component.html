@@ -22,7 +22,7 @@
   <li><strong>Durée totale :</strong> {{ chapter.totalDuration }}</li>
 </ul>
 
-<h2>Episodes</h2>
+<h2>Episodes ({{ chapter.displayNbEpisodes() }})</h2>
 
 <div class="container">
 
@@ -34,12 +34,13 @@
       <th>Région</th>
       <th>Version</th>
     </tr>
-    <tr *ngFor="let episode of chapter.episodes; let i = index">
+    <tr *ngFor="let episode of chapter.getEpisodes(); let i = index">
       <td>
         #{{ i+1 }}
       </td>
       <td>
-        <a routerLink="/episode/{{ episode.getID() }}">{{ episode.title }}</a>
+        <a routerLink="/episode/{{ episode.getID() }}" *ngIf="episode.title">{{ episode.title }}</a>
+        <a routerLink="/episode/{{ episode.getID() }}" *ngIf="episode.originalTitle"><em>{{ episode.originalTitle }}</em></a>
       </td>
       <td>
         {{ episode.video.duration }}

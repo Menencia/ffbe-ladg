@@ -17,6 +17,10 @@ export class StoryComponent implements OnInit {
   public events: StoryEvent[] = [];
   public special: StoryEvent[] = [];
 
+  linkWebsite = 'http://www.finalfantasyexvius.com/fr/';
+  linkAndroid = 'https://play.google.com/store/apps/details?id=com.square_enix.android_googleplay.FFBEWW&hl=fr';
+  linkIOS = 'https://itunes.apple.com/fr/app/final-fantasy-brave-exvius/id1078553808?mt=8';
+
   constructor(
     public http: HttpClient,
     public router: Router,
