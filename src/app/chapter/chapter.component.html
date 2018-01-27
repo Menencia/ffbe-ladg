@@ -33,7 +33,7 @@
       <th>Titre</th>
       <th>Durée</th>
       <th *ngIf="hasRegions">Région</th>
-      <th>Version</th>
+      <th><a routerLink="/version">Version</a></th>
     </tr>
     <tr *ngFor="let episode of chapter.getEpisodes(); let i = index">
       <td class="ref">

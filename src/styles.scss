@@ -92,8 +92,6 @@ a:hover {
 }
 
 a.pretty {
-  //color: #3272d2;
-  //text-decoration: none;
   color: #3272d2;
   background: linear-gradient(180deg,hsl(216, 46%, 64%), hsl(216, 46%, 64%)) no-repeat 0 1.1rem;
   background-size: 100% 100%;
@@ -104,8 +102,21 @@ a.pretty {
 }
 
 a.pretty:hover {
-  //color: #47c7ff;
-  //text-decoration: none;
+  background-position: 0 0;
+  color: white;
+}
+
+th a {
+  color: white;
+  background: linear-gradient(180deg,hsl(216, 46%, 64%), hsl(216, 46%, 64%)) no-repeat 0 1.1rem;
+  background-size: 100% 100%;
+  font-weight: 600;
+  transition: background-position .15s ease-out;
+  line-height: inherit;
+  text-decoration: none;
+}
+
+th a:hover {
   background-position: 0 0;
   color: white;
 }

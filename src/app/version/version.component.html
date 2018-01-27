@@ -1,0 +1,31 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/story">🏠</a></li>
+    <li class="breadcrumb-item active">Système de version</li>
+  </ol>
+
+<h2>Version des épisodes</h2>
+
+<table>
+  <tr>
+    <th>Ref</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let version of versions">
+    <td class="ref">
+      {{ version.b }}
+    </td>
+    <td>
+      {{ version.l }}
+    </td>
+  </tr>
+</table>
+
+<h2>Qualité des chapitres</h2>
+
+<p>
+  Pour déterminer la qualité en % d'un chapitre, la formule est la suivante :
+</p>
+
+<p>
+  <code>[ Nombre d'épisodes dont la version > 5 ] / [ Nombre d'épisodes total ] * 100</code>
+</p>

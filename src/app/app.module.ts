@@ -12,6 +12,7 @@ import { ChapterPipe } from './chapter.pipe';
 import { PartPipe } from './part.pipe';
 import { TableChaptersComponent } from './table-chapters/table-chapters.component';
 import { YoutubePlayerModule } from 'ngx-youtube-player';
+import { VersionComponent } from './version/version.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { YoutubePlayerModule } from 'ngx-youtube-player';
     EpisodeComponent,
     ChapterPipe,
     PartPipe,
-    TableChaptersComponent
+    TableChaptersComponent,
+    VersionComponent
   ],
   imports: [
     BrowserModule,
