@@ -1,7 +1,7 @@
 export const EPISODES = [
   {
     originalTitle: 'Teacher and Student',
-    region: 'Camp de travail',
+    region: 'Camp de travail - Exté.',
     video: {
       yt: 'bABMNU_OR-M',
       duration: '6:58',
@@ -19,7 +19,7 @@ export const EPISODES = [
   },
   {
     originalTitle: 'However Many Betrayals',
-    region: 'Zaharu',
+    region: 'Zaharu - Potence',
     video: {
       yt: 'PbGohnMdG8w',
       duration: '9:30',
@@ -28,7 +28,7 @@ export const EPISODES = [
   },
   {
     originalTitle: 'Escape from the Camp',
-    region: 'Medos',
+    region: 'Medos - Prison de lon. peine',
     video: {
       yt: 'LKUgvLrua-4',
       duration: '8:51',
@@ -47,46 +47,46 @@ export const EPISODES = [
   },
   {
     originalTitle: '700 Year Reunion',
-    region: '',
+    region: 'Rivière Heznudo',
     video: {
-      yt: '',
-      duration: '',
+      yt: 'N8SnnaPMj84',
+      duration: '6:26',
       version: 6
     }
   },
   {
     originalTitle: 'Undying Memories',
-    region: '',
+    region: 'Georl - Ruines de garn',
     video: {
-      yt: '',
-      duration: '',
+      yt: '5hJRPqVs6Gw',
+      duration: '5:31',
       version: 6
     }
   },
   {
     originalTitle: 'Cid\'s Resolution',
-    region: '',
+    region: 'Danadea - R. de l\'usine',
     video: {
-      yt: '',
-      duration: '',
+      yt: '_XI2V5zuOQ8',
+      duration: '0:23',
       version: 6
     }
   },
   {
     originalTitle: 'Not a Dream',
-    region: '',
+    region: 'Georl - Acti. de la barr',
     video: {
-      yt: '',
-      duration: '',
+      yt: 'jCdrgxEFXAk',
+      duration: '7:37',
       version: 6
     }
   },
   {
     originalTitle: 'Stirring',
-    region: '',
+    region: 'Zaharu - Potence',
     video: {
-      yt: '',
-      duration: '',
+      yt: 'zpsXiKntIaM',
+      duration: '7:53',
       version: 6
     }
   }
