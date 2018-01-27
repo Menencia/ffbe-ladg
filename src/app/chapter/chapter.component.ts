@@ -6,6 +6,8 @@ import { DataService } from '../data.service';
 import { Chapter } from '../models/chapter';
 import { Season } from '../models/season';
 
+import * as _ from 'lodash';
+
 @Component({
   selector: 'app-chapter',
   templateUrl: './chapter.component.html',
@@ -15,6 +17,8 @@ export class ChapterComponent implements OnInit {
 
   public season: Season;
   public chapter: Chapter;
+
+  hasRegions = true;
 
   constructor(
     public route: Router,
@@ -32,9 +36,11 @@ export class ChapterComponent implements OnInit {
   }
 
   loadChapter(c) {
-    const {season, chapter} = this.data.getChapter(c);
-    this.season = season;
-    this.chapter = chapter;
+    this.chapter = this.data.getChapter(c);
+    if (this.chapter.season) {
+      this.season = this.chapter.season;
+    }
+    this.hasRegions = _.some(this.chapter.episodes, e => e.region);
   }
 
   previous() {

@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { Episode } from '../models/episode';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
-import { StoryEvent } from '../models/story-event';
 
 @Component({
   selector: 'app-story',
@@ -14,8 +13,8 @@ import { StoryEvent } from '../models/story-event';
 export class StoryComponent implements OnInit {
 
   public seasons: Season[] = [];
-  public events: StoryEvent[] = [];
-  public special: StoryEvent[] = [];
+  public events: Chapter[] = [];
+  public special: Chapter[] = [];
 
   linkWebsite = 'http://www.finalfantasyexvius.com/fr/';
   linkAndroid = 'https://play.google.com/store/apps/details?id=com.square_enix.android_googleplay.FFBEWW&hl=fr';

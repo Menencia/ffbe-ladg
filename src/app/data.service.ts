@@ -4,8 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Season } from './models/season';
 import { Chapter } from './models/chapter';
 import { Episode } from './models/episode';
-import { EpisodeSE } from './models/episode-se';
-import { StoryEvent } from './models/story-event';
 
 import { STORY } from './data/seasons';
 
@@ -16,137 +14,91 @@ export class DataService {
 
   public loaded: boolean;
 
-  public seasons: Season[] = [];
-  public chapters: Chapter[] = [];
-  public episodes: EpisodeSE[] = [];
-  public events: StoryEvent[] = [];
-  public special: StoryEvent[] = [];
+  // new variables
+  story;
+  storyEvents;
+  specialEvents;
+
+  // rename
+  // season => folder
+  // chapter => list
+  // episode => episode
 
   constructor(public http: HttpClient) {
-    this.buildSeasons(STORY.seasons);
-    this.buildEvents(STORY.events);
-    this.buildSpecial(STORY.special);
+    this.story = this.buildSeasons(STORY.seasons);
+    this.storyEvents = this.buildChapters(STORY.events);
+    this.specialEvents = this.buildChapters(STORY.special);
   }
 
-  buildSeasons(dataSeasons) {
-    dataSeasons.forEach((dSeason: any) => {
+  buildSeasons(data) {
+    const res = [];
+    data.forEach((dSeason: any) => {
       const season = Season.load(dSeason);
-      this.buildChapters(dSeason, season);
-      this.seasons.push(season);
+      season.chapters = this.buildChapters(dSeason.chapters, season);
+      res.push(season);
     });
+    return res;
   }
 
-  buildChapters(dSeason, season) {
-    // tslint:disable-next-line:curly
-    if (!dSeason.chapters) return false;
-    dSeason.chapters.forEach(dChapter => {
+  buildChapters(data, season = null) {
+    const res = [];
+    data.forEach(dChapter => {
       const chapter = Chapter.load(dChapter);
-      chapter.season = season;
-      chapter.ref = season.ref + '/' + chapter.ref;
-      this.buildEpisodes(dChapter, chapter);
-      season.chapters.push(chapter);
+      if (season) {
+        chapter.season = season;
+        chapter.ref = season.ref + '/' + chapter.ref;
+      }
+      chapter.episodes = dChapter.episodes ? this.buildEpisodes(dChapter.episodes, chapter) : [];
+      res.push(chapter);
     });
+    return res;
   }
 
-  buildEpisodes(dChapter, chapter) {
-    // tslint:disable-next-line:curly
-    if (!dChapter.episodes) return false;
-    dChapter.episodes.forEach((dEpisode: any, index: number) => {
+  buildEpisodes(data, chapter = null) {
+    const res = [];
+    data.forEach((dEpisode, index: number) => {
       const episode = Episode.load(dEpisode);
-      episode.chapter = chapter;
-      episode.ref = chapter.ref + '/' + (index + 1);
-      chapter.episodes.push(episode);
+      if (chapter) {
+        episode.chapter = chapter;
+        episode.ref = chapter.ref + '/' + (index + 1);
+      }
+      res.push(episode);
     });
-  }
-
-  buildEvents(dataEvents) {
-    dataEvents.forEach((dEvent: any) => {
-      const event = StoryEvent.load(dEvent);
-      this.buildEvent(dEvent, event);
-      this.events.push(event);
-    });
-  }
-
-  buildEvent(dEvent, event) {
-    // tslint:disable-next-line:curly
-    if (!dEvent.episodes) return false;
-    dEvent.episodes.forEach((dEventEpisode: any, index: number) => {
-      const eventEpisode = EpisodeSE.load(dEventEpisode);
-      eventEpisode.chapter = event;
-      eventEpisode.ref = event.ref + '/' + (index + 1);
-      event.episodes.push(eventEpisode);
-    });
-  }
-
-  buildSpecial(dataSpecial) {
-    dataSpecial.forEach((dSpecial: any) => {
-      const event = StoryEvent.load(dSpecial);
-      this.buildEvent(dSpecial, event);
-      this.special.push(event);
-    });
+    return res;
   }
 
   getChapter(chapterRef) {
-    const [seasonRef, ...others] = chapterRef.split('-');
-    const season = _.find(this.seasons, {ref: seasonRef});
-    const chapter = _.find(season.chapters, {ref: chapterRef.replace(/-/g, '/')});
-    return {season, chapter};
+    let chapter;
+    if (chapterRef.indexOf('SSE') > -1) {
+      chapterRef = chapterRef.replace('-', '/');
+      chapter = _.find(this.specialEvents, {ref: chapterRef});
+    } else if (chapterRef.indexOf('SE') > -1) {
+      chapterRef = chapterRef.replace('-', '/');
+      chapter = _.find(this.storyEvents, {ref: chapterRef});
+    } else {
+      const [seasonRef, ...others] = chapterRef.split('-');
+      const season = _.find(this.story, {ref: seasonRef});
+      chapter = _.find(season.chapters, {ref: chapterRef.replace(/-/g, '/')});
+    }
+    return chapter;
   }
 
-  getStoryEvent(storyEventRef) {
-    storyEventRef = storyEventRef.replace('-', '/');
-    const storyEvent = _.find(this.events, {ref: storyEventRef});
-    return {storyEvent};
-  }
-
-  getSpecialEvent(specialEventRef) {
-    specialEventRef = specialEventRef.replace('-', '/');
-    const specialEvent = _.find(this.special, {ref: specialEventRef});
-    return {specialEvent};
-  }
-
-  getEpisode(episodeID) {
-    const [seasonRef, ...others] = episodeID.split('-');
-    const season = _.find(this.seasons, {ref: seasonRef});
-
-    const chapterRef = _.concat([seasonRef], _.initial(others)).join('/');
-    const chapter = _.find(season.chapters, {ref: chapterRef});
-
-    const episodeRef = episodeID.replace(/-/g, '/');
-    const episode = _.find(chapter.episodes, {ref: episodeRef});
-
-    return {season, chapter, episode};
-  }
-
-  getEpisodeSE(episodeID) {
-    const chapterRef = _.initial(episodeID.split('-')).join('/');
-    const storyEvent = _.find(this.events, {ref: chapterRef});
-
-    const episodeRef = episodeID.replace(/-/g, '/');
-    const episodeSE = _.find(storyEvent.episodes, {ref: episodeRef});
-
-    return {storyEvent, episodeSE};
-  }
-
-  getEpisodeSSE(episodeID) {
-    const chapterRef = _.initial(episodeID.split('-')).join('/');
-    const specialEvent = _.find(this.special, {ref: chapterRef});
-
-    const episodeRef = episodeID.replace(/-/g, '/');
-    const episodeSSE = _.find(specialEvent.episodes, {ref: episodeRef});
-
-    return {specialEvent, episodeSSE};
+  getEpisode(episodeRef) {
+    const chapterRef = _.initial(episodeRef.split('-')).join('-');
+    const chapter = this.getChapter(chapterRef);
+    episodeRef = episodeRef.replace(/-/g, '/');
+    return _.find(chapter.episodes, {ref: episodeRef});
   }
 
   getSeasons() {
-    return this.seasons;
+    return this.story;
   }
 
   getEvents() {
-    return this.events;
+    return this.storyEvents;
   }
 
   getSpecial() {
-    return this.special;
+    return this.specialEvents;
   }
 }

@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
-  <li class="breadcrumb-item"><a routerLink="/story">Histoire</a></li>
-  <li class="breadcrumb-item active">Saison {{ chapter.getSeasonNumber() }}</li>
+  <li class="breadcrumb-item"><a routerLink="/story">🏠</a></li>
+  <li class="breadcrumb-item active" *ngIf="season">Saison {{ chapter.getSeasonNumber() }}</li>
   <li class="breadcrumb-item active">{{ chapter.getTitle() }}</li>
 </ol>
 
@@ -19,6 +19,7 @@
   <li *ngIf="chapter.title"><strong>Titre :</strong> {{ chapter.title }}</li>
   <li><strong>Publication :</strong> {{ chapter.date }}</li>
   <li><strong>Nombre d'épisodes :</strong> {{ chapter.nbEpisodes }}</li>
+  <li><strong>Qualité :</strong> {{ chapter.quality }}%</li>
   <li><strong>Durée totale :</strong> {{ chapter.totalDuration }}</li>
 </ul>
 
@@ -28,15 +29,15 @@
 
   <table>
     <tr>
-      <th></th>
+      <th>Ref</th>
       <th>Titre</th>
       <th>Durée</th>
-      <th>Région</th>
+      <th *ngIf="hasRegions">Région</th>
       <th>Version</th>
     </tr>
     <tr *ngFor="let episode of chapter.getEpisodes(); let i = index">
-      <td>
-        #{{ i+1 }}
+      <td class="ref">
+        {{ episode.ref }}
       </td>
       <td>
         <a routerLink="/episode/{{ episode.getID() }}" *ngIf="episode.title">{{ episode.title }}</a>
@@ -45,7 +46,7 @@
       <td>
         {{ episode.video.duration }}
       </td>
-      <td>
+      <td *ngIf="hasRegions">
         {{ episode.region }} <span *ngIf="episode.isTown">🏠</span>
       </td>
       <td>

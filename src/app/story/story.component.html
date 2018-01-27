@@ -29,14 +29,14 @@
 <h2>Histoire principale</h2>
 
 <div *ngFor="let season of seasons; let i = index" class="season">
-  <h3>Saison {{ i+1 }} : {{ season.title }}</h3>
+  <h3>Saison {{ i+1 }}</h3>
   <app-table-chapters [chapters]="season.chapters"></app-table-chapters>
 </div>
 
 <h2>Événements de l'histoire</h2>
 
-<app-table-events [events]="events"></app-table-events>
+<app-table-chapters [chapters]="events"></app-table-chapters>
 
 <h2>Autres</h2>
 
-<app-table-special [special]="special"></app-table-special>
+<app-table-chapters [chapters]="special"></app-table-chapters>

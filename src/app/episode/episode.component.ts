@@ -32,14 +32,17 @@ export class EpisodeComponent {
   }
 
   loadEpisode(e) {
-    const {season, chapter, episode} = this.data.getEpisode(e);
-    this.season = season;
-    this.chapter = chapter;
-    this.episode = episode;
+    this.episode = this.data.getEpisode(e);
+    if (this.episode.chapter) {
+      this.chapter = this.episode.chapter;
+    }
+    if (this.chapter.season) {
+      this.season = this.chapter.season;
+    }
     this.episodePrevious = this.getPrevious();
     this.episodeNext = this.getNext();
     if (this.player) {
-      this.player.cueVideoById(episode.video.yt);
+      this.player.cueVideoById(this.episode.video.yt);
     }
   }
 
@@ -57,7 +60,7 @@ export class EpisodeComponent {
     let episodePrevious: Episode;
     if (episodeIndex - 1 >= 0) {
       episodePrevious = this.chapter.episodes[episodeIndex - 1];
-    } else {
+    } else if (this.season) {
       const chapterIndex = _.findIndex(this.season.chapters, this.chapter);
       let chapterPrevious: Chapter;
       if (chapterIndex - 1 >= 0) {
@@ -73,7 +76,7 @@ export class EpisodeComponent {
     let episodeNext: Episode;
     if (episodeIndex + 1 < this.chapter.episodes.length) {
       episodeNext = this.chapter.episodes[episodeIndex + 1];
-    } else {
+    } else if (this.season) {
       const chapterIndex = _.findIndex(this.season.chapters, this.chapter);
       let chapterNext: Chapter;
       if (chapterIndex + 1 < this.season.chapters.length) {

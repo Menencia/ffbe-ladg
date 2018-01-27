@@ -1,38 +1,30 @@
 <table>
     <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th *ngIf="haveTitles">Titre</th>
+      <th>Ref</th>
+      <th>Titre</th>
       <th>Épisodes</th>
+      <th>Qualité</th>
       <th>Date</th>
     </tr>
     <tr *ngFor="let chapter of chapters; let i = index">
-      <td>
-        #{{ i+1 }}
+      <td class="ref">
+        {{ chapter.ref }}
       </td>
       <td>
-        <ng-container *ngIf="!chapter.title && chapter.ref.split('/').length === 2; else elseChapter">
-          <a routerLink="/chapter/{{chapter.getID()}}">{{ chapter.ref | chapter }}</a>
+        <ng-container *ngIf="chapter.episodes.length === 0">
+          <em>{{ chapter.getTitle() }}</em>
         </ng-container>
-        <ng-template #elseChapter>
-          {{ chapter.ref | chapter }}
-        </ng-template>
-      </td>
-      <td>
-        <ng-container *ngIf="!chapter.title && chapter.ref.split('/').length === 3; else elsePart">
-          <a routerLink="/chapter/{{chapter.getID()}}">{{ chapter.ref | part }}</a>
+        <ng-container *ngIf="chapter.episodes.length > 0">
+          <a routerLink="/chapter/{{chapter.getID()}}">{{ chapter.getTitle() }}</a>
         </ng-container>
-        <ng-template #elsePart>
-          {{ chapter.ref | part }}
-        </ng-template>
-      </td>
-      <td *ngIf="haveTitles">
-        <a routerLink="/chapter/{{chapter.getID()}}">{{ chapter.title }}</a>
-      </td>
-      <td>
-        {{ chapter.displayNbEpisodes() }}
         <span *ngIf="chapter.featured" class="featured">new</span>
+      </td>
+      <td class="text-center">
+        {{ chapter.displayNbEpisodes() }}
+      </td>
+      <td class="text-center">
+        <span [class]="chapter.getQualityColor()" *ngIf="chapter.episodes.length > 0">{{ chapter.quality }}%</span>
+        <span *ngIf="chapter.episodes.length === 0">-</span>
       </td>
       <td>
         {{ chapter.date }}

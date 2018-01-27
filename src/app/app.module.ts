@@ -12,12 +12,6 @@ import { ChapterPipe } from './chapter.pipe';
 import { PartPipe } from './part.pipe';
 import { TableChaptersComponent } from './table-chapters/table-chapters.component';
 import { YoutubePlayerModule } from 'ngx-youtube-player';
-import { EpisodeSEComponent } from './episode-se/episode-se.component';
-import { StoryEventComponent } from './story-event/story-event.component';
-import { TableEventsComponent } from './table-events/table-events.component';
-import { EpisodeSSEComponent } from './episode-sse/episode-sse.component';
-import { SpecialEventComponent } from './special-event/special-event.component';
-import { TableSpecialComponent } from './table-special/table-special.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +21,7 @@ import { TableSpecialComponent } from './table-special/table-special.component';
     EpisodeComponent,
     ChapterPipe,
     PartPipe,
-    TableChaptersComponent,
-    EpisodeSEComponent,
-    StoryEventComponent,
-    EpisodeSSEComponent,
-    SpecialEventComponent,
-    TableEventsComponent,
-    TableSpecialComponent
+    TableChaptersComponent
   ],
   imports: [
     BrowserModule,

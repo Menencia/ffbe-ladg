@@ -70,6 +70,10 @@ td {
   color: #1F3656;
 }
 
+td.ref {
+  color: #888;
+}
+
 .breadcrump {
   background: #FAFDFF;
   display: inline-block;
@@ -116,3 +120,10 @@ a.pretty:hover {
   line-height: inherit;
   text-decoration: none;
 }
+
+.quality-blue {
+  font-weight: normal;
+ }
+.quality-green,
+.quality-orange,
+.quality-red { font-weight: bold; }
