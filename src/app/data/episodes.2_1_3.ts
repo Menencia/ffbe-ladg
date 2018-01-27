@@ -10,37 +10,38 @@ export const EPISODES = [
   },
   {
     originalTitle: 'To the Execution',
-    region: '',
+    region: 'Terres sans nom',
     video: {
-      yt: '',
-      duration: '',
+      yt: 'MHLFiorAIXA',
+      duration: '0:33',
       version: 6
     }
   },
   {
     originalTitle: 'However Many Betrayals',
-    region: '',
+    region: 'Zaharu',
     video: {
-      yt: '',
-      duration: '',
+      yt: 'PbGohnMdG8w',
+      duration: '9:30',
       version: 6
     }
   },
   {
     originalTitle: 'Escape from the Camp',
-    region: '',
+    region: 'Medos',
     video: {
-      yt: '',
-      duration: '',
+      yt: 'LKUgvLrua-4',
+      duration: '8:51',
       version: 6
     }
   },
   {
     originalTitle: 'Clock',
-    region: '',
+    region: 'Cité industrielle de Dormdry',
+    isTown: true,
     video: {
-      yt: '',
-      duration: '',
+      yt: '8khpjPRnWqQ',
+      duration: '4:54',
       version: 6
     }
   },
