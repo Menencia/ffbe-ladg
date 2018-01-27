@@ -11,27 +11,27 @@ export const EPISODES = [
     title: 'Nichol le stratège',
     region: 'Plaines d\'Argus',
     video: {
-      yt: '7zQXRtIPk5A',
-      duration: '8:15',
-      version: 2
+      yt: 'G9_Eeo_2870',
+      duration: '7:31',
+      version: 6
     }
   },
   {
     title: 'La fille de l\'eau',
     region: 'Épave de bateau',
     video: {
-      yt: 'jYsNesi259A',
-      duration: '4:19',
-      version: 2
+      yt: 'MWbhv3ARBqU',
+      duration: '3:53',
+      version: 6
     }
   },
   {
     title: 'Les trois d\'Olderion',
     region: 'Côte de Tokkle',
     video: {
-      yt: 'uuxBCFC0r_I',
-      duration: '2:12',
-      version: 2
+      yt: 'BQJb0XhNgA4',
+      duration: '1:50',
+      version: 6
     }
   },
   {
@@ -57,9 +57,9 @@ export const EPISODES = [
     title: 'Le véritable pouvoir de Nichol',
     region: 'Bois mystiques',
     video: {
-      yt: 'c26-fteSeR8',
-      duration: '0:53',
-      version: 2
+      yt: 'wz-T7NT3yrs',
+      duration: '0:47',
+      version: 6
     }
   },
   {
@@ -75,18 +75,18 @@ export const EPISODES = [
     title: 'Affaires de famille',
     region: 'Terrier sinueux',
     video: {
-      yt: 'bhRBe6eMOHs',
-      duration: '1:25',
-      version: 2
+      yt: 'szBEO2NkeP4',
+      duration: '1:10',
+      version: 6
     }
   },
   {
     title: 'Magnifique infamie',
     region: 'Lac Dorr',
     video: {
-      yt: 'uIrMI5L_26Q',
-      duration: '9:55',
-      version: 2
+      yt: 'UkPZds-naek',
+      duration: '8:47',
+      version: 6
     }
   },
   {
