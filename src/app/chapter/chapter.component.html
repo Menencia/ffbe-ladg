@@ -50,7 +50,7 @@
         {{ episode.region }} <span *ngIf="episode.isTown">🏠</span>
       </td>
       <td>
-        {{ episode.video.version }}
+        <span [class.qualityMax]="episode.video.version >= 5">{{ episode.video.version }}</span>
       </td>
     </tr>
   </table>
