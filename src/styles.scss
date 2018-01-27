@@ -132,6 +132,16 @@ th a:hover {
   text-decoration: none;
 }
 
+.qualityMax {
+  text-transform: uppercase;
+  background: linear-gradient(180deg,rgb(131, 199, 131), rgb(131, 199, 131)) no-repeat 0 1.1rem;
+  background-size: 100% 100%;
+  font-weight: 600;
+  transition: background-position .15s ease-out;
+  line-height: inherit;
+  text-decoration: none;
+}
+
 .quality-blue {
   font-weight: normal;
  }

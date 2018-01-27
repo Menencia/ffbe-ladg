@@ -84,9 +84,9 @@ export const EPISODES = [
     title: 'Étoile filante',
     region: 'Les abysses',
     video: {
-      yt: 'HbuxxluHP7g',
-      duration: '15:43',
-      version: 4
+      yt: '_tqEh-vmLM0',
+      duration: '15:36',
+      version: 6
     }
   }
 ];

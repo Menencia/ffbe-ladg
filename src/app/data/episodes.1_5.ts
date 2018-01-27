@@ -49,9 +49,9 @@ export const EPISODES = [
     region: 'Ruines sans nom',
     isTown: true,
     video: {
-      yt: 'N0n0-Z4YfWk',
-      duration: '10:50',
-      version: 2
+      yt: 'HfmIAn3a1Fw',
+      duration: '8:53',
+      version: 6
     }
   },
   {

@@ -2,9 +2,9 @@ export const EPISODES = [
   {
     title: 'Vers la tour de cristal',
     video: {
-      yt: '6puILF7ztsg',
-      duration: '6:13',
-      version: 3
+      yt: 'DBYZyRHVC5w',
+      duration: '6:19',
+      version: 6
     }
   },
   {

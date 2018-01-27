@@ -4,9 +4,9 @@ export const EPISODES = [
     region: 'Grandport',
     isTown: true,
     video: {
-      yt: 'a02TX14LL-c',
-      duration: '3:14',
-      version: 2
+      yt: 'E2CgjC4DSUE',
+      duration: '2:36',
+      version: 6
     }
   },
   {

@@ -2,9 +2,9 @@ export const EPISODES = [
   {
     title: 'Revanche',
     video: {
-      yt: 'nRkRKV9aHUY',
-      duration: '6:54',
-      version: 2
+      yt: 'sJ2B5wBZZfI',
+      duration: '5:55',
+      version: 6
     }
   },
   {

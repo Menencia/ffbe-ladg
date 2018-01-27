@@ -23,7 +23,7 @@
         {{ chapter.displayNbEpisodes() }}
       </td>
       <td class="text-center">
-        <span [class]="chapter.getQualityColor()" *ngIf="chapter.episodes.length > 0">{{ chapter.quality }}%</span>
+        <span [class.qualityMax]="chapter.quality === 100" *ngIf="chapter.episodes.length > 0">{{ chapter.quality }}%</span>
         <span *ngIf="chapter.episodes.length === 0">-</span>
       </td>
       <td>

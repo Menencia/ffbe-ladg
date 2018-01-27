@@ -112,9 +112,9 @@ export const EPISODES = [
     title: 'Comme prévu',
     region: 'Capitale de Zoldaad',
     video: {
-      yt: 'aGrbuo7YJZo',
-      duration: '17:26',
-      version: 2
+      yt: 'nS_Cvp_r-l4',
+      duration: '14:16',
+      version: 6
     }
   },
   {

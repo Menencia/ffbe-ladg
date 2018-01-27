@@ -84,9 +84,9 @@ export const EPISODES = [
     title: 'La foi dans le cœur',
     region: 'Entrée du temple de Gronoa',
     video: {
-      yt: 'wnXnazNP8yM',
-      duration: '13:14',
-      version: 2
+      yt: 'JtgfxrYSDhQ',
+      duration: '10:10',
+      version: 6
     }
   },
   {
