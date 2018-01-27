@@ -124,22 +124,32 @@ th a:hover {
 .featured {
   color: #900;
   text-transform: uppercase;
-  background: linear-gradient(180deg,rgb(226, 154, 154), rgb(226, 154, 154)) no-repeat 0 1.1rem;
-  background-size: 100% 100%;
   font-weight: 600;
-  transition: background-position .15s ease-out;
-  line-height: inherit;
-  text-decoration: none;
+  position: relative;
+}
+
+.featured::after {
+  content: " ";
+  background-color: rgb(226, 154, 154);
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  left: 0;
+  right: 0;
 }
 
 .qualityMax {
-  text-transform: uppercase;
-  background: linear-gradient(180deg,rgb(131, 199, 131), rgb(131, 199, 131)) no-repeat 0 1.1rem;
-  background-size: 100% 100%;
-  font-weight: 600;
-  transition: background-position .15s ease-out;
-  line-height: inherit;
-  text-decoration: none;
+  position: relative;
+}
+
+.qualityMax::after {
+  content: " ";
+  background-color: #83c783;
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  left: 0;
+  right: 0;
 }
 
 .quality-blue {
