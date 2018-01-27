@@ -122,36 +122,36 @@ export const EPISODES = [
     title: 'Vers les mers du Nord',
     region: 'Bateau pirate',
     video: {
-      yt: 'NmXoyuuqbQo',
-      duration: '3:43',
-      version: 2
+      yt: 'uFWfvMRE8K8',
+      duration: '3:19',
+      version: 6
     }
   },
   {
     title: 'Lux radiant, brille à jamais',
     region: 'Vaisseau fantôme',
     video: {
-      yt: 'qmXXggD-l4s',
-      duration: '4:15',
-      version: 2
+      yt: 'jVRP5QSy_qU',
+      duration: '3:32',
+      version: 6
     }
   },
   {
     title: 'Impatience et anxiété',
     region: 'Cap de la Veuve',
     video: {
-      yt: 'EJSIZAdfKS0',
-      duration: '3:16',
-      version: 2
+      yt: 'PRGfc5Wzs_M',
+      duration: '2:59',
+      version: 6
     }
   },
   {
     title: 'Nichol et Elle',
     region: 'Courant souterrain',
     video: {
-      yt: 'N-btDJ5kzDQ',
-      duration: '2:45',
-      version: 2
+      yt: 'ffP46ylxmQA',
+      duration: '2:23',
+      version: 6
     }
   },
   {
@@ -168,9 +168,9 @@ export const EPISODES = [
     title: 'Ce que nul autre ne peut faire',
     region: 'Temple de l\'Eau',
     video: {
-      yt: 'RmLrtMdEfnM',
-      duration: '16:07',
-      version: 2
+      yt: 'VFr7s7YcvhA',
+      duration: '12:54',
+      version: 6
     }
   },
   {
