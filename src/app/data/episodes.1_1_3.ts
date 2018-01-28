@@ -14,45 +14,45 @@ export const EPISODES = [
     region: 'Port fantôme de Kolobos',
     isTown: true,
     video: {
-      yt: '8UZhP5nWQ1E',
-      duration: '2:09',
-      version: 2
+      yt: 'SzSjqY_TYNI',
+      duration: '1:37',
+      version: 6
     }
   },
   {
     title: 'L\'impatience de Lasswell',
     region: 'Marais de Kolobos',
     video: {
-      yt: 'OAwQ2y54bpY',
-      duration: '2:19',
-      version: 2
+      yt: 'QnUzSF2zmOU',
+      duration: '1:36',
+      version: 6
     }
   },
   {
     title: 'Entraide',
     region: 'Cime de Golzas',
     video: {
-      yt: 'Su6u5oo7dN8',
-      duration: '2:26',
-      version: 2
+      yt: 'KL0zkuceQhw',
+      duration: '1:43',
+      version: 6
     }
   },
   {
     title: 'L\'Antre des morts-vivants',
     region: 'Canyon de Golzas',
     video: {
-      yt: 'PEG-WV76sqE',
-      duration: '3:22',
-      version: 2
+      yt: 'oCZQZ8wnj_M',
+      duration: '2:20',
+      version: 6
     }
   },
   {
     title: 'Qu\'est-ce que l\'amour ?',
     region: 'Falaise de Golzas',
     video: {
-      yt: 'gblvFfJ4eOQ',
-      duration: '4:07',
-      version: 2
+      yt: '0_-ahVdaQCM',
+      duration: '2:53',
+      version: 6
     }
   },
   {
@@ -60,36 +60,36 @@ export const EPISODES = [
     region: 'Ville de Felicitas',
     isTown: true,
     video: {
-      yt: 'Df1wlKJnblA',
-      duration: '1:34',
-      version: 2
+      yt: 'M2a_-y89WqQ',
+      duration: '1:08',
+      version: 6
     }
   },
   {
     title: 'Les émotions d\'Emma',
     region: 'Récif de Kolobos',
     video: {
-      yt: 'VwW8t_e7cws',
-      duration: '3:41',
-      version: 2
+      yt: 'I8XLicBGy5Y',
+      duration: '2:36',
+      version: 6
     }
   },
   {
     title: 'Sentiments variés',
     region: 'Grotte aux miasmes',
     video: {
-      yt: '1OtbfWE2wIo',
-      duration: '6:40',
-      version: 2
+      yt: 'fX4YcCrrjKU',
+      duration: '4:51',
+      version: 6
     }
   },
   {
     title: 'Tristesse jamais ne doit vaincre',
     region: 'Temple de la décadence',
     video: {
-      yt: 'Zb92aPoBMbE',
-      duration: '7:10',
-      version: 2
+      yt: 'R1XbOJ8foCI',
+      duration: '5:19',
+      version: 6
     }
   },
   {
@@ -97,9 +97,9 @@ export const EPISODES = [
     region: 'Port fantôme de Kolobos',
     isTown: true,
     video: {
-      yt: 'FCYdleYWPOk',
-      duration: '3:48',
-      version: 2
+      yt: 'Tm9JE0uSM8Q',
+      duration: '2:55',
+      version: 6
     }
   }
 ];
