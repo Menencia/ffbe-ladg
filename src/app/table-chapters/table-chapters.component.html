@@ -12,10 +12,10 @@
       </td>
       <td>
         <ng-container *ngIf="chapter.episodes.length === 0">
-          <em>{{ chapter.getTitle() }}</em>
+          <em>{{ chapter.title }}</em>
         </ng-container>
         <ng-container *ngIf="chapter.episodes.length > 0">
-          <a routerLink="/chapter/{{chapter.getID()}}">{{ chapter.getTitle() }}</a>
+          <a routerLink="/chapter/{{chapter.getID()}}">{{ chapter.title }}</a>
         </ng-container>
         <span *ngIf="chapter.featured" class="featured">new</span>
       </td>
