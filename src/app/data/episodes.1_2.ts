@@ -3,27 +3,27 @@ export const EPISODES = [
     title: 'Lieu inconnu',
     region: 'Côte de Maranda',
     video: {
-      yt: '5DjPc-4rkSQ',
-      duration: '4:17',
-      version: 2
+      yt: 'VFjNmUPpSKQ',
+      duration: '4:07',
+      version: 6
     }
   },
   {
     title: 'Les souvenirs de Fina',
     region: 'Entrée du passage de Ballen',
     video: {
-      yt: 'BNQXrsH21wY',
-      duration: '2:49',
-      version: 2
+      yt: 'NmGkdX0VJX4',
+      duration: '3:08',
+      version: 6
     }
   },
   {
     title: 'Haut dans les cieux',
     region: 'Intérieur du passage de Ballen',
     video: {
-      yt: 'kwLiRc77qK8',
-      duration: '2:17',
-      version: 2
+      yt: 'exK8eNhA0lY',
+      duration: '2:15',
+      version: 6
     }
   },
   {
@@ -31,18 +31,18 @@ export const EPISODES = [
     region: 'Ville industrielle de Dilmagia',
     isTown: true,
     video: {
-      yt: 'W9l2UlMHLX8',
-      duration: '4:07',
-      version: 2
+      yt: 'KDOQ9AdpTz8',
+      duration: '3:57',
+      version: 6
     }
   },
   {
     title: 'Monstre sur le chemin',
     region: 'Forge des nains',
     video: {
-      yt: 'm_sL6-JP-fk',
-      duration: '3:25',
-      version: 2
+      yt: 'P9Vd35yxR2o',
+      duration: '3:20',
+      version: 6
     }
   },
   {
@@ -58,9 +58,9 @@ export const EPISODES = [
     title: 'Frère et sœur',
     region: 'Monts venteux (ouest)',
     video: {
-      yt: '5nZXXpxjWpI',
-      duration: '2:10',
-      version: 2
+      yt: 'E7spdcMGmf0',
+      duration: '2:09',
+      version: 6
     }
   },
   {
@@ -68,18 +68,18 @@ export const EPISODES = [
     region: 'Village d\'Ambel',
     isTown: true,
     video: {
-      yt: 'ti-vgYTDYHo',
-      duration: '4:27',
-      version: 2
+      yt: 'jUwM2GAnN8s',
+      duration: '4:12',
+      version: 6
     }
   },
   {
     title: 'Le rêve de Lid',
     region: 'Monts venteux (est)',
     video: {
-      yt: 'o5Gz-IWnjzc',
-      duration: '2:47',
-      version: 2
+      yt: '753AAakU5UE',
+      duration: '2:51',
+      version: 6
     }
   },
   {
@@ -95,18 +95,18 @@ export const EPISODES = [
     title: 'La détermination de Lid',
     region: 'Décharge',
     video: {
-      yt: '7yIplm-wchE',
+      yt: 'Akr7x9aMQ-Y',
       duration: '0:28',
-      version: 2
+      version: 6
     }
   },
   {
     title: 'L\'identité des Veritas',
     region: 'Passage Abrivent',
     video: {
-      yt: 'BaeH9F-pOWw',
-      duration: '3:17',
-      version: 2
+      yt: 'nwLN6PZCsMI',
+      duration: '2:57',
+      version: 6
     }
   },
   {
