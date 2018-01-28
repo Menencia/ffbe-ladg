@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
-  <li class="breadcrumb-item"><a routerLink="/story">🏠</a></li>
-  <li class="breadcrumb-item active" *ngIf="season">Saison {{ chapter.getSeasonNumber() }}</li>
+  <li class="breadcrumb-item"><a routerLink="/story">Histoire</a></li>
+  <li class="breadcrumb-item active">{{ chapter.getRef() }}</li>
   <li class="breadcrumb-item active">{{ chapter.getTitle() }}</li>
 </ol>
 

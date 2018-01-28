@@ -63,14 +63,32 @@ export class Chapter {
     return moment.duration(total, 'milliseconds').format();
   }
 
+  isStory(): boolean {
+    console.log(this.season);
+    return this.season !== undefined;
+  }
+
   getID() {
     return this.ref.replace(/\//g, '-');
+  }
+
+  getRef(): string {
+    let string = '';
+    if (this.ref.indexOf('SSE') > -1) {
+      string += 'Autres histoires';
+    } else if (this.ref.indexOf('SE') > -1) {
+      string += 'Événements de l\'histoire';
+    } else {
+      string += 'Saison ' + this.getSeasonNumber();
+    }
+    return string;
   }
 
   getTitle() {
     let string = '';
     if (this.ref.indexOf('SE') > -1) {
-      string += this.title;
+      const refs = this.ref.split('/');
+      string += '#' + _.last(refs) + ' - ' + this.title;
     } else {
       const [season, chapter, part] = this.ref.split('/');
       string += 'Chapitre ' + chapter;
