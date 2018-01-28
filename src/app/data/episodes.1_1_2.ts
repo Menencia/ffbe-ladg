@@ -4,36 +4,36 @@ export const EPISODES = [
     region: 'Ville portuaire de Lydira',
     isTown: true,
     video: {
-      yt: 'b2ZP9FBZ2cU',
+      yt: 'vpvzk44mUac',
       duration: '1:42',
-      version: 4
+      version: 6
     }
   },
   {
     title: 'La curiosité de Fina',
     region: 'Route abandonnée',
     video: {
-      yt: 'bIReiO5TYcg',
-      duration: '4:43',
-      version: 4
+      yt: 'J-r-Lpme1GY',
+      duration: '4:17',
+      version: 6
     }
   },
   {
     title: 'La confusion de Lasswell',
     region: 'Forêt des illusions',
     video: {
-      yt: 'ZRCVKgcbhRA',
-      duration: '2:46',
-      version: 4
+      yt: 'giECqQOHHz0',
+      duration: '2:13',
+      version: 6
     }
   },
   {
     title: 'Qu\'en est-il des amis ?',
     region: 'Estuaire de Lanzelt',
     video: {
-      yt: 'dBiNTQbEN2M',
-      duration: '2:39',
-      version: 4
+      yt: 'jpukNr2EJdM',
+      duration: '2:20',
+      version: 6
     }
   },
   {
@@ -41,9 +41,9 @@ export const EPISODES = [
     region: 'Village de Kol',
     isTown: true,
     video: {
-      yt: 'Pc_42SRqu7E',
+      yt: 'bFIOXOphF9k',
       duration: '0:56',
-      version: 4
+      version: 6
     }
   },
   {
@@ -68,18 +68,18 @@ export const EPISODES = [
     title: 'Bois de cette eau !',
     region: 'Désert de Zadehl (ouest)',
     video: {
-      yt: 'e9gtilD9Du0',
-      duration: '3:29',
-      version: 2
+      yt: 'rxXKgLGGjG0',
+      duration: '2:27',
+      version: 6
     }
   },
   {
     title: 'Première amitié',
     region: 'Collines de Lechios',
     video: {
-      yt: '8r5mAe9wfLA',
-      duration: '6:44',
-      version: 2
+      yt: 'lu0mJFi3za0',
+      duration: '5:06',
+      version: 6
     }
   },
   {
@@ -87,54 +87,54 @@ export const EPISODES = [
     region: 'Grandport',
     isTown: true,
     video: {
-      yt: 'IYfXquCLls8',
-      duration: '2:18',
-      version: 2
+      yt: 'kQhAOqTTbSM',
+      duration: '1:52',
+      version: 6
     }
   },
   {
     title: 'Vers les Ruines de Lanzelt',
     region: 'Basses terres de Lanzelt',
     video: {
-      yt: '7nDr975DO2I',
-      duration: '2:50',
-      version: 2
+      yt: 'E1SQiG7bvOo',
+      duration: '1:58',
+      version: 6
     }
   },
   {
     title: 'Un chemin escarpé',
     region: 'Hautes terres de Lanzelt',
     video: {
-      yt: '3ewbQ47h-Ts',
-      duration: '2:36',
-      version: 2
+      yt: '2LCMUJQF-BI',
+      duration: '1:44',
+      version: 6
     }
   },
   {
     title: 'La colère de la nature',
     region: 'Neiges de Lanzelt',
     video: {
-      yt: 'pSNEpufr4iU',
-      duration: '4:34',
-      version: 2
+      yt: 'wmcZ6PuipUA',
+      duration: '3:13',
+      version: 6
     }
   },
   {
     title: 'Rapidité avant tout',
     region: 'Pic Croc-de-loup',
     video: {
-      yt: 'p-pdGa9YAiQ',
-      duration: '4:27',
-      version: 2
+      yt: 'bSRJ3NFI74w',
+      duration: '3:11',
+      version: 6
     }
   },
   {
     title: 'Le trésor de Paladia',
     region: 'Ruines de Lanzelt',
     video: {
-      yt: 'nwhE-eVN58M',
-      duration: '9:06',
-      version: 2
+      yt: 'vl-gkHDgVwc',
+      duration: '6:23',
+      version: 6
     }
   }
 ];
