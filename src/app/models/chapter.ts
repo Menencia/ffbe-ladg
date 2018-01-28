@@ -87,6 +87,20 @@ export class Chapter {
   getTitle() {
     let string = '';
     if (this.ref.indexOf('SE') > -1) {
+      string += this.title;
+    } else {
+      const [season, chapter, part] = this.ref.split('/');
+      string += 'Chapitre ' + chapter;
+      if (part) {
+        string += ' - Partie ' + part;
+      }
+    }
+    return string;
+  }
+
+  getTitleForBreadcrump() {
+    let string = '';
+    if (this.ref.indexOf('SE') > -1) {
       const refs = this.ref.split('/');
       string += '#' + _.last(refs) + ' - ' + this.title;
     } else {

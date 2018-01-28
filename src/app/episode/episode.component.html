@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
   <li class="breadcrumb-item"><a routerLink="/story">Histoire</a></li>
   <li class="breadcrumb-item active">{{ chapter.getRef() }}</li>
-  <li class="breadcrumb-item"><a routerLink="/chapter/{{ chapter.getID() }}">{{ chapter.getTitle() }}</a></li>
+  <li class="breadcrumb-item"><a routerLink="/chapter/{{ chapter.getID() }}">{{ chapter.getTitleForBreadcrump() }}</a></li>
   <li class="breadcrumb-item active">{{ episode.getTitle() }}</li>
 </ol>
 

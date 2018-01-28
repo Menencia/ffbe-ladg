@@ -15,7 +15,7 @@
           <em>{{ chapter.title }}</em>
         </ng-container>
         <ng-container *ngIf="chapter.episodes.length > 0">
-          <a routerLink="/chapter/{{chapter.getID()}}">{{ chapter.title }}</a>
+          <a routerLink="/chapter/{{chapter.getID()}}">{{ chapter.getTitle() }}</a>
         </ng-container>
         <span *ngIf="chapter.featured" class="featured">new</span>
       </td>

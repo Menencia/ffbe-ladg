@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
   <li class="breadcrumb-item"><a routerLink="/story">Histoire</a></li>
   <li class="breadcrumb-item active">{{ chapter.getRef() }}</li>
-  <li class="breadcrumb-item active">{{ chapter.getTitle() }}</li>
+  <li class="breadcrumb-item active">{{ chapter.getTitleForBreadcrump() }}</li>
 </ol>
 
 <img [src]="'assets/'+chapter.image" *ngIf="chapter.image" />
