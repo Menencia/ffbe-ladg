@@ -1,6 +1,7 @@
 import { EPISODES as EPISODES_SE_5 } from './episodes.se-5';
 import { EPISODES as EPISODES_SE_6 } from './episodes.se-6';
 import { EPISODES as EPISODES_SE_7 } from './episodes.se-7';
+import { EPISODES as EPISODES_SE_8 } from './episodes.se-8';
 
 export const CHAPTERS = [
   {
@@ -50,5 +51,14 @@ export const CHAPTERS = [
     date: '12 janvier 2018',
     episodes: EPISODES_SE_7,
     image: 'ffbe_se-7.jpg'
+  },
+  {
+    ref: 'SE/8',
+    title: 'Le sage blanc et le bâton magique',
+    yt: 'PLja8pBKimcSaipqUDVhj1V0Kwu6-LKhYb',
+    date: '2 février 2018',
+    episodes: EPISODES_SE_8,
+    image: 'ffbe_se-8.jpg',
+    featured: true
   }
 ];

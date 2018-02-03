@@ -22,7 +22,6 @@ export const CHAPTERS = [
     yt: 'PLja8pBKimcSbS6hrcLxvvc2O7OwzcNtI5',
     date: '25 janvier 2018',
     image: 'ffbe_2-1-3.jpg',
-    episodes: EPISODES_1_3,
-    featured: true
+    episodes: EPISODES_1_3
   }
 ];
