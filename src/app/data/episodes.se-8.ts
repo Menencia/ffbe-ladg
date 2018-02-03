@@ -16,66 +16,66 @@ export const EPISODES = [
     }
   },
   {
-    title: 'Destin du clan',
+    title: 'Le sage, le forgeron et l\'épéiste',
     video: {
-      yt: '',
-      duration: '5:12',
+      yt: '_aeI6wz7XGM',
+      duration: '8:16',
       version: 6
     }
   },
   {
-    title: 'Début de la fin',
+    title: 'Génie troublé',
     video: {
-      yt: '',
-      duration: '3:32',
+      yt: '12q8ZPpxdsQ',
+      duration: '5:41',
       version: 6
     }
   },
   {
-    title: 'À détruire',
+    title: 'Esprit nébuleux',
     video: {
-      yt: '',
-      duration: '4:17',
+      yt: 'ZHYnjWH276M',
+      duration: '6:05',
       version: 6
     }
   },
   {
-    title: 'Corrompu par le mal',
+    title: 'Contempler la vie',
     video: {
-      yt: '',
-      duration: '7:16',
+      yt: 'B_OP5wUojO0',
+      duration: '5:28',
       version: 6
     }
   },
   {
-    title: 'Descendants des ninjas',
+    title: 'Le pouvoir d\'autrui',
     video: {
-      yt: '',
-      duration: '3:03',
+      yt: 't5OgWNEI6C0',
+      duration: '7:08',
       version: 6
     }
   },
   {
-    title: 'Nouveaux souvenirs',
+    title: 'Le choix de Sakura',
     video: {
-      yt: '',
-      duration: '3:49',
+      yt: '0z0a7lvqrgo',
+      duration: '7:39',
       version: 6
     }
   },
   {
-    title: 'Vérité du passé',
+    title: 'Souvenirs du successeur',
     video: {
-      yt: '',
-      duration: '4:44',
+      yt: 'Sj0vDLXSyrI',
+      duration: '4:00',
       version: 6
     }
   },
   {
-    title: 'Le comédien et le guerrier',
+    title: 'Un autre jour',
     video: {
-      yt: '',
-      duration: '7:38',
+      yt: 'AdLKwTficqk',
+      duration: '6:24',
       version: 6
     }
   }
