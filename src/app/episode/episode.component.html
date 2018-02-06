@@ -2,19 +2,70 @@
   <li class="breadcrumb-item"><a routerLink="/story">Histoire</a></li>
   <li class="breadcrumb-item active">{{ chapter.getRef() }}</li>
   <li class="breadcrumb-item"><a routerLink="/chapter/{{ chapter.getID() }}">{{ chapter.getTitleForBreadcrump() }}</a></li>
-  <li class="breadcrumb-item active">{{ episode.getTitle() }}</li>
+  <li class="breadcrumb-item active">{{ episode.getTitleForBreadcrump() }}</li>
 </ol>
 
-<div class="submenu">
-  <button type="button" class="btn" (click)="previous()" *ngIf="episodePrevious">Épisode précédent</button>
-  <button type="button" class="btn btn-primary" (click)="next()" *ngIf="episodeNext">Épisode suivant</button>
-  <button type="button" class="btn" (click)="goLink(episode)">Lien YT</button>
-</div>
+<div class="row">
 
-<youtube-player
-  width="360"
-  height="641"
-  [videoId]="episode.video.yt"
-  (ready)="savePlayer($event)"
-  (change)="onStateChange($event)"
-></youtube-player>
+  <div class="col-6">
+    <youtube-player
+      width="360"
+      height="641"
+      [videoId]="episode.video.yt"
+      (ready)="savePlayer($event)"
+      (change)="onStateChange($event)"
+    ></youtube-player>
+  </div>
+
+  <div class="col-6">
+
+    <button type="button" class="btn" (click)="previous()" *ngIf="episodePrevious">Épisode précédent</button>
+    <button type="button" class="btn btn-primary" (click)="next()" *ngIf="episodeNext">Épisode suivant</button>
+    <button type="button" class="btn" (click)="goLink(episode)">Lien YT</button>
+
+    <h2>Infos</h2>
+
+    <ul>
+      <li><strong>Réf. :</strong> {{ episode.ref }}</li>
+      <li><strong>Titre :</strong> <span [innerHTML]="episode.getTitle()"></span></li>
+      <li *ngIf="episode.region"><strong>Région :</strong> {{ episode.region }}</li>
+      <li><strong>Durée :</strong> {{ episode.video.duration }}</li>
+      <li>
+        <strong>Version :</strong>
+        <span [class.qualityMax]="episode.video.version >= 5">{{ episode.video.version }}</span>
+      </li>
+    </ul>
+
+    <h2>Corrections</h2>
+
+    <div *ngIf="corrections | async; let corrections; else loading">
+      <ul>
+        <li *ngFor="let e of corrections">
+          {{ e.timecode }} - {{ e.note }}
+          (<a href="javascript:void(0)" (click)="editCorrection(e)">éditer</a>)
+          (<a href="javascript:void(0)" (click)="deleteCorrection(e)">supprimer</a>)
+          <br />
+          <span>
+            Créé par {{ e.created.author }}, le {{ e.created.date | date:'short' }}
+          </span>
+          <span *ngIf="e.updated">
+            Mis à jour par {{ e.updated.author }}, le {{ e.updated.date | date:'short' }}
+          </span>
+        </li>
+      </ul>
+      <div *ngIf="corrections.length === 0">N/A</div>
+    </div>
+    <ng-template #loading>Chargement...</ng-template>
+
+    <h2>Ajouter une correction</h2>
+
+    <p>Timecode: <input type="text" name="timecode" [(ngModel)]="form.timecode" /></p>
+    <p>Auteur de la réplique: <textarea [(ngModel)]="form.title"></textarea></p>
+    <p>Réplique: <textarea [(ngModel)]="form.message"></textarea></p>
+    <p>Note: <textarea [(ngModel)]="form.note"></textarea></p>
+
+    <button (click)="addCorrection()">Ajouter</button>
+
+  </div>
+
+</div>

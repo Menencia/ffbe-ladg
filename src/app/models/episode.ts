@@ -32,6 +32,16 @@ export class Episode {
 
   getTitle() {
     let string = '';
+    if (this.title) {
+      string += this.title;
+    } else if (this.originalTitle) {
+      string += '<em>' + this.originalTitle + '</em>';
+    }
+    return string;
+  }
+
+  getTitleForBreadcrump() {
+    let string = '';
     const [number] = this.ref.split('/').slice(-1);
     string += '#' + number;
     if (this.title) {

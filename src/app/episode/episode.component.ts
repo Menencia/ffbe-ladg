@@ -4,8 +4,13 @@ import { DataService } from '../data.service';
 import { Season } from '../models/season';
 import { Chapter } from '../models/chapter';
 import { Episode } from '../models/episode';
-
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Correction } from '../models/correction';
+import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
+import * as moment from 'moment';
+import 'rxjs/add/operator/first';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-episode',
@@ -21,14 +26,61 @@ export class EpisodeComponent {
   public episodeNext: Episode;
   public player: YT.Player;
 
+  private correctionsCollection: AngularFirestoreCollection<Correction>;
+  corrections: Observable<Correction[]>;
+  form: Correction = new Correction();
+
   constructor(
     public route: ActivatedRoute,
     public data: DataService,
-    public router: Router
+    public router: Router,
+    public auth: AuthService,
+    public afs: AngularFirestore
   ) {
     route.params.subscribe((params: any) => {
       this.loadEpisode(params.episode);
+
+      const options =  ref => ref.where('ref', '==', this.episode.ref);
+      this.correctionsCollection = afs.collection<Correction>('corrections', options);
+      this.corrections = this.correctionsCollection.snapshotChanges().map(actions => {
+        return actions.map(a => {
+          const doc = a.payload.doc;
+          return Object.assign({ id: doc.id }, doc.data()) as Correction;
+        });
+      });
     });
+  }
+
+  async addCorrection() {
+    const user: any = await this.auth.getUser().first().toPromise();
+
+    if (this.form.id) { // update
+      const c = this.afs.doc<Correction>('corrections/' + this.form.id);
+      c.update({
+        title: this.form.title ? this.form.title : null,
+        message: this.form.message ? this.form.message : null,
+        note: this.form.note ? this.form.note : null,
+        updated: {author: user.displayName, date: moment().toDate()},
+      });
+    } else { // creation
+      this.correctionsCollection.add({
+        ref: this.episode.ref,
+        timecode: this.form.timecode,
+        title: this.form.title ? this.form.title : null,
+        message: this.form.message ? this.form.message : null,
+        note: this.form.note ? this.form.note : null,
+        created: {author: user.displayName, date: moment().toDate()},
+      });
+    }
+  }
+
+  editCorrection(correction) {
+    this.form = _.clone(correction);
+  }
+
+  deleteCorrection(correction) {
+    const c = this.afs.doc<Correction>('corrections/' + correction.id);
+    c.delete();
   }
 
   loadEpisode(e) {
@@ -48,11 +100,11 @@ export class EpisodeComponent {
 
   savePlayer(player) {
     this.player = player;
-    console.log('player instance', player);
+    // console.log('player instance', player);
   }
 
   onStateChange(event) {
-    console.log('player state', event.data);
+    // console.log('player state', event.data);
   }
 
   getPrevious() {
