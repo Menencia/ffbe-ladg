@@ -11,13 +11,14 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import 'rxjs/add/operator/first';
 import { AuthService } from '../auth.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-episode',
   templateUrl: './episode.component.html',
   styleUrls: ['./episode.component.scss']
 })
-export class EpisodeComponent {
+export class EpisodeComponent implements OnInit {
 
   public season: Season;
   public chapter: Chapter;
@@ -29,6 +30,7 @@ export class EpisodeComponent {
   private correctionsCollection: AngularFirestoreCollection<Correction>;
   corrections: Observable<Correction[]>;
   form: Correction = new Correction();
+  user: User;
 
   constructor(
     public route: ActivatedRoute,
@@ -51,25 +53,42 @@ export class EpisodeComponent {
     });
   }
 
-  async addCorrection() {
-    const user: any = await this.auth.getUser().first().toPromise();
+  ngOnInit() {
+    this.auth.user$.subscribe(user => this.user = user)
+  }
 
-    if (this.form.id) { // update
+  canAdd() {
+    // connected
+    return this.user;
+  }
+
+  canEdit() {
+    // connected & admin role
+    return this.user && this.user.admin;
+  }
+
+  canDelete() {
+    // connected & admin role
+    return this.user && this.user.admin;
+  }
+
+  async addCorrection() {
+    if (this.canEdit() && this.form.id) { // update
       const c = this.afs.doc<Correction>('corrections/' + this.form.id);
       c.update({
         title: this.form.title ? this.form.title : null,
         message: this.form.message ? this.form.message : null,
         note: this.form.note ? this.form.note : null,
-        updated: {author: user.displayName, date: moment().toDate()},
+        updated: {author: this.user.name, date: moment().toDate()},
       });
-    } else { // creation
+    } else if (this.canAdd() && !this.form.id) { // creation
       this.correctionsCollection.add({
         ref: this.episode.ref,
         timecode: this.form.timecode,
         title: this.form.title ? this.form.title : null,
         message: this.form.message ? this.form.message : null,
         note: this.form.note ? this.form.note : null,
-        created: {author: user.displayName, date: moment().toDate()},
+        created: {author: this.user.name, date: moment().toDate()},
       });
     }
   }
@@ -79,8 +98,10 @@ export class EpisodeComponent {
   }
 
   deleteCorrection(correction) {
-    const c = this.afs.doc<Correction>('corrections/' + correction.id);
-    c.delete();
+    if (this.canDelete()) {
+      const c = this.afs.doc<Correction>('corrections/' + correction.id);
+      c.delete();
+    }
   }
 
   loadEpisode(e) {

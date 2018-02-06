@@ -29,8 +29,8 @@
 </div>
 
 <footer>
-  <div *ngIf="auth.getUser() | async as user; else showLogin">
-    {{ user.displayName }}
+  <div *ngIf="auth.user$ | async as user; else showLogin">
+    {{ user.name }}
     (<button (click)="logout()">Logout</button>)
   </div>
   <ng-template #showLogin>

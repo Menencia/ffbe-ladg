@@ -42,8 +42,8 @@
       <ul>
         <li *ngFor="let e of corrections">
           {{ e.timecode }} - {{ e.note }}
-          (<a href="javascript:void(0)" (click)="editCorrection(e)">éditer</a>)
-          (<a href="javascript:void(0)" (click)="deleteCorrection(e)">supprimer</a>)
+          <a href="javascript:void(0)" (click)="editCorrection(e)" *ngIf="canEdit()">éditer</a>
+          <a href="javascript:void(0)" (click)="deleteCorrection(e)" *ngIf="canDelete()">supprimer</a>
           <br />
           <span>
             Créé par {{ e.created.author }}, le {{ e.created.date | date:'short' }}
@@ -57,14 +57,16 @@
     </div>
     <ng-template #loading>Chargement...</ng-template>
 
-    <h2>Ajouter une correction</h2>
+    <div *ngIf="canAdd()">
+      <h2>Ajouter une correction</h2>
 
-    <p>Timecode: <input type="text" name="timecode" [(ngModel)]="form.timecode" /></p>
-    <p>Auteur de la réplique: <textarea [(ngModel)]="form.title"></textarea></p>
-    <p>Réplique: <textarea [(ngModel)]="form.message"></textarea></p>
-    <p>Note: <textarea [(ngModel)]="form.note"></textarea></p>
+      <p>Timecode: <input type="text" name="timecode" [(ngModel)]="form.timecode" /></p>
+      <p>Auteur de la réplique: <textarea [(ngModel)]="form.title"></textarea></p>
+      <p>Réplique: <textarea [(ngModel)]="form.message"></textarea></p>
+      <p>Note: <textarea [(ngModel)]="form.note"></textarea></p>
 
-    <button (click)="addCorrection()">Ajouter</button>
+      <button (click)="addCorrection()">Ajouter</button>
+    </div>
 
   </div>
 
