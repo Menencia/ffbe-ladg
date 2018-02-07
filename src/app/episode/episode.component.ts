@@ -32,6 +32,11 @@ export class EpisodeComponent implements OnInit {
   form: Correction = new Correction();
   user: User;
 
+  displayForm = false;
+  titleForm: string;
+  errorsForm: string[];
+  msg: string;
+
   constructor(
     public route: ActivatedRoute,
     public data: DataService,
@@ -72,7 +77,47 @@ export class EpisodeComponent implements OnInit {
     return this.user && this.user.admin;
   }
 
-  async addCorrection() {
+  toggleForm(state) {
+    this.displayForm = state;
+    this.errorsForm = [];
+  }
+
+  clearMsg() {
+    this.msg = null;
+  }
+
+  addCorrection(correction) {
+    this.titleForm = 'Ajouter une correction';
+    this.toggleForm(true);
+  }
+
+  async _addCorrection() {
+
+    // checkings
+    this.errorsForm = [];
+    const {title, message, note} = this.form;
+    const regex = /\d{1,2}:\d{2}/;
+    if (!this.form.timecode) {
+      const error = 'Il faut remplir le champ Timecode';
+      this.errorsForm.push(error);
+    } else if (!regex.test(this.form.timecode)) {
+      const error = 'Le champ Timecode doit être au format "X:YY" (Exemple : "1:08")';
+      this.errorsForm.push(error);
+    }
+    if (!_.some([title, message, note])) {
+      const error = 'Il faut remplir au moins l\'un des 3 champs (Auteur, Réplique, Notes)';
+      this.errorsForm.push(error);
+    }
+
+    if (this.errorsForm.length > 0) {
+      return false;
+    }
+
+    // confirmation
+    if (!confirm('Confirmation ?')) {
+      return false;
+    }
+
     if (this.canEdit() && this.form.id) { // update
       const c = this.afs.doc<Correction>('corrections/' + this.form.id);
       c.update({
@@ -81,6 +126,7 @@ export class EpisodeComponent implements OnInit {
         note: this.form.note ? this.form.note : null,
         updated: {author: this.user.name, date: moment().toDate()},
       });
+      this.msg = 'Correction modifiée !';
     } else if (this.canAdd() && !this.form.id) { // creation
       this.correctionsCollection.add({
         ref: this.episode.ref,
@@ -91,15 +137,23 @@ export class EpisodeComponent implements OnInit {
         verified: this.user.admin,
         created: {author: this.user.name, date: moment().toDate()},
       });
+      this.msg = this.user.admin ? 'Correction ajoutée' : `Merci d'avoir proposé cette correction.
+      Attendez qu'un admin la valide pour qu'elle apparaisse en ligne.`;
+    } else {
+      this.msg = 'Vous n\'avez pas les droits !';
     }
+
+    this.toggleForm(false);
   }
 
   editCorrection(correction) {
+    this.titleForm = 'Éditer une correction';
     this.form = _.clone(correction);
+    this.toggleForm(true);
   }
 
   deleteCorrection(correction) {
-    if (this.canDelete()) {
+    if (this.canDelete() && confirm('Confirmation ?')) {
       const c = this.afs.doc<Correction>('corrections/' + correction.id);
       c.delete();
     }

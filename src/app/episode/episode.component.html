@@ -7,7 +7,7 @@
 
 <div class="row">
 
-  <div class="col-6">
+  <div class="col-5">
     <youtube-player
       width="360"
       height="641"
@@ -17,7 +17,7 @@
     ></youtube-player>
   </div>
 
-  <div class="col-6">
+  <div class="col-7">
 
     <button type="button" class="btn" (click)="previous()" *ngIf="episodePrevious">Épisode précédent</button>
     <button type="button" class="btn btn-primary" (click)="next()" *ngIf="episodeNext">Épisode suivant</button>
@@ -36,36 +36,80 @@
       </li>
     </ul>
 
-    <h2>Corrections</h2>
+    <div *ngIf="!displayForm">
 
-    <div *ngIf="corrections | async; let corrections; else loading">
-      <ul>
-        <li *ngFor="let e of corrections">
-          {{ e.timecode }} - {{ e.note }}
-          <a href="javascript:void(0)" (click)="editCorrection(e)" *ngIf="canEdit()">éditer</a>
-          <a href="javascript:void(0)" (click)="deleteCorrection(e)" *ngIf="canDelete()">supprimer</a>
-          <br />
-          <span>
+      <h2>Corrections</h2>
+
+      <div *ngIf="corrections | async; let corrections; else loading">
+        <div *ngFor="let e of corrections" class="correction">
+          <div class="actions">
+            <a href="javascript:void(0)" (click)="editCorrection(e)" *ngIf="canEdit()">éditer</a> |
+            <a href="javascript:void(0)" (click)="deleteCorrection(e)" *ngIf="canDelete()">supprimer</a>
+          </div>
+          <div class="timecode"><b>{{ e.timecode }}</b></div>
+          <div *ngIf="e.title">Auteur : {{ e.title }}</div>
+          <div *ngIf="e.message">Réplique : {{ e.message }}</div>
+          <div *ngIf="e.note">Notes : {{ e.note }}</div>
+          <div class="date">
             Créé par {{ e.created.author }}, le {{ e.created.date | date:'short' }}
-          </span>
-          <span *ngIf="e.updated">
+          </div>
+          <div class="date" *ngIf="e.updated">
             Mis à jour par {{ e.updated.author }}, le {{ e.updated.date | date:'short' }}
-          </span>
-        </li>
-      </ul>
-      <div *ngIf="corrections.length === 0">N/A</div>
+          </div>
+        </div>
+        <div *ngIf="corrections.length === 0"><p><em>Aucune correction.</em></p></div>
+      </div>
+      <ng-template #loading>Chargement...</ng-template>
+
     </div>
-    <ng-template #loading>Chargement...</ng-template>
 
     <div *ngIf="canAdd()">
-      <h2>Ajouter une correction</h2>
 
-      <p>Timecode: <input type="text" name="timecode" [(ngModel)]="form.timecode" /></p>
-      <p>Auteur de la réplique: <textarea [(ngModel)]="form.title"></textarea></p>
-      <p>Réplique: <textarea [(ngModel)]="form.message"></textarea></p>
-      <p>Note: <textarea [(ngModel)]="form.note"></textarea></p>
+      <div *ngIf="displayForm; else createLink">
+        <h2>{{ titleForm }}</h2>
 
-      <button (click)="addCorrection()">Ajouter</button>
+        <p><em>Seul le timecode est obligatoire et au moins l'un des 3 champs suivants. Attention,
+          une fois la correction validée, il ne vous sera plus possible de la modifier.
+        </em></p>
+
+        <div class="form-group row">
+          <label for="timecode" class="col-2 col-form-label">Timecode<b>*</b></label>
+          <div class="col-10">
+            <input class="form-control" type="text" name="timecode" [(ngModel)]="form.timecode" id="timecode">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="title" class="col-2 col-form-label">Auteur</label>
+          <div class="col-10">
+            <textarea class="form-control" type="text" [(ngModel)]="form.title" id="title"></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="message" class="col-2 col-form-label">Réplique</label>
+          <div class="col-10">
+            <textarea class="form-control" type="text" [(ngModel)]="form.message" id="message"></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="note" class="col-2 col-form-label">Notes</label>
+          <div class="col-10">
+            <textarea class="form-control" type="text" [(ngModel)]="form.note" id="note"></textarea>
+          </div>
+        </div>
+        <div *ngIf="errorsForm.length > 0" class="errors">
+          <ul>
+            <li *ngFor="let e of errorsForm">{{ e }}</li>
+          </ul>
+        </div>
+        <div class="text-right">
+          <a href="javascript:void(0)" (click)="toggleForm(false)">Annuler</a>
+          <button (click)="_addCorrection()">Valider</button>
+        </div>
+      </div>
+      <ng-template #createLink>
+        <p *ngIf="msg" class="success">{{ msg }} (<a href="javascript:void(0)" (click)="clearMsg()">effacer</a>)</p>
+        <p class="margin-top"><a href="javascript:void(0)" (click)="addCorrection()">Ajouter une correction ?</a></p>
+      </ng-template>
     </div>
 
   </div>

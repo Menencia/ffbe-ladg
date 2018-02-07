@@ -5,3 +5,30 @@
 .submenu button {
     cursor: pointer;
 }
+
+.errors {
+  color: #900;
+}
+
+.success {
+  color: #090;
+}
+
+.correction {
+  padding: 10px 0 10px 10px;
+  border-left: 1px solid #666;
+
+  .actions {
+    float: right;
+    font-size: 0.8em;
+  }
+
+  .date {
+    font-size: 0.8em;
+    color: #999;
+  }
+}
+
+.margin-top {
+  margin-top: 15px;
+}
