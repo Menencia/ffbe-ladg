@@ -121,6 +121,7 @@ export class EpisodeComponent implements OnInit {
     if (this.canEdit() && this.form.id) { // update
       const c = this.afs.doc<Correction>('corrections/' + this.form.id);
       c.update({
+        timecode: this.form.timecode,
         title: this.form.title ? this.form.title : null,
         message: this.form.message ? this.form.message : null,
         note: this.form.note ? this.form.note : null,

@@ -36,32 +36,28 @@
       </li>
     </ul>
 
-    <div *ngIf="!displayForm">
+    <h2>Corrections</h2>
 
-      <h2>Corrections</h2>
-
-      <div *ngIf="corrections | async; let corrections; else loading">
-        <div *ngFor="let e of corrections" class="correction">
-          <div class="actions">
-            <a href="javascript:void(0)" (click)="editCorrection(e)" *ngIf="canEdit()">éditer</a> |
-            <a href="javascript:void(0)" (click)="deleteCorrection(e)" *ngIf="canDelete()">supprimer</a>
-          </div>
-          <div class="timecode"><b>{{ e.timecode }}</b></div>
-          <div *ngIf="e.title">Auteur : {{ e.title }}</div>
-          <div *ngIf="e.message">Réplique : {{ e.message }}</div>
-          <div *ngIf="e.note">Notes : {{ e.note }}</div>
-          <div class="date">
-            Créé par {{ e.created.author }}, le {{ e.created.date | date:'short' }}
-          </div>
-          <div class="date" *ngIf="e.updated">
-            Mis à jour par {{ e.updated.author }}, le {{ e.updated.date | date:'short' }}
-          </div>
+    <div *ngIf="corrections | async; let corrections; else loading">
+      <div *ngFor="let e of corrections" class="correction">
+        <div class="actions">
+          <a href="javascript:void(0)" (click)="editCorrection(e)" *ngIf="canEdit()">éditer</a>
+          <a href="javascript:void(0)" (click)="deleteCorrection(e)" *ngIf="canDelete()">supprimer</a>
         </div>
-        <div *ngIf="corrections.length === 0"><p><em>Aucune correction.</em></p></div>
+        <div class="timecode"><b>{{ e.timecode }}</b></div>
+        <div *ngIf="e.title">Auteur : {{ e.title }}</div>
+        <div *ngIf="e.message">Réplique : {{ e.message }}</div>
+        <div *ngIf="e.note">Notes : {{ e.note }}</div>
+        <div class="date">
+          Créé par {{ e.created.author }}, le {{ e.created.date | date:'short' }}
+        </div>
+        <div class="date" *ngIf="e.updated">
+          Mis à jour par {{ e.updated.author }}, le {{ e.updated.date | date:'short' }}
+        </div>
       </div>
-      <ng-template #loading>Chargement...</ng-template>
-
+      <div *ngIf="corrections.length === 0"><p><em>Aucune correction.</em></p></div>
     </div>
+    <ng-template #loading>Chargement...</ng-template>
 
     <div *ngIf="canAdd()">
 
@@ -107,7 +103,7 @@
         </div>
       </div>
       <ng-template #createLink>
-        <p *ngIf="msg" class="success">{{ msg }} (<a href="javascript:void(0)" (click)="clearMsg()">effacer</a>)</p>
+        <p *ngIf="msg" class="margin-top success">{{ msg }} (<a href="javascript:void(0)" (click)="clearMsg()">effacer</a>)</p>
         <p class="margin-top"><a href="javascript:void(0)" (click)="addCorrection()">Ajouter une correction ?</a></p>
       </ng-template>
     </div>
