@@ -54,12 +54,12 @@ export class EpisodeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.auth.user$.subscribe(user => this.user = user)
+    this.auth.user$.subscribe(user => this.user = user);
   }
 
   canAdd() {
     // connected
-    return this.user;
+    return this.user && !this.user.banned;
   }
 
   canEdit() {

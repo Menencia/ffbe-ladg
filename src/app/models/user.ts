@@ -5,5 +5,6 @@ export class User {
   email: string;
   admin: boolean;
   lastConnected: Date;
+  banned: boolean;
 
 }

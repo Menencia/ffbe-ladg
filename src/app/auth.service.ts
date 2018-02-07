@@ -44,16 +44,32 @@ export class AuthService {
   }
 
   private updateUser(user) {
-    console.log(user);
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-    const data: User = {
+
+    const createData: User = {
       uid: user.uid,
       name: user.displayName,
       email: user.email,
       admin: false,
-      lastConnected: moment().toDate()
+      lastConnected: moment().toDate(),
+      banned: false
     };
-    return userRef.set(data, {merge: true});
+    const updateData = {
+      name: user.displayName,
+      email: user.email,
+      lastConnected: moment().toDate(),
+    };
+
+    this.afs.doc(`users/${user.uid}`)
+      .update(updateData)
+      .then(() => {
+        // update successful (document exists)
+      })
+      .catch((error) => {
+        // (document does not exists)
+        this.afs.doc(`users/${user.uid}`)
+          .set(createData);
+      });
+
   }
 
 }
