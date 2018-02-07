@@ -42,7 +42,7 @@ export class EpisodeComponent implements OnInit {
     route.params.subscribe((params: any) => {
       this.loadEpisode(params.episode);
 
-      const options =  ref => ref.where('ref', '==', this.episode.ref);
+      const options =  ref => ref.where('ref', '==', this.episode.ref).where('verified', '==', true);
       this.correctionsCollection = afs.collection<Correction>('corrections', options);
       this.corrections = this.correctionsCollection.snapshotChanges().map(actions => {
         return actions.map(a => {
@@ -88,6 +88,7 @@ export class EpisodeComponent implements OnInit {
         title: this.form.title ? this.form.title : null,
         message: this.form.message ? this.form.message : null,
         note: this.form.note ? this.form.note : null,
+        verified: this.user.admin,
         created: {author: this.user.name, date: moment().toDate()},
       });
     }

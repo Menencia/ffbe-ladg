@@ -7,6 +7,8 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators';
 
+import * as moment from 'moment';
+
 @Injectable()
 export class AuthService {
 
@@ -48,7 +50,8 @@ export class AuthService {
       uid: user.uid,
       name: user.displayName,
       email: user.email,
-      admin: false
+      admin: false,
+      lastConnected: moment().toDate()
     };
     return userRef.set(data, {merge: true});
   }

@@ -9,6 +9,8 @@ export class Correction {
   message?: string;
   note?: string;
 
+  verified: boolean;
+
   created: {
     author: string,
     date: Date
