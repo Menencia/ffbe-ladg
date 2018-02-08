@@ -19,6 +19,7 @@ import { firebaseConfig } from '../environments/firebase';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from './auth.service';
+import { CorrectionComponent } from './correction/correction.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AuthService } from './auth.service';
     ChapterPipe,
     PartPipe,
     TableChaptersComponent,
-    VersionComponent
+    VersionComponent,
+    CorrectionComponent
   ],
   imports: [
     BrowserModule,
