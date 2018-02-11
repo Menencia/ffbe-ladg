@@ -91,6 +91,17 @@ export class EpisodeComponent implements OnInit {
     this.toggleForm(true);
   }
 
+  buildMsg(msg) {
+    const regex = new RegExp(/\*\*([^\*]*)\*\*/, 'g');
+    return msg.replace(new RegExp(/\*\*([^\*]*)\*\*/, 'g'), '<b>$1</b>');
+  }
+
+  goto(timecode) {
+    const [minutes, seconds] = timecode.split(':');
+    const totalSeconds = parseInt(minutes, 10) * 60 + parseInt(seconds, 10);
+    this.player.seekTo(totalSeconds, false);
+  }
+
   async _addCorrection() {
 
     // checkings
