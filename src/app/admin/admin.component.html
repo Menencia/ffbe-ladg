@@ -1,0 +1,51 @@
+<h2>Corrections en attente de validation</h2>
+
+<div *ngIf="(corrections | async)?.length > 0; else noCorrections"></div>
+<ul>
+  <li *ngFor="let e of corrections | async">
+    <div class="actions">
+      <a href="javascript:void(0)" [routerLink]="'/episode/' + id(e.ref)">voir</a>
+      <a href="javascript:void(0)" (click)="verifyCorrection(e)" *ngIf="canVerify()">valider</a>
+      <a href="javascript:void(0)" (click)="deleteCorrection(e)" *ngIf="canDelete()">supprimer</a>
+    </div>
+    <div class="timecode"><b>{{ e.timecode }}</b></div>
+    <div *ngIf="e.title">Auteur : {{ e.title }}</div>
+    <div *ngIf="e.message">Réplique : {{ e.message }}</div>
+    <div *ngIf="e.note">Notes : {{ e.note }}</div>
+    <div class="date">
+      Créé par {{ e.created.author }}, le {{ e.created.date | date:'short':'':'fr' }}
+    </div>
+  </li>
+</ul>
+<ng-template #noCorrections>
+  <em>Aucune correction en attente de validation.</em>
+</ng-template>
+
+<h2>Corrections récemment validées</h2>
+
+<div *ngIf="(verifiedCorrections | async)?.length > 0; else noVerifiedCorrections"></div>
+<ul>
+  <li *ngFor="let e of verifiedCorrections | async">
+    <div class="actions">
+      <a href="javascript:void(0)" [routerLink]="'/episode/' + id(e.ref)">voir</a>
+    </div>
+    <div class="timecode"><b>{{ e.timecode }}</b></div>
+    <div *ngIf="e.title">Auteur : {{ e.title }}</div>
+    <div *ngIf="e.message">Réplique : {{ e.message }}</div>
+    <div *ngIf="e.note">Notes : {{ e.note }}</div>
+    <div class="date">
+      Créé par {{ e.created.author }}, le {{ e.created.date | date:'short':'':'fr' }}
+    </div>
+  </li>
+</ul>
+<ng-template #noVerifiedCorrections>
+  <em>Aucune correction en attente de validation.</em>
+</ng-template>
+
+<h2>Derniers utilisateurs connectés</h2>
+
+<ul>
+  <li *ngFor="let e of users | async">
+    {{ e.name }}, {{ e.lastConnected | date:'short' }}
+  </li>
+</ul>

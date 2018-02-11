@@ -49,10 +49,10 @@
         <div *ngIf="e.message">Réplique : {{ e.message }}</div>
         <div *ngIf="e.note">Notes : {{ e.note }}</div>
         <div class="date">
-          Créé par {{ e.created.author }}, le {{ e.created.date | date:'short' }}
+          Créé par {{ e.created.author }}, le {{ e.created.date | date:'short':'':'fr' }}
         </div>
         <div class="date" *ngIf="e.updated">
-          Mis à jour par {{ e.updated.author }}, le {{ e.updated.date | date:'short' }}
+          Mis à jour par {{ e.updated.author }}, le {{ e.updated.date | date:'short':'':'fr' }}
         </div>
       </div>
       <div *ngIf="corrections.length === 0"><p><em>Aucune correction.</em></p></div>

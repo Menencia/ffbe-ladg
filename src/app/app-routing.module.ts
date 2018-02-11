@@ -6,6 +6,9 @@ import { EpisodeComponent } from './episode/episode.component';
 import { ChapterComponent } from './chapter/chapter.component';
 import { VersionComponent } from './version/version.component';
 import { CorrectionComponent } from './correction/correction.component';
+import { AdminComponent } from './admin/admin.component';
+
+import { AdminGuard } from './admin.guard';
 
 const appRoutes: Routes = [
   { path: 'story', component: StoryComponent },
@@ -13,6 +16,7 @@ const appRoutes: Routes = [
   { path: 'episode/:episode', component: EpisodeComponent },
   { path: 'correction', component: CorrectionComponent },
   { path: 'version', component: VersionComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
   { path: '', redirectTo: '/story', pathMatch: 'full' },
 ];
 

@@ -20,6 +20,14 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from './auth.service';
 import { CorrectionComponent } from './correction/correction.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminGuard } from './admin.guard';
+
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
+// the second parameter 'fr' is optional
+registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
@@ -31,7 +39,8 @@ import { CorrectionComponent } from './correction/correction.component';
     PartPipe,
     TableChaptersComponent,
     VersionComponent,
-    CorrectionComponent
+    CorrectionComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +54,8 @@ import { CorrectionComponent } from './correction/correction.component';
   ],
   providers: [
     DataService,
-    AuthService
+    AuthService,
+    AdminGuard
   ],
   bootstrap: [AppComponent]
 })
