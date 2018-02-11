@@ -58,7 +58,6 @@ export const CHAPTERS = [
     yt: 'PLja8pBKimcSaipqUDVhj1V0Kwu6-LKhYb',
     date: '2 février 2018',
     episodes: EPISODES_SE_8,
-    image: 'ffbe_se-8.jpg',
-    featured: true
+    image: 'ffbe_se-8.jpg'
   }
 ];
