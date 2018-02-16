@@ -6,5 +6,13 @@ export const EPISODES = [
       duration: '4:26',
       version: 6
     }
+  },
+  {
+    title: 'Histoire 2',
+    video: {
+      yt: 'sYjbHCV9iMo',
+      duration: '1:53',
+      version: 6
+    }
   }
 ];
