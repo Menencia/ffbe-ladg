@@ -1,6 +1,6 @@
 export const EPISODES = [
   {
-    originalTitle: 'Teacher and Student',
+    title: 'Maître et élève',
     region: 'Camp de travail - Exté.',
     video: {
       yt: 'bABMNU_OR-M',
@@ -9,7 +9,7 @@ export const EPISODES = [
     }
   },
   {
-    originalTitle: 'To the Execution',
+    title: 'Le couloir de la mort',
     region: 'Terres sans nom',
     video: {
       yt: 'MHLFiorAIXA',
@@ -18,7 +18,7 @@ export const EPISODES = [
     }
   },
   {
-    originalTitle: 'However Many Betrayals',
+    title: 'Malgré tant de traitrises',
     region: 'Zaharu - Potence',
     video: {
       yt: 'PbGohnMdG8w',
@@ -27,7 +27,7 @@ export const EPISODES = [
     }
   },
   {
-    originalTitle: 'Escape from the Camp',
+    title: 'Fuite du camp',
     region: 'Medos - Prison de lon. peine',
     video: {
       yt: 'LKUgvLrua-4',
@@ -36,7 +36,7 @@ export const EPISODES = [
     }
   },
   {
-    originalTitle: 'Clock',
+    title: 'Montre',
     region: 'Cité industrielle de Dormdry',
     isTown: true,
     video: {
@@ -46,7 +46,7 @@ export const EPISODES = [
     }
   },
   {
-    originalTitle: '700 Year Reunion',
+    title: 'Réunis 700 ans plus tard',
     region: 'Rivière Heznudo',
     video: {
       yt: 'N8SnnaPMj84',
@@ -55,7 +55,7 @@ export const EPISODES = [
     }
   },
   {
-    originalTitle: 'Undying Memories',
+    title: 'Souvenirs impérissables',
     region: 'Georl - Ruines de garn',
     video: {
       yt: '5hJRPqVs6Gw',
@@ -64,7 +64,7 @@ export const EPISODES = [
     }
   },
   {
-    originalTitle: 'Cid\'s Resolution',
+    title: 'Résolution de Cid',
     region: 'Danadea - R. de l\'usine',
     video: {
       yt: '_XI2V5zuOQ8',
@@ -73,7 +73,7 @@ export const EPISODES = [
     }
   },
   {
-    originalTitle: 'Not a Dream',
+    title: 'Ce n\'est pas un rêve',
     region: 'Georl - Acti. de la barr',
     video: {
       yt: 'jCdrgxEFXAk',
@@ -82,7 +82,7 @@ export const EPISODES = [
     }
   },
   {
-    originalTitle: 'Stirring',
+    title: 'Agité',
     region: 'Zaharu - Potence',
     video: {
       yt: 'zpsXiKntIaM',
