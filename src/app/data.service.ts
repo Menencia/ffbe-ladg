@@ -156,7 +156,6 @@ export class DataService {
         }
       }
       this.specialEvents = specialEvents;
-      console.log(specialEvents);
 
       this.resolve();
     });
