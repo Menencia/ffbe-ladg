@@ -9,7 +9,11 @@ export class Chapter {
 
   title: string;
   season: Season|null;
+  seasonRef: string;
   ref: string;
+  fullRef: string;
+  isStoryEvent: boolean;
+  isSpecialEvent: boolean;
   episodes: Episode[] = [];
   yt: string;
   date: string;
@@ -22,17 +26,20 @@ export class Chapter {
   _nextChapter: Chapter;
   _quality: number;
 
-  static load(data) {
-    const c = new this;
-    c.title = data.title;
-    c.ref = data.ref;
-    c.yt = data.yt;
-    c.date = data.date;
-    c.maxEpisodes = data.maxEpisodes;
-    c.image = data.image;
-    c.notAvailable = data.notAvailable;
-    c.featured = data.featured;
-    return c;
+  constructor(data, season) {
+    this.episodes = [];
+
+    Object.assign(this, data);
+
+    this.season = season;
+
+    if (this.isSpecialEvent) {
+      this.fullRef = 'SSE-' + this.ref;
+    } else if (this.isStoryEvent) {
+      this.fullRef = 'SE-' + this.ref;
+    } else {
+      this.fullRef = this.seasonRef + '/' + this.ref;
+    }
   }
 
   get nbEpisodes() {
@@ -68,11 +75,11 @@ export class Chapter {
     return this.season !== undefined;
   }
 
-  getID() {
-    return this.ref.replace(/\//g, '-');
+  getRefForUrl() {
+    return this.fullRef.replace(/\//g, '-');
   }
 
-  getRef(): string {
+  getLabel(): string {
     let string = '';
     if (this.ref.indexOf('SSE') > -1) {
       string += 'Autres histoires';
@@ -86,10 +93,10 @@ export class Chapter {
 
   getTitle() {
     let string = '';
-    if (this.ref.indexOf('SE') > -1) {
+    if (this.isStoryEvent || this.isSpecialEvent) {
       string += this.title;
     } else {
-      const [season, chapter, part] = this.ref.split('/');
+      const [chapter, part] = this.ref.split('/');
       string += 'Chapitre ' + chapter;
       if (part) {
         string += ' - Partie ' + part;

@@ -44,22 +44,48 @@ export class EpisodeComponent implements OnInit {
     public auth: AuthService,
     public afs: AngularFirestore
   ) {
-    route.params.subscribe((params: any) => {
+
+  }
+
+  async ngOnInit() {
+    this.route.params.subscribe((params: any) => {
+
       this.loadEpisode(params.episode);
 
-      const options =  ref => ref.where('ref', '==', this.episode.ref).where('verified', '==', true);
+      /*const options =  ref => ref.where('ref', '==', this.episode.ref).where('verified', '==', true);
       this.correctionsCollection = afs.collection<Correction>('corrections', options);
       this.corrections = this.correctionsCollection.snapshotChanges().map(actions => {
         return actions.map(a => {
           const doc = a.payload.doc;
           return Object.assign({ id: doc.id }, doc.data()) as Correction;
         });
-      });
+      });*/
     });
+
+    this.auth.user$.subscribe(user => this.user = user);
   }
 
-  ngOnInit() {
-    this.auth.user$.subscribe(user => this.user = user);
+  async loadEpisode(e) {
+    // wait for data service
+    await this.data.ready();
+
+    this.episode = this.data.getEpisode(e);
+
+    // shortcut to chapter
+    if (this.episode.chapter) {
+      this.chapter = this.episode.chapter;
+    }
+
+    // shortcut to season
+    if (this.chapter.season) {
+      this.season = this.chapter.season;
+    }
+
+    // this.episodePrevious = this.getPrevious();
+    // this.episodeNext = this.getNext();
+    if (this.player) {
+      this.player.cueVideoById(this.episode.video.yt);
+    }
   }
 
   canAdd() {
@@ -168,21 +194,6 @@ export class EpisodeComponent implements OnInit {
     if (this.canDelete() && confirm('Confirmation ?')) {
       const c = this.afs.doc<Correction>('corrections/' + correction.id);
       c.delete();
-    }
-  }
-
-  loadEpisode(e) {
-    this.episode = this.data.getEpisode(e);
-    if (this.episode.chapter) {
-      this.chapter = this.episode.chapter;
-    }
-    if (this.chapter.season) {
-      this.season = this.chapter.season;
-    }
-    this.episodePrevious = this.getPrevious();
-    this.episodeNext = this.getNext();
-    if (this.player) {
-      this.player.cueVideoById(this.episode.video.yt);
     }
   }
 

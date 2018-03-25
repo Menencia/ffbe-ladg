@@ -15,7 +15,7 @@
           <em>{{ chapter.title }}</em>
         </ng-container>
         <ng-container *ngIf="chapter.episodes.length > 0">
-          <a routerLink="/chapter/{{chapter.getID()}}">{{ chapter.getTitle() }}</a>
+          <a routerLink="/chapter/{{chapter.getRefForUrl()}}">{{ chapter.getTitle() }}</a>
         </ng-container>
         <span *ngIf="chapter.featured" class="featured">new</span>
       </td>
@@ -27,7 +27,7 @@
         <span *ngIf="chapter.episodes.length === 0">-</span>
       </td>
       <td>
-        {{ chapter.date }}
+        {{ chapter.date | date }}
       </td>
     </tr>
   </table>

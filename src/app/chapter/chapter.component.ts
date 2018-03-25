@@ -35,11 +35,19 @@ export class ChapterComponent implements OnInit {
       });
   }
 
-  loadChapter(c) {
+  async loadChapter(c) {
+    // waiting for data service
+    await this.data.ready();
+
+    // get needed chapter
     this.chapter = this.data.getChapter(c);
+
+    // @TODO shortchut to season
     if (this.chapter.season) {
       this.season = this.chapter.season;
     }
+
+    // indicates if we need region column
     this.hasRegions = _.some(this.chapter.episodes, e => e.region);
   }
 

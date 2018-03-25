@@ -1,62 +1,68 @@
-<ol class="breadcrumb">
-  <li class="breadcrumb-item"><a routerLink="/story">Histoire</a></li>
-  <li class="breadcrumb-item active">{{ chapter.getRef() }}</li>
-  <li class="breadcrumb-item active">{{ chapter.getTitleForBreadcrump() }}</li>
-</ol>
-
-<img [src]="'assets/'+chapter.image" *ngIf="chapter.image" />
-
-<div class="submenu">
-  <button type="button" class="btn" (click)="previous()" *ngIf="chapter.previousChapter">Chapitre précédent</button>
-  <button type="button" class="btn btn-primary" (click)="next()" *ngIf="chapter.nextChapter">Chapitre suivant</button>
-  <button type="button" class="btn" (click)="goLink(chapter)">Lien YT</button>
+<div *ngIf="!chapter; else view">
+  [LOADING]
 </div>
 
-<h2>Informations</h2>
+<ng-template #view>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/story">Histoire</a></li>
+    <li class="breadcrumb-item active">{{ chapter.ref }}</li>
+    <li class="breadcrumb-item active">{{ chapter.getTitleForBreadcrump() }}</li>
+  </ol>
 
-<ul>
-  <li><strong>Réf. :</strong> {{ chapter.ref }}</li>
-  <li *ngIf="chapter.title"><strong>Titre :</strong> {{ chapter.title }}</li>
-  <li><strong>Publication :</strong> {{ chapter.date }}</li>
-  <li>
-    <strong>Nombre d'épisodes :</strong> {{ chapter.nbEpisodes }}
-  </li>
-  <li>
-    <strong><a routerLink="/version">Qualité des épisodes</a> :</strong>
-    <span [class.qualityMax]="chapter.quality === 100">{{ chapter.quality }}%</span>
-  </li>
-  <li><strong>Durée totale :</strong> {{ chapter.totalDuration }}</li>
-</ul>
+  <img [src]="chapter.image" *ngIf="chapter.image" />
 
-<h2>Episodes ({{ chapter.displayNbEpisodes() }})</h2>
+  <div class="submenu">
+    <button type="button" class="btn" (click)="previous()" *ngIf="chapter.previousChapter">Chapitre précédent</button>
+    <button type="button" class="btn btn-primary" (click)="next()" *ngIf="chapter.nextChapter">Chapitre suivant</button>
+    <button type="button" class="btn" (click)="goLink(chapter)">Lien YT</button>
+  </div>
 
-<div class="container">
+  <h2>Informations</h2>
 
-  <table>
-    <tr>
-      <th>Ref</th>
-      <th>Titre</th>
-      <th>Durée</th>
-      <th *ngIf="hasRegions">Région</th>
-      <th><a routerLink="/version">Version</a></th>
-    </tr>
-    <tr *ngFor="let episode of chapter.getEpisodes(); let i = index">
-      <td class="ref">
-        {{ episode.ref }}
-      </td>
-      <td>
-        <a routerLink="/episode/{{ episode.getID() }}" *ngIf="episode.title">{{ episode.title }}</a>
-        <a routerLink="/episode/{{ episode.getID() }}" *ngIf="episode.originalTitle"><em>{{ episode.originalTitle }}</em></a>
-      </td>
-      <td>
-        {{ episode.video.duration }}
-      </td>
-      <td *ngIf="hasRegions">
-        {{ episode.region }} <span *ngIf="episode.isTown">🏠</span>
-      </td>
-      <td>
-        <span [class.qualityMax]="episode.video.version >= 5">{{ episode.video.version }}</span>
-      </td>
-    </tr>
-  </table>
-</div>
+  <ul>
+    <li><strong>Réf. :</strong> {{ chapter.ref }}</li>
+    <li *ngIf="chapter.title"><strong>Titre :</strong> {{ chapter.title }}</li>
+    <li><strong>Publication :</strong> {{ chapter.date }}</li>
+    <li>
+      <strong>Nombre d'épisodes :</strong> {{ chapter.nbEpisodes }}
+    </li>
+    <li>
+      <strong><a routerLink="/version">Qualité des épisodes</a> :</strong>
+      <span [class.qualityMax]="chapter.quality === 100">{{ chapter.quality }}%</span>
+    </li>
+    <li><strong>Durée totale :</strong> {{ chapter.totalDuration }}</li>
+  </ul>
+
+  <h2>Episodes ({{ chapter.displayNbEpisodes() }})</h2>
+
+  <div class="container">
+
+    <table>
+      <tr>
+        <th>Ref</th>
+        <th>Titre</th>
+        <th>Durée</th>
+        <th *ngIf="hasRegions">Région</th>
+        <th><a routerLink="/version">Version</a></th>
+      </tr>
+      <tr *ngFor="let episode of chapter.episodes; let i = index">
+        <td class="ref">
+          {{ episode.ref }}
+        </td>
+        <td>
+          <a routerLink="/episode/{{ episode.getRefForUrl() }}" *ngIf="episode.title">{{ episode.title }}</a>
+          <a routerLink="/episode/{{ episode.getRefForUrl() }}" *ngIf="episode.originalTitle"><em>{{ episode.originalTitle }}</em></a>
+        </td>
+        <td>
+          {{ episode.video.duration }}
+        </td>
+        <td *ngIf="hasRegions">
+          {{ episode.region }} <span *ngIf="episode.isTown">🏠</span>
+        </td>
+        <td>
+          <span [class.qualityMax]="episode.video.version >= 5">{{ episode.video.version }}</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+</ng-template>

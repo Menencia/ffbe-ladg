@@ -18,6 +18,7 @@ import { AngularFireModule } from 'angularfire2';
 import { firebaseConfig } from '../environments/firebase';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AuthService } from './auth.service';
 import { CorrectionComponent } from './correction/correction.component';
 import { AdminComponent } from './admin/admin.component';
@@ -50,7 +51,8 @@ registerLocaleData(localeFr, 'fr');
     YoutubePlayerModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   providers: [
     DataService,

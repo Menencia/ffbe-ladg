@@ -26,8 +26,9 @@ export class StoryComponent implements OnInit {
     public data: DataService
   ) { }
 
-  ngOnInit() {
-    this.seasons = this.data.getSeasons();
+  async ngOnInit() {
+    await this.data.ready();
+    this.seasons = this.data.getAllSeasons();
     this.events = this.data.getEvents();
     this.special = this.data.getSpecial();
   }

@@ -1,4 +1,6 @@
 import { Chapter } from './chapter';
+import { Correction } from './correction';
+import { Season } from './season';
 
 interface Video {
   yt: string;
@@ -11,23 +13,27 @@ export class Episode {
   title: string;
   originalTitle: string;
   chapter: Chapter;
+  chapterRef: string;
+  seasonRef: string;
   ref: string;
+  fullRef: string;
   region: string;
   isTown: boolean;
   video: Video;
+  corrections: Correction[];
 
-  static load(data) {
-    const e = new this;
-    e.title = data.title;
-    e.originalTitle = data.originalTitle;
-    e.region = data.region;
-    e.isTown = data.isTown;
-    e.video = data.video;
-    return e;
+  constructor(data, chapter) {
+    this.corrections = [];
+
+    Object.assign(this, data);
+
+    this.chapter = chapter;
+
+    this.fullRef = [this.seasonRef, this.chapterRef, this.ref].join('/');
   }
 
-  getID() {
-    return this.ref.replace(/\//g, '-');
+  getRefForUrl() {
+    return this.fullRef.replace(/\//g, '-');
   }
 
   getTitle() {

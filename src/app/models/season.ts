@@ -2,15 +2,14 @@ import { Chapter } from './chapter';
 
 export class Season {
 
-  title: string;
   ref: string;
-  chapters: Chapter[] = [];
+  title: string;
+  chapters: Chapter[];
 
-  static load(data) {
-    const s = new Season();
-    s.title = data.title;
-    s.ref = data.ref;
-    return s;
+  constructor(data) {
+    this.chapters = [];
+
+    Object.assign(this, data);
   }
 
 }
