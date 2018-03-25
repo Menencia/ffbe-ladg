@@ -34,9 +34,9 @@ export class Chapter {
     this.season = season;
 
     if (this.isSpecialEvent) {
-      this.fullRef = 'SSE-' + this.ref;
+      this.fullRef = 'SSE/' + this.ref;
     } else if (this.isStoryEvent) {
-      this.fullRef = 'SE-' + this.ref;
+      this.fullRef = 'SE/' + this.ref;
     } else {
       this.fullRef = this.seasonRef + '/' + this.ref;
     }

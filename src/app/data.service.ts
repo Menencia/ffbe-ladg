@@ -58,13 +58,45 @@ export class DataService {
       .valueChanges();
   }
 
+  getStoryEvents() {
+    return this.db
+      .collection('chapters', options => options.orderBy('isStoryEvent'))
+      .valueChanges();
+  }
+
+  getEpisodesForStoryEvents() {
+    return this.db
+      .collection('episodes', options => options.orderBy('storyEventRef'))
+      .valueChanges();
+  }
+
+  getSpecialEvents() {
+    return this.db
+      .collection('chapters', options => options.orderBy('isSpecialEvent'))
+      .valueChanges();
+  }
+
+  getEpisodesForSpecialEvents() {
+    return this.db
+      .collection('episodes', options => options.orderBy('specialEventRef'))
+      .valueChanges();
+  }
+
   init() {
     Observable.combineLatest([
       this.getSeasons(),
       this.getChaptersForSeasons(),
       this.getEpisodesForSeasons(),
+      this.getStoryEvents(),
+      this.getEpisodesForStoryEvents(),
+      this.getSpecialEvents(),
+      this.getEpisodesForSpecialEvents(),
     ]).subscribe(data => {
-      const [dataSeasons, dataChapters, dataEpisodes] = data;
+      const [
+        dataSeasons, dataChapters, dataEpisodes,
+        chaptersSE, episodesSE,
+        chaptersSSE, episodesSSE
+      ] = data;
 
       const seasons = [];
       for (const e of dataSeasons) {
@@ -83,8 +115,35 @@ export class DataService {
           }
         }
       }
-
       this.seasons = seasons;
+
+      const storyEvents = [];
+      for (const f of chaptersSE) {
+        const chapter = new Chapter(f, null);
+        this.storage.ref('images/ffbe_' + chapter.getRefForUrl().toLowerCase() + '.jpg')
+          .getDownloadURL().subscribe(k => chapter.image = k);
+        storyEvents.push(chapter);
+        const episodes = _.filter(episodesSE, {storyEventRef: chapter.ref});
+        for (const g of episodes) {
+          const episode = new Episode(g, chapter);
+          chapter.episodes.push(episode);
+        }
+      }
+      this.storyEvents = storyEvents;
+
+      const specialEvents = [];
+      for (const f of chaptersSSE) {
+        const chapter = new Chapter(f, null);
+        this.storage.ref('images/ffbe_' + chapter.getRefForUrl().toLowerCase() + '.jpg')
+          .getDownloadURL().subscribe(k => chapter.image = k);
+          specialEvents.push(chapter);
+        const episodes = _.filter(episodesSSE, {specialEventRef: chapter.ref});
+        for (const g of episodes) {
+          const episode = new Episode(g, chapter);
+          chapter.episodes.push(episode);
+        }
+      }
+      this.specialEvents = specialEvents;
 
       this.resolve();
     });
@@ -94,10 +153,10 @@ export class DataService {
     let chapter;
     if (chapterRef.indexOf('SSE') > -1) {
       chapterRef = chapterRef.replace('-', '/');
-      chapter = _.find(this.specialEvents, {ref: chapterRef});
+      chapter = _.find(this.specialEvents, {ref: chapterRef.slice(4)});
     } else if (chapterRef.indexOf('SE') > -1) {
       chapterRef = chapterRef.replace('-', '/');
-      chapter = _.find(this.storyEvents, {ref: chapterRef});
+      chapter = _.find(this.storyEvents, {ref: chapterRef.slice(3)});
     } else {
       const [seasonRef, ...others] = chapterRef.split('-');
       const season = _.find(this.seasons, {ref: seasonRef});
@@ -117,11 +176,11 @@ export class DataService {
     return this.seasons;
   }
 
-  getEvents() {
+  getAllStoryEvents() {
     return this.storyEvents;
   }
 
-  getSpecial() {
+  getAllSpecialEvents() {
     return this.specialEvents;
   }
 }

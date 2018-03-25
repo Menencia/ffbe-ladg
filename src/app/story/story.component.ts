@@ -13,8 +13,8 @@ import { DataService } from '../data.service';
 export class StoryComponent implements OnInit {
 
   public seasons: Season[] = [];
-  public events: Chapter[] = [];
-  public special: Chapter[] = [];
+  public storyEvents: Chapter[] = [];
+  public specialEvents: Chapter[] = [];
 
   linkWebsite = 'http://www.finalfantasyexvius.com/fr/';
   linkAndroid = 'https://play.google.com/store/apps/details?id=com.square_enix.android_googleplay.FFBEWW&hl=fr';
@@ -29,8 +29,8 @@ export class StoryComponent implements OnInit {
   async ngOnInit() {
     await this.data.ready();
     this.seasons = this.data.getAllSeasons();
-    this.events = this.data.getEvents();
-    this.special = this.data.getSpecial();
+    this.storyEvents = this.data.getAllStoryEvents();
+    this.specialEvents = this.data.getAllSpecialEvents();
   }
 
   goChapter(chapter: Chapter) {

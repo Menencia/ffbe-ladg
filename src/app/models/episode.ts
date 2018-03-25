@@ -20,6 +20,8 @@ export class Episode {
   region: string;
   isTown: boolean;
   video: Video;
+  isStoryEvent: boolean;
+  isSpecialEvent: boolean;
   corrections: Correction[];
 
   constructor(data, chapter) {
@@ -29,7 +31,13 @@ export class Episode {
 
     this.chapter = chapter;
 
-    this.fullRef = [this.seasonRef, this.chapterRef, this.ref].join('/');
+    if (chapter.isSpecialEvent) {
+      this.fullRef = [chapter.fullRef, this.ref].join('/');
+    } else if (chapter.isStoryEvent) {
+      this.fullRef = [chapter.fullRef, this.ref].join('/');
+    } else {
+      this.fullRef = [chapter.season.ref, chapter.ref, this.ref].join('/');
+    }
   }
 
   getRefForUrl() {

@@ -47,7 +47,7 @@
       </tr>
       <tr *ngFor="let episode of chapter.episodes; let i = index">
         <td class="ref">
-          {{ episode.ref }}
+          {{ episode.fullRef }}
         </td>
         <td>
           <a routerLink="/episode/{{ episode.getRefForUrl() }}" *ngIf="episode.title">{{ episode.title }}</a>
