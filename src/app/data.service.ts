@@ -16,6 +16,8 @@ import { first } from 'rxjs/operator/first';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { EpisodeSE } from './models/episode-se';
 import { StoryEvent } from './models/story-event';
+import { SpecialEvent } from './models/special-event';
+import { EpisodeSSE } from './models/episode-sse';
 
 @Injectable()
 export class DataService {
@@ -138,24 +140,23 @@ export class DataService {
         }
       }
       this.storyEvents = storyEvents;
-      console.log(this.storyEvents);
 
-      /*const specialEvents = [];
+      const specialEvents = [];
       for (const f of chaptersSSE) {
-        const chapter = new Chapter(f, null);
+        const chapter = new SpecialEvent(f, null);
         this.storage.ref('images/ffbe_' + chapter.getRefForUrl().toLowerCase() + '.jpg')
           .getDownloadURL().subscribe(k => chapter.image = k);
-          specialEvents.push(chapter);
+        specialEvents.push(chapter);
         const episodes = _(episodesSSE)
-          .filter({specialEventRef: chapter.ref})
-          .orderBy('ref')
+          .filter(episode => episode.ref.indexOf(chapter.ref) === 0)
           .value();
         for (const g of episodes) {
-          const episode = new Episode(g, chapter);
+          const episode = new EpisodeSSE(g, chapter);
           chapter.episodes.push(episode);
         }
       }
-      this.specialEvents = specialEvents;*/
+      this.specialEvents = specialEvents;
+      console.log(specialEvents);
 
       this.resolve();
     });
@@ -164,7 +165,8 @@ export class DataService {
   getChapter(chapterRef) {
     let chapter;
     if (chapterRef.indexOf('SSE') === 0) {
-      // TODO
+      const ref = chapterRef.replace(/-/g, '/');
+      chapter = _.find(this.specialEvents, {ref: ref});
     } else if (chapterRef.indexOf('SE') === 0) {
       const ref = chapterRef.replace(/-/g, '/');
       chapter = _.find(this.storyEvents, {ref: ref});

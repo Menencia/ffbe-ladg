@@ -1,6 +1,6 @@
 import { Chapter } from './chapter';
 
-export class StoryEvent extends Chapter {
+export class SpecialEvent extends Chapter {
 
   constructor(data, season) {
     super(data, season);
@@ -10,7 +10,7 @@ export class StoryEvent extends Chapter {
    * Return category of the chapter
    */
   getCategory(): string {
-    return 'Événements de l\'histoire';
+    return 'Autres histoires';
   }
 
   /**
