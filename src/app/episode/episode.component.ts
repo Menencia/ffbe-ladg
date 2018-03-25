@@ -81,8 +81,8 @@ export class EpisodeComponent implements OnInit {
       this.season = this.chapter.season;
     }
 
-    // this.episodePrevious = this.getPrevious();
-    // this.episodeNext = this.getNext();
+    this.episodePrevious = this.getPrevious();
+    this.episodeNext = this.getNext();
     if (this.player) {
       this.player.cueVideoById(this.episode.video.yt);
     }
@@ -240,13 +240,13 @@ export class EpisodeComponent implements OnInit {
 
   previous() {
     if (this.episodePrevious) {
-      this.router.navigate(['/episode/', this.episodePrevious.ref.replace(/\//g, '-')]);
+      this.router.navigate(['/episode/', this.episodePrevious.fullRef.replace(/\//g, '-')]);
     }
   }
 
   next() {
     if (this.episodeNext) {
-      this.router.navigate(['/episode/', this.episodeNext.ref.replace(/\//g, '-')]);
+      this.router.navigate(['/episode/', this.episodeNext.fullRef.replace(/\//g, '-')]);
     }
   }
 

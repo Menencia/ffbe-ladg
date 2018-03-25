@@ -14,6 +14,7 @@ export class Episode {
   originalTitle: string;
   chapter: Chapter;
   chapterRef: string;
+  partRef: string;
   seasonRef: string;
   ref: string;
   fullRef: string;
@@ -35,6 +36,8 @@ export class Episode {
       this.fullRef = [chapter.fullRef, this.ref].join('/');
     } else if (chapter.isStoryEvent) {
       this.fullRef = [chapter.fullRef, this.ref].join('/');
+    } else if (chapter.partRef) {
+      this.fullRef = [chapter.season.ref, chapter.ref, chapter.partRef, this.ref].join('/');
     } else {
       this.fullRef = [chapter.season.ref, chapter.ref, this.ref].join('/');
     }

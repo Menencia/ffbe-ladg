@@ -42,7 +42,7 @@ export class ChapterComponent implements OnInit {
     // get needed chapter
     this.chapter = this.data.getChapter(c);
 
-    // @TODO shortchut to season
+    // shortchut to season
     if (this.chapter.season) {
       this.season = this.chapter.season;
     }

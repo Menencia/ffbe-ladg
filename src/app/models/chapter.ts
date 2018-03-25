@@ -11,6 +11,7 @@ export class Chapter {
   season: Season|null;
   seasonRef: string;
   ref: string;
+  partRef: string;
   fullRef: string;
   isStoryEvent: boolean;
   isSpecialEvent: boolean;
@@ -37,8 +38,10 @@ export class Chapter {
       this.fullRef = 'SSE/' + this.ref;
     } else if (this.isStoryEvent) {
       this.fullRef = 'SE/' + this.ref;
+    } else if (this.partRef) {
+      this.fullRef = [this.seasonRef, this.ref, this.partRef].join('/');
     } else {
-      this.fullRef = this.seasonRef + '/' + this.ref;
+      this.fullRef = [this.seasonRef, this.ref].join('/');
     }
   }
 

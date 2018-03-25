@@ -102,13 +102,19 @@ export class DataService {
       for (const e of dataSeasons) {
         const season = new Season(e);
         seasons.push(season);
-        const chapters = _.filter(dataChapters, {seasonRef: season.ref});
+        const chapters = _(dataChapters)
+          .filter({seasonRef: season.ref})
+          .orderBy('partRef', 'ref')
+          .value();
         for (const f of chapters) {
           const chapter = new Chapter(f, season);
           this.storage.ref('images/ffbe_' + chapter.getRefForUrl() + '.jpg')
             .getDownloadURL().subscribe(k => chapter.image = k);
           season.chapters.push(chapter);
-          const episodes = _.filter(dataEpisodes, {seasonRef: season.ref, chapterRef: chapter.ref});
+          const episodes = _(dataEpisodes)
+            .filter({seasonRef: season.ref, chapterRef: chapter.ref, partRef: chapter.partRef})
+            .orderBy('ref')
+            .value();
           for (const g of episodes) {
             const episode = new Episode(g, chapter);
             chapter.episodes.push(episode);
@@ -123,7 +129,10 @@ export class DataService {
         this.storage.ref('images/ffbe_' + chapter.getRefForUrl().toLowerCase() + '.jpg')
           .getDownloadURL().subscribe(k => chapter.image = k);
         storyEvents.push(chapter);
-        const episodes = _.filter(episodesSE, {storyEventRef: chapter.ref});
+        const episodes = _(episodesSE)
+          .filter({storyEventRef: chapter.ref})
+          .orderBy('ref')
+          .value();
         for (const g of episodes) {
           const episode = new Episode(g, chapter);
           chapter.episodes.push(episode);
@@ -137,7 +146,10 @@ export class DataService {
         this.storage.ref('images/ffbe_' + chapter.getRefForUrl().toLowerCase() + '.jpg')
           .getDownloadURL().subscribe(k => chapter.image = k);
           specialEvents.push(chapter);
-        const episodes = _.filter(episodesSSE, {specialEventRef: chapter.ref});
+        const episodes = _(episodesSSE)
+          .filter({specialEventRef: chapter.ref})
+          .orderBy('ref')
+          .value();
         for (const g of episodes) {
           const episode = new Episode(g, chapter);
           chapter.episodes.push(episode);
@@ -158,9 +170,10 @@ export class DataService {
       chapterRef = chapterRef.replace('-', '/');
       chapter = _.find(this.storyEvents, {ref: chapterRef.slice(3)});
     } else {
-      const [seasonRef, ...others] = chapterRef.split('-');
-      const season = _.find(this.seasons, {ref: seasonRef});
-      chapter = _.find(season.chapters, {ref: others.join('/')});
+      const [s, c, p] = chapterRef.split('-');
+      const season = _.find(this.seasons, {ref: s});
+      const options = p ? {ref: c, partRef: p} : {ref: c};
+      chapter = _.find(season.chapters, options);
     }
     return chapter;
   }
