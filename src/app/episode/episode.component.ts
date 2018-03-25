@@ -240,13 +240,13 @@ export class EpisodeComponent implements OnInit {
 
   previous() {
     if (this.episodePrevious) {
-      this.router.navigate(['/episode/', this.episodePrevious.fullRef.replace(/\//g, '-')]);
+      this.router.navigate(['/episode/', this.episodePrevious.ref.replace(/\//g, '-')]);
     }
   }
 
   next() {
     if (this.episodeNext) {
-      this.router.navigate(['/episode/', this.episodeNext.fullRef.replace(/\//g, '-')]);
+      this.router.navigate(['/episode/', this.episodeNext.ref.replace(/\//g, '-')]);
     }
   }
 
