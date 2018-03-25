@@ -81,9 +81,9 @@ export class Chapter {
 
   getLabel(): string {
     let string = '';
-    if (this.ref.indexOf('SSE') > -1) {
+    if (this.isSpecialEvent) {
       string += 'Autres histoires';
-    } else if (this.ref.indexOf('SE') > -1) {
+    } else if (this.isStoryEvent) {
       string += 'Événements de l\'histoire';
     } else {
       string += 'Saison ' + this.getSeasonNumber();
@@ -107,11 +107,11 @@ export class Chapter {
 
   getTitleForBreadcrump() {
     let string = '';
-    if (this.ref.indexOf('SE') > -1) {
+    if (this.isStoryEvent || this.isSpecialEvent) {
       const refs = this.ref.split('/');
       string += '#' + _.last(refs) + ' - ' + this.title;
     } else {
-      const [season, chapter, part] = this.ref.split('/');
+      const [chapter, part] = this.ref.split('/');
       string += 'Chapitre ' + chapter;
       if (part) {
         string += ' - Partie ' + part;
