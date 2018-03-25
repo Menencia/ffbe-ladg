@@ -92,7 +92,7 @@ export class Chapter {
   /**
    * Return category of the chapter
    */
-  getLabel(): string {
+  getCategory(): string {
     return 'Saison ' + this.getSeasonNumber();
   }
 

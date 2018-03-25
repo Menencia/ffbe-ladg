@@ -14,6 +14,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
 import { first } from 'rxjs/operator/first';
 import { AngularFireStorage } from 'angularfire2/storage';
+import { EpisodeSE } from './models/episode-se';
+import { StoryEvent } from './models/story-event';
 
 @Injectable()
 export class DataService {
@@ -121,24 +123,24 @@ export class DataService {
       }
       this.seasons = seasons;
 
-      /*const storyEvents = [];
+      const storyEvents = [];
       for (const f of chaptersSE) {
-        const chapter = new Chapter(f, null);
+        const chapter = new StoryEvent(f, null);
         this.storage.ref('images/ffbe_' + chapter.getRefForUrl().toLowerCase() + '.jpg')
           .getDownloadURL().subscribe(k => chapter.image = k);
         storyEvents.push(chapter);
         const episodes = _(episodesSE)
-          .filter({storyEventRef: chapter.ref})
-          .orderBy('ref')
+          .filter(episode => episode.ref.indexOf(chapter.ref) === 0)
           .value();
         for (const g of episodes) {
-          const episode = new Episode(g, chapter);
+          const episode = new EpisodeSE(g, chapter);
           chapter.episodes.push(episode);
         }
       }
       this.storyEvents = storyEvents;
+      console.log(this.storyEvents);
 
-      const specialEvents = [];
+      /*const specialEvents = [];
       for (const f of chaptersSSE) {
         const chapter = new Chapter(f, null);
         this.storage.ref('images/ffbe_' + chapter.getRefForUrl().toLowerCase() + '.jpg')
@@ -161,10 +163,17 @@ export class DataService {
 
   getChapter(chapterRef) {
     let chapter;
-    const [seasonNb, ] = chapterRef.split('-');
-    const season = _.find(this.seasons, {ref: seasonNb});
-    const ref = chapterRef.replace(/-/g, '/');
-    chapter = _.find(season.chapters, {ref: ref});
+    if (chapterRef.indexOf('SSE') === 0) {
+      // TODO
+    } else if (chapterRef.indexOf('SE') === 0) {
+      const ref = chapterRef.replace(/-/g, '/');
+      chapter = _.find(this.storyEvents, {ref: ref});
+    } else {
+      const [seasonNb, ] = chapterRef.split('-');
+      const season = _.find(this.seasons, {ref: seasonNb});
+      const ref = chapterRef.replace(/-/g, '/');
+      chapter = _.find(season.chapters, {ref: ref});
+    }
     return chapter;
   }
 
