@@ -7,65 +7,73 @@ import { Season } from './season';
 
 export class Chapter {
 
-  title: string;
-  season: Season|null;
-  seasonRef: string;
+  // base attributes
   ref: string;
-  partRef: string;
-  fullRef: string;
-  isStoryEvent: boolean;
-  isSpecialEvent: boolean;
-  episodes: Episode[] = [];
+  title: string;
   yt: string;
   date: string;
   maxEpisodes: number;
-  image: string;
   notAvailable: boolean;
   featured: boolean;
 
+  // calculated attributes
+  image: string;
+  season: Season|null;
+  episodes: Episode[] = [];
+
+  // private attributes
   _previousChapter: Chapter;
   _nextChapter: Chapter;
   _quality: number;
 
+  /**
+   * Build a new chapter
+   * @param data
+   * @param season
+   */
   constructor(data, season) {
     this.episodes = [];
 
     Object.assign(this, data);
 
     this.season = season;
-
-    if (this.isSpecialEvent) {
-      this.fullRef = 'SSE/' + this.ref;
-    } else if (this.isStoryEvent) {
-      this.fullRef = 'SE/' + this.ref;
-    } else if (this.partRef) {
-      this.fullRef = [this.seasonRef, this.ref, this.partRef].join('/');
-    } else {
-      this.fullRef = [this.seasonRef, this.ref].join('/');
-    }
   }
 
-  get nbEpisodes() {
+  /**
+   * Return the total of episodes
+   */
+  get nbEpisodes(): number {
     return this.episodes.length;
   }
 
-  getEpisodes() {
+  /**
+   * Return only episodes having a youtube link
+   */
+  getAvailableEpisodes(): Episode[] {
     return _.filter(this.episodes, e => e.video && e.video.yt !== '');
   }
 
-  displayNbEpisodes() {
+  /**
+   * Return '-' or 'Y' or 'X/Y'
+   * where X is total available episodes
+   * where Y is total episodes
+   */
+  displayNbEpisodes(): string {
     const max = this.nbEpisodes;
-    const availables = this.getEpisodes().length;
+    const availables = this.getAvailableEpisodes().length;
     if (max === 0) {
       return '-';
     } else if (max === availables) {
-      return max;
+      return max + '';
     } else {
       return availables + '/' + max;
     }
   }
 
-  get totalDuration() {
+  /**
+   * Return total duration
+   */
+  get totalDuration(): string {
     const total = _.sumBy(this.episodes, (k: Episode) => {
       const {video: {duration}} = k;
       return moment.duration('00:' + duration);
@@ -73,66 +81,45 @@ export class Chapter {
     return moment.duration(total, 'milliseconds').format();
   }
 
-  isStory(): boolean {
-    console.log(this.season);
-    return this.season !== undefined;
+  /**
+   * Converts and return chapter ref to URL format
+   * Replace '/' by '-'
+   */
+  getRefForUrl(): string {
+    return this.ref.replace(/\//g, '-');
   }
 
-  getRefForUrl() {
-    return this.fullRef.replace(/\//g, '-');
-  }
-
+  /**
+   * Return category of the chapter
+   */
   getLabel(): string {
-    let string = '';
-    if (this.isSpecialEvent) {
-      string += 'Autres histoires';
-    } else if (this.isStoryEvent) {
-      string += 'Événements de l\'histoire';
-    } else {
-      string += 'Saison ' + this.getSeasonNumber();
+    return 'Saison ' + this.getSeasonNumber();
+  }
+
+  /**
+   * Return title of the chapter : 'Chapitre X( - Partie Y)'
+   */
+  getTitle(): string {
+    const [season, chapter, part] = this.ref.split('/');
+    let string = 'Chapitre ' + chapter;
+    if (part) {
+      string += ' - Partie ' + part;
     }
     return string;
   }
 
-  getTitle() {
-    let string = '';
-    if (this.isStoryEvent || this.isSpecialEvent) {
-      string += this.title;
-    } else {
-      const [chapter, part] = this.ref.split('/');
-      string += 'Chapitre ' + chapter;
-      if (part) {
-        string += ' - Partie ' + part;
-      }
-    }
-    return string;
-  }
-
-  getTitleForBreadcrump() {
-    let string = '';
-    if (this.isStoryEvent || this.isSpecialEvent) {
-      const refs = this.ref.split('/');
-      string += '#' + _.last(refs) + ' - ' + this.title;
-    } else {
-      const [chapter, part] = this.ref.split('/');
-      string += 'Chapitre ' + chapter;
-      if (part) {
-        string += ' - Partie ' + part;
-      }
-    }
-    return string;
-  }
-
-  getSeasonNumber() {
-    let season;
-    if (this.season) {
-      season = this.ref.split('/');
-      season = season[0];
-    }
+  /**
+   * Return season number of the chapter
+   */
+  getSeasonNumber(): string {
+    const [season, ] = this.ref.split('/');
     return season;
   }
 
-  get previousChapter() {
+  /**
+   * Return previous chapter (can be null)
+   */
+  get previousChapter(): Chapter|null {
     if (!this._previousChapter && this.season) {
       const chapters = this.season.chapters;
       const index = _.findIndex(chapters, this);
@@ -143,7 +130,10 @@ export class Chapter {
     return this._previousChapter;
   }
 
-  get nextChapter() {
+  /**
+   * Return nex chapter (can be null)
+   */
+  get nextChapter(): Chapter|null {
     if (!this._nextChapter && this.season) {
       const chapters = this.season.chapters;
       const index = _.findIndex(chapters, this);
@@ -154,7 +144,10 @@ export class Chapter {
     return this._nextChapter;
   }
 
-  get quality() {
+  /**
+   * Return quality of the chapter (based from all available episodes)
+   */
+  get quality(): number {
     if (!this._quality) {
       if (this.episodes.length === 0) {
         this._quality = 0;
@@ -166,7 +159,10 @@ export class Chapter {
     return this._quality;
   }
 
-  getQualityColor() {
+  /**
+   * Return quality color of the chapter
+   */
+  getQualityColor(): string {
     if (this.quality >= 100) {
       return 'quality-blue';
     } else if (this.quality >= 50) {

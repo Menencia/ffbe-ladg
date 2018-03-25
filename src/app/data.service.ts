@@ -48,37 +48,37 @@ export class DataService {
 
   getChaptersForSeasons() {
     return this.db
-      .collection('chapters', options => options.orderBy('seasonRef'))
+      .collection('chapters')
       .valueChanges();
   }
 
   getEpisodesForSeasons() {
     return this.db
-      .collection('episodes', options => options.orderBy('seasonRef'))
+      .collection('episodes')
       .valueChanges();
   }
 
   getStoryEvents() {
     return this.db
-      .collection('chapters', options => options.orderBy('isStoryEvent'))
+      .collection('story-events')
       .valueChanges();
   }
 
   getEpisodesForStoryEvents() {
     return this.db
-      .collection('episodes', options => options.orderBy('storyEventRef'))
+      .collection('episodes-se')
       .valueChanges();
   }
 
   getSpecialEvents() {
     return this.db
-      .collection('chapters', options => options.orderBy('isSpecialEvent'))
+      .collection('special-events')
       .valueChanges();
   }
 
   getEpisodesForSpecialEvents() {
     return this.db
-      .collection('episodes', options => options.orderBy('specialEventRef'))
+      .collection('episodes-sse')
       .valueChanges();
   }
 
@@ -103,8 +103,7 @@ export class DataService {
         const season = new Season(e);
         seasons.push(season);
         const chapters = _(dataChapters)
-          .filter({seasonRef: season.ref})
-          .orderBy('partRef', 'ref')
+          .filter(chapter => chapter.ref.indexOf(season.ref) === 0)
           .value();
         for (const f of chapters) {
           const chapter = new Chapter(f, season);
@@ -112,8 +111,7 @@ export class DataService {
             .getDownloadURL().subscribe(k => chapter.image = k);
           season.chapters.push(chapter);
           const episodes = _(dataEpisodes)
-            .filter({seasonRef: season.ref, chapterRef: chapter.ref, partRef: chapter.partRef})
-            .orderBy('ref')
+            .filter(episode => episode.ref.indexOf(chapter.ref) === 0)
             .value();
           for (const g of episodes) {
             const episode = new Episode(g, chapter);
@@ -123,7 +121,7 @@ export class DataService {
       }
       this.seasons = seasons;
 
-      const storyEvents = [];
+      /*const storyEvents = [];
       for (const f of chaptersSE) {
         const chapter = new Chapter(f, null);
         this.storage.ref('images/ffbe_' + chapter.getRefForUrl().toLowerCase() + '.jpg')
@@ -155,7 +153,7 @@ export class DataService {
           chapter.episodes.push(episode);
         }
       }
-      this.specialEvents = specialEvents;
+      this.specialEvents = specialEvents;*/
 
       this.resolve();
     });
@@ -163,18 +161,10 @@ export class DataService {
 
   getChapter(chapterRef) {
     let chapter;
-    if (chapterRef.indexOf('SSE') > -1) {
-      chapterRef = chapterRef.replace('-', '/');
-      chapter = _.find(this.specialEvents, {ref: chapterRef.slice(4)});
-    } else if (chapterRef.indexOf('SE') > -1) {
-      chapterRef = chapterRef.replace('-', '/');
-      chapter = _.find(this.storyEvents, {ref: chapterRef.slice(3)});
-    } else {
-      const [s, c, p] = chapterRef.split('-');
-      const season = _.find(this.seasons, {ref: s});
-      const options = p ? {ref: c, partRef: p} : {ref: c};
-      chapter = _.find(season.chapters, options);
-    }
+    const [seasonNb, ] = chapterRef.split('-');
+    const season = _.find(this.seasons, {ref: seasonNb});
+    const ref = chapterRef.replace(/-/g, '/');
+    chapter = _.find(season.chapters, {ref: ref});
     return chapter;
   }
 
@@ -182,7 +172,7 @@ export class DataService {
     const chapterRef = _.initial(episodeRef.split('-')).join('-');
     const chapter = this.getChapter(chapterRef);
     episodeRef = episodeRef.replace(/-/g, '/');
-    return _.find(chapter.episodes, {fullRef: episodeRef});
+    return _.find(chapter.episodes, {ref: episodeRef});
   }
 
   getAllSeasons() {

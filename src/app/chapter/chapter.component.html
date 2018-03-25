@@ -6,7 +6,7 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink="/story">Histoire</a></li>
     <li class="breadcrumb-item active">{{ chapter.getLabel() }}</li>
-    <li class="breadcrumb-item active">{{ chapter.getTitleForBreadcrump() }}</li>
+    <li class="breadcrumb-item active">{{ chapter.getTitle() }}</li>
   </ol>
 
   <img [src]="chapter.image" *ngIf="chapter.image" />
@@ -47,7 +47,7 @@
       </tr>
       <tr *ngFor="let episode of chapter.episodes; let i = index">
         <td class="ref">
-          {{ episode.fullRef }}
+          {{ episode.ref }}
         </td>
         <td>
           <a routerLink="/episode/{{ episode.getRefForUrl() }}" *ngIf="episode.title">{{ episode.title }}</a>

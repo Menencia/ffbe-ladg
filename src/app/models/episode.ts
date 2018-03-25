@@ -10,61 +10,53 @@ interface Video {
 
 export class Episode {
 
+  // base attributes
+  ref: string;
   title: string;
   originalTitle: string;
-  chapter: Chapter;
-  chapterRef: string;
-  partRef: string;
-  seasonRef: string;
-  ref: string;
-  fullRef: string;
   region: string;
   isTown: boolean;
   video: Video;
-  isStoryEvent: boolean;
-  isSpecialEvent: boolean;
+
+  // calculated attributes
+  chapter: Chapter;
   corrections: Correction[];
 
+  /**
+   * Build a new episode
+   * @param data
+   * @param chapter
+   */
   constructor(data, chapter) {
     this.corrections = [];
 
     Object.assign(this, data);
 
     this.chapter = chapter;
-
-    if (chapter.isSpecialEvent) {
-      this.fullRef = [chapter.fullRef, this.ref].join('/');
-    } else if (chapter.isStoryEvent) {
-      this.fullRef = [chapter.fullRef, this.ref].join('/');
-    } else if (chapter.partRef) {
-      this.fullRef = [chapter.season.ref, chapter.ref, chapter.partRef, this.ref].join('/');
-    } else {
-      this.fullRef = [chapter.season.ref, chapter.ref, this.ref].join('/');
-    }
   }
 
+  /**
+   * Converts and return chapter ref to URL format
+   * Replace '/' by '-'
+   */
   getRefForUrl() {
-    return this.fullRef.replace(/\//g, '-');
+    return this.ref.replace(/\//g, '-');
   }
 
-  getTitle() {
+  /**
+   * Return title of the chapter
+   * @param breadcrump
+   */
+  getTitle(breadcrump = false) {
     let string = '';
+    if (breadcrump) {
+      const [number] = this.ref.split('/').slice(-1);
+      string += '#' + number + ' - ';
+    }
     if (this.title) {
       string += this.title;
     } else if (this.originalTitle) {
       string += '<em>' + this.originalTitle + '</em>';
-    }
-    return string;
-  }
-
-  getTitleForBreadcrump() {
-    let string = '';
-    const [number] = this.ref.split('/').slice(-1);
-    string += '#' + number;
-    if (this.title) {
-      string += ' - ' + this.title;
-    } else if (this.originalTitle) {
-      string += ' - ' + this.originalTitle;
     }
     return string;
   }
