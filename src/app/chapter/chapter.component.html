@@ -6,7 +6,7 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink="/story">Histoire</a></li>
     <li class="breadcrumb-item active">{{ chapter.getCategory() }}</li>
-    <li class="breadcrumb-item active">{{ chapter.getTitleForBreadcrump() }}</li>
+    <li class="breadcrumb-item active">{{ chapter.getTitle() }}</li>
   </ol>
 
   <img [src]="image" *ngIf="image" />
@@ -50,17 +50,24 @@
           {{ episode.ref }}
         </td>
         <td>
-          <a routerLink="/episode/{{ episode.getRefForUrl() }}" *ngIf="episode.title">{{ episode.title }}</a>
-          <a routerLink="/episode/{{ episode.getRefForUrl() }}" *ngIf="episode.originalTitle"><em>{{ episode.originalTitle }}</em></a>
+          <span *ngIf="episode.video else noVideo">
+            <a routerLink="/episode/{{ episode.getRefForUrl() }}" *ngIf="episode.title">{{ episode.title }}</a>
+            <a routerLink="/episode/{{ episode.getRefForUrl() }}" *ngIf="episode.originalTitle"><em>{{ episode.originalTitle }}</em></a>
+          </span>
+          <ng-template #noVideo><em>{{ episode.title }}</em></ng-template>
         </td>
         <td>
-          {{ episode.video.duration }}
+          <span *ngIf="episode.video">{{ episode.video.duration }}</span>
         </td>
         <td *ngIf="hasRegions">
           {{ episode.region }} <span *ngIf="episode.isTown">🏠</span>
         </td>
         <td>
-          <span [class.qualityMax]="episode.video.version >= 5">{{ episode.video.version }}</span>
+          <span *ngIf="episode.video">
+            <span [class.qualityMax]="episode.video && episode.video.version >= 5">
+              {{ episode.video.version }}
+            </span>
+          </span>
         </td>
       </tr>
     </table>

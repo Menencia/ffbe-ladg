@@ -75,6 +75,9 @@ export class Chapter {
    */
   get totalDuration(): string {
     const total = _.sumBy(this.episodes, (k: Episode) => {
+      if (!k.video) {
+        return false;
+      }
       const {video: {duration}} = k;
       return moment.duration('00:' + duration);
     });
@@ -106,18 +109,6 @@ export class Chapter {
       string += ' - Partie ' + part;
     }
     return string;
-  }
-
-  /**
-   * Return title of the chapter : 'Chapitre X( - Partie Y)'
-   */
-  getTitleForBreadcrump(): string {
-    const [season, chapter, part] = this.ref.split('/');
-    if (part) {
-      return `#${chapter}/${part} - ${this.title}`;
-    } else {
-      return `#${chapter} - ${this.title}`;
-    }
   }
 
   /**
@@ -164,8 +155,8 @@ export class Chapter {
       if (this.episodes.length === 0) {
         this._quality = 0;
       } else {
-        const res = _.sumBy(this.episodes, e => e.video.version >= 5);
-        this._quality = Math.floor(res / this.nbEpisodes * 100);
+        const res = _.sumBy(this.episodes, e => e.video && e.video.version >= 5);
+        this._quality = Math.floor(res / this.getAvailableEpisodes().length * 100);
       }
     }
     return this._quality;

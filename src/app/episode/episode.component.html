@@ -6,7 +6,7 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink="/story">Histoire</a></li>
     <li class="breadcrumb-item active">{{ chapter.getCategory() }}</li>
-    <li class="breadcrumb-item"><a routerLink="/chapter/{{ chapter.getRefForUrl() }}">{{ chapter.getTitleForBreadcrump() }}</a></li>
+    <li class="breadcrumb-item"><a routerLink="/chapter/{{ chapter.getRefForUrl() }}">{{ chapter.getTitle() }}</a></li>
     <li class="breadcrumb-item active">{{ episode.getTitle(true) }}</li>
   </ol>
 
@@ -34,7 +34,7 @@
         <li><strong>Réf. :</strong> {{ episode.ref }}</li>
         <li><strong>Titre :</strong> <span [innerHTML]="episode.getTitle()"></span></li>
         <li *ngIf="episode.region"><strong>Région :</strong> {{ episode.region }}</li>
-        <li><strong>Durée :</strong> {{ episode.video.duration }}</li>
+        <li *ngIf="episode.video"><strong>Durée :</strong> {{ episode.video.duration }}</li>
         <li>
           <strong>Version :</strong>
           <span [class.qualityMax]="episode.video.version >= 5">{{ episode.video.version }}</span>

@@ -219,7 +219,7 @@ export class EpisodeComponent implements OnInit {
         episodePrevious = _.last(chapterPrevious.episodes);
       }
     }
-    return episodePrevious;
+    return (episodePrevious.video) ? episodePrevious : null;
   }
 
   getNext() {
@@ -235,7 +235,7 @@ export class EpisodeComponent implements OnInit {
         episodeNext = chapterNext.episodes[0];
       }
     }
-    return episodeNext;
+    return (episodeNext.video) ? episodeNext : null;
   }
 
   previous() {

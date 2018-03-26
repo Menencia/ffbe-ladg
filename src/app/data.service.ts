@@ -5,8 +5,6 @@ import { Season } from './models/season';
 import { Chapter } from './models/chapter';
 import { Episode } from './models/episode';
 
-import { STORY } from './data/seasons';
-
 import * as _ from 'lodash';
 import { AngularFirestore } from 'angularfire2/firestore';
 
@@ -18,6 +16,7 @@ import { EpisodeSE } from './models/episode-se';
 import { StoryEvent } from './models/story-event';
 import { SpecialEvent } from './models/special-event';
 import { EpisodeSSE } from './models/episode-sse';
+import { Correction } from './models/correction';
 
 @Injectable()
 export class DataService {
@@ -43,45 +42,51 @@ export class DataService {
     return this._ready;
   }
 
-  getSeasons() {
+  private getSeasons() {
     return this.db
       .collection('seasons')
       .valueChanges();
   }
 
-  getChaptersForSeasons() {
+  private getChaptersForSeasons() {
     return this.db
       .collection('chapters')
       .valueChanges();
   }
 
-  getEpisodesForSeasons() {
+  private getEpisodesForSeasons() {
     return this.db
       .collection('episodes')
       .valueChanges();
   }
 
-  getStoryEvents() {
+  private getStoryEvents() {
     return this.db
       .collection('story-events')
       .valueChanges();
   }
 
-  getEpisodesForStoryEvents() {
+  private getEpisodesForStoryEvents() {
     return this.db
       .collection('episodes-se')
       .valueChanges();
   }
 
-  getSpecialEvents() {
+  private getSpecialEvents() {
     return this.db
       .collection('special-events')
       .valueChanges();
   }
 
-  getEpisodesForSpecialEvents() {
+  private getEpisodesForSpecialEvents() {
     return this.db
       .collection('episodes-sse')
+      .valueChanges();
+  }
+
+  private getCorrections() {
+    return this.db
+      .collection('corrections')
       .valueChanges();
   }
 
@@ -94,20 +99,19 @@ export class DataService {
       this.getEpisodesForStoryEvents(),
       this.getSpecialEvents(),
       this.getEpisodesForSpecialEvents(),
+      this.getCorrections(),
     ]).subscribe(data => {
       const [
         dataSeasons, dataChapters, dataEpisodes,
         chaptersSE, episodesSE,
-        chaptersSSE, episodesSSE
+        chaptersSSE, episodesSSE,
+        corrections
       ] = data;
 
       const seasons = [];
       for (const e of dataSeasons as Season[]) {
         const season = new Season(e);
         seasons.push(season);
-        const chapters = _(dataChapters)
-          .filter(chapter => chapter.ref.indexOf(season.ref) === 0)
-          .value();
       }
       for (const f of dataChapters as Chapter[]) {
         const season = _.find(seasons, s => f.ref.indexOf(s.ref) === 0);
@@ -145,6 +149,23 @@ export class DataService {
         chapter.episodes.push(episode);
       }
       this.specialEvents = specialEvents;
+
+      /*for (const correction of corrections as Correction[]) {
+        let episode;
+        console.log(correction.ref);
+        if (correction.ref.indexOf('SSE') === 0) {
+          const specialEvent = _.find(specialEvents, sse => correction.ref.indexOf(sse.ref) === 0);
+          episode = _.find(specialEvent.episodes, {ref: correction.ref});
+        } else if (correction.ref.indexOf('SE') === 0) {
+          const storyEvent = _.find(specialEvents, se => correction.ref.indexOf(se.ref) === 0);
+          episode = _.find(storyEvent.episodes, {ref: correction.ref});
+        } else {
+          const season = _.find(seasons, s => correction.ref.indexOf(s.ref) === 0);
+          const chapter = _.find(season.chapters, c => correction.ref.indexOf(c.ref) === 0);
+          episode = _.find(chapter.episodes, {ref: correction.ref});
+        }
+        episode.corrections.push(correction);
+      }*/
 
       this.resolve();
     });
