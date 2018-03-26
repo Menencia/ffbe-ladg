@@ -102,51 +102,47 @@ export class DataService {
       ] = data;
 
       const seasons = [];
-      for (const e of dataSeasons) {
+      for (const e of dataSeasons as Season[]) {
         const season = new Season(e);
         seasons.push(season);
         const chapters = _(dataChapters)
           .filter(chapter => chapter.ref.indexOf(season.ref) === 0)
           .value();
-        for (const f of chapters) {
-          const chapter = new Chapter(f, season);
-          season.chapters.push(chapter);
-          const episodes = _(dataEpisodes)
-            .filter(episode => episode.ref.indexOf(chapter.ref) === 0)
-            .value();
-          for (const g of episodes) {
-            const episode = new Episode(g, chapter);
-            chapter.episodes.push(episode);
-          }
-        }
+      }
+      for (const f of dataChapters as Chapter[]) {
+        const season = _.find(seasons, s => f.ref.indexOf(s.ref) === 0);
+        const chapter = new Chapter(f, season);
+        season.chapters.push(chapter);
+      }
+      for (const g of dataEpisodes as Episode[]) {
+        const season = _.find(seasons, s => g.ref.indexOf(s.ref) === 0);
+        const chapter = _.find(season.chapters, c => g.ref.indexOf(c.ref) === 0);
+        const episode = new Episode(g, chapter);
+        chapter.episodes.push(episode);
       }
       this.seasons = seasons;
 
       const storyEvents = [];
-      for (const f of chaptersSE) {
+      for (const f of chaptersSE as StoryEvent[]) {
         const chapter = new StoryEvent(f, null);
         storyEvents.push(chapter);
-        const episodes = _(episodesSE)
-          .filter(episode => episode.ref.indexOf(chapter.ref) === 0)
-          .value();
-        for (const g of episodes) {
-          const episode = new EpisodeSE(g, chapter);
-          chapter.episodes.push(episode);
-        }
+      }
+      for (const g of episodesSE as EpisodeSE[]) {
+        const chapter = _.find(storyEvents, se => g.ref.indexOf(se.ref) === 0);
+        const episode = new EpisodeSE(g, chapter);
+        chapter.episodes.push(episode);
       }
       this.storyEvents = storyEvents;
 
       const specialEvents = [];
-      for (const f of chaptersSSE) {
+      for (const f of chaptersSSE as SpecialEvent[]) {
         const chapter = new SpecialEvent(f, null);
         specialEvents.push(chapter);
-        const episodes = _(episodesSSE)
-          .filter(episode => episode.ref.indexOf(chapter.ref) === 0)
-          .value();
-        for (const g of episodes) {
-          const episode = new EpisodeSSE(g, chapter);
-          chapter.episodes.push(episode);
-        }
+      }
+      for (const g of episodesSSE as EpisodeSSE[]) {
+        const chapter = _.find(specialEvents, sse => g.ref.indexOf(sse.ref) === 0);
+        const episode = new EpisodeSSE(g, chapter);
+        chapter.episodes.push(episode);
       }
       this.specialEvents = specialEvents;
 
