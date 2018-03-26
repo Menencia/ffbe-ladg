@@ -23,7 +23,7 @@ export class StoryComponent implements OnInit {
   constructor(
     public http: HttpClient,
     public router: Router,
-    public data: DataService
+    public data: DataService,
   ) { }
 
   async ngOnInit() {

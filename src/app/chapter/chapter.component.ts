@@ -7,6 +7,7 @@ import { Chapter } from '../models/chapter';
 import { Season } from '../models/season';
 
 import * as _ from 'lodash';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 @Component({
   selector: 'app-chapter',
@@ -18,6 +19,8 @@ export class ChapterComponent implements OnInit {
   public season: Season;
   public chapter: Chapter;
 
+  image;
+
   hasRegions = true;
 
   constructor(
@@ -25,7 +28,8 @@ export class ChapterComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     public http: HttpClient,
     public data: DataService,
-    public router: Router
+    public router: Router,
+    public storage: AngularFireStorage
   ) { }
 
   ngOnInit() {
@@ -41,6 +45,12 @@ export class ChapterComponent implements OnInit {
 
     // get needed chapter
     this.chapter = this.data.getChapter(c);
+
+    // load image
+    this.storage
+      .ref('images/ffbe_' + this.chapter.getRefForUrl().toLowerCase() + '.jpg')
+      .getDownloadURL()
+      .subscribe(k => this.image = k);
 
     // shortchut to season
     if (this.chapter.season) {

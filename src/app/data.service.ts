@@ -35,7 +35,6 @@ export class DataService {
 
   constructor(
     private db: AngularFirestore,
-    private storage: AngularFireStorage
   ) {
     this.init();
   }
@@ -111,8 +110,6 @@ export class DataService {
           .value();
         for (const f of chapters) {
           const chapter = new Chapter(f, season);
-          this.storage.ref('images/ffbe_' + chapter.getRefForUrl() + '.jpg')
-            .getDownloadURL().subscribe(k => chapter.image = k);
           season.chapters.push(chapter);
           const episodes = _(dataEpisodes)
             .filter(episode => episode.ref.indexOf(chapter.ref) === 0)
@@ -128,8 +125,6 @@ export class DataService {
       const storyEvents = [];
       for (const f of chaptersSE) {
         const chapter = new StoryEvent(f, null);
-        this.storage.ref('images/ffbe_' + chapter.getRefForUrl().toLowerCase() + '.jpg')
-          .getDownloadURL().subscribe(k => chapter.image = k);
         storyEvents.push(chapter);
         const episodes = _(episodesSE)
           .filter(episode => episode.ref.indexOf(chapter.ref) === 0)
@@ -144,8 +139,6 @@ export class DataService {
       const specialEvents = [];
       for (const f of chaptersSSE) {
         const chapter = new SpecialEvent(f, null);
-        this.storage.ref('images/ffbe_' + chapter.getRefForUrl().toLowerCase() + '.jpg')
-          .getDownloadURL().subscribe(k => chapter.image = k);
         specialEvents.push(chapter);
         const episodes = _(episodesSSE)
           .filter(episode => episode.ref.indexOf(chapter.ref) === 0)
