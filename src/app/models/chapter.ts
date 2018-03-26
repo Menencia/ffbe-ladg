@@ -109,6 +109,18 @@ export class Chapter {
   }
 
   /**
+   * Return title of the chapter : 'Chapitre X( - Partie Y)'
+   */
+  getTitleForBreadcrump(): string {
+    const [season, chapter, part] = this.ref.split('/');
+    if (part) {
+      return `#${chapter}/${part} - ${this.title}`;
+    } else {
+      return `#${chapter} - ${this.title}`;
+    }
+  }
+
+  /**
    * Return season number of the chapter
    */
   getSeasonNumber(): string {

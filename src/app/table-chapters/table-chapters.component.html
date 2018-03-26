@@ -12,7 +12,7 @@
       </td>
       <td>
         <ng-container *ngIf="chapter.episodes.length === 0">
-          <em>{{ chapter.title }}</em>
+          <em>{{ chapter.getTitle() }}</em>
         </ng-container>
         <ng-container *ngIf="chapter.episodes.length > 0">
           <a routerLink="/chapter/{{chapter.getRefForUrl()}}">{{ chapter.getTitle() }}</a>
