@@ -85,6 +85,16 @@ export class Chapter {
   }
 
   /**
+   * Return total duration
+   */
+  get totalCorrections(): number {
+    const total = _.sumBy(this.episodes, (k: Episode) => {
+      return k.corrections.length;
+    });
+    return total;
+  }
+
+  /**
    * Converts and return chapter ref to URL format
    * Replace '/' by '-'
    */

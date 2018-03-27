@@ -114,13 +114,13 @@ export class DataService {
         seasons.push(season);
       }
       for (const f of dataChapters as Chapter[]) {
-        const season = _.find(seasons, s => f.ref.indexOf(s.ref) === 0);
+        const season = _.find(seasons, s => f.ref.startsWith(s.ref));
         const chapter = new Chapter(f, season);
         season.chapters.push(chapter);
       }
       for (const g of dataEpisodes as Episode[]) {
-        const season = _.find(seasons, s => g.ref.indexOf(s.ref) === 0);
-        const chapter = _.find(season.chapters, c => g.ref.indexOf(c.ref) === 0);
+        const season = _.find(seasons, s => g.ref.startsWith(s.ref));
+        const chapter = _.find(season.chapters, c => g.ref.startsWith(c.ref));
         const episode = new Episode(g, chapter);
         chapter.episodes.push(episode);
       }
@@ -132,7 +132,7 @@ export class DataService {
         storyEvents.push(chapter);
       }
       for (const g of episodesSE as EpisodeSE[]) {
-        const chapter = _.find(storyEvents, se => g.ref.indexOf(se.ref) === 0);
+        const chapter = _.find(storyEvents, se => g.ref.startsWith(se.ref));
         const episode = new EpisodeSE(g, chapter);
         chapter.episodes.push(episode);
       }
@@ -144,28 +144,28 @@ export class DataService {
         specialEvents.push(chapter);
       }
       for (const g of episodesSSE as EpisodeSSE[]) {
-        const chapter = _.find(specialEvents, sse => g.ref.indexOf(sse.ref) === 0);
+        const chapter = _.find(specialEvents, sse => g.ref.startsWith(sse.ref));
         const episode = new EpisodeSSE(g, chapter);
         chapter.episodes.push(episode);
       }
       this.specialEvents = specialEvents;
 
-      /*for (const correction of corrections as Correction[]) {
+      for (const corr of corrections as Correction[]) {
         let episode;
-        console.log(correction.ref);
-        if (correction.ref.indexOf('SSE') === 0) {
-          const specialEvent = _.find(specialEvents, sse => correction.ref.indexOf(sse.ref) === 0);
-          episode = _.find(specialEvent.episodes, {ref: correction.ref});
-        } else if (correction.ref.indexOf('SE') === 0) {
-          const storyEvent = _.find(specialEvents, se => correction.ref.indexOf(se.ref) === 0);
-          episode = _.find(storyEvent.episodes, {ref: correction.ref});
+        if (corr.ref.startsWith('SSE')) {
+          const specialEvent = _.find(specialEvents, sse => corr.ref.startsWith(sse.ref));
+          episode = _.find(specialEvent.episodes, {ref: corr.ref});
+        } else if (corr.ref.startsWith('SE')) {
+          const storyEvent = _.find(storyEvents, se => corr.ref.startsWith(se.ref));
+          episode = _.find(storyEvent.episodes, {ref: corr.ref});
         } else {
-          const season = _.find(seasons, s => correction.ref.indexOf(s.ref) === 0);
-          const chapter = _.find(season.chapters, c => correction.ref.indexOf(c.ref) === 0);
-          episode = _.find(chapter.episodes, {ref: correction.ref});
+          const season = _.find(seasons, s => corr.ref.startsWith(s.ref));
+          const chapter = _.find(season.chapters, c => corr.ref.startsWith(c.ref));
+          episode = _.find(chapter.episodes, {ref: corr.ref});
         }
+        const correction = new Correction(corr);
         episode.corrections.push(correction);
-      }*/
+      }
 
       this.resolve();
     });

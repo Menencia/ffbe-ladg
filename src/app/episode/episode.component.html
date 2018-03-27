@@ -43,26 +43,23 @@
 
       <h2>Corrections</h2>
 
-      <div *ngIf="corrections | async; let corrections; else loading">
-        <div *ngFor="let e of corrections" class="correction">
-          <div class="actions">
-            <a href="javascript:void(0)" (click)="editCorrection(e)" *ngIf="canEdit()">éditer</a>
-            <a href="javascript:void(0)" (click)="deleteCorrection(e)" *ngIf="canDelete()">supprimer</a>
-          </div>
-          <div class="timecode"><b><a href="javascript:void(0)" class="pretty" (click)="goto(e.timecode)">{{ e.timecode }}</a></b></div>
-          <div *ngIf="e.title">Auteur : <b>{{ e.title }}</b></div>
-          <div *ngIf="e.message">Réplique : <span [innerHTML]="buildMsg(e.message)"></span></div>
-          <div *ngIf="e.note">Notes : {{ e.note }}</div>
-          <div class="date">
-            Créé par {{ e.created.author }}, le {{ e.created.date | date:'short':'':'fr' }}
-          </div>
-          <div class="date" *ngIf="e.updated">
-            Mis à jour par {{ e.updated.author }}, le {{ e.updated.date | date:'short':'':'fr' }}
-          </div>
+      <div *ngFor="let e of episode.corrections" class="correction">
+        <div class="actions">
+          <a href="javascript:void(0)" (click)="editCorrection(e)" *ngIf="canEdit()">éditer</a>
+          <a href="javascript:void(0)" (click)="deleteCorrection(e)" *ngIf="canDelete()">supprimer</a>
         </div>
-        <div *ngIf="corrections.length === 0"><p><em>Aucune correction.</em></p></div>
+        <div class="timecode"><b><a href="javascript:void(0)" class="pretty" (click)="goto(e.timecode)">{{ e.timecode }}</a></b></div>
+        <div *ngIf="e.title">Auteur : <b>{{ e.title }}</b></div>
+        <div *ngIf="e.message">Réplique : <span [innerHTML]="buildMsg(e.message)"></span></div>
+        <div *ngIf="e.note">Notes : {{ e.note }}</div>
+        <div class="date">
+          Créé par {{ e.created.author }}, le {{ e.created.date | date:'short':'':'fr' }}
+        </div>
+        <div class="date" *ngIf="e.updated">
+          Mis à jour par {{ e.updated.author }}, le {{ e.updated.date | date:'short':'':'fr' }}
+        </div>
       </div>
-      <ng-template #loading>Chargement...</ng-template>
+      <div *ngIf="episode.corrections.length === 0"><p><em>Aucune correction.</em></p></div>
 
       <div *ngIf="canAdd()">
 

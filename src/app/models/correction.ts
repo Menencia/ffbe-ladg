@@ -1,3 +1,5 @@
+import { Episode } from './episode';
+
 export class Correction {
 
   id?: string;
@@ -19,5 +21,9 @@ export class Correction {
     author: string,
     date: Date
   };
+
+  constructor(data) {
+    Object.assign(this, data);
+  }
 
 }

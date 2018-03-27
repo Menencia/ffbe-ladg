@@ -22,6 +22,7 @@ export class ChapterComponent implements OnInit {
   image;
 
   hasRegions = true;
+  hasCorrections = false;
 
   constructor(
     public route: Router,
@@ -59,6 +60,8 @@ export class ChapterComponent implements OnInit {
 
     // indicates if we need region column
     this.hasRegions = _.some(this.chapter.episodes, e => e.region);
+
+    this.hasCorrections = _.some(this.chapter.episodes, e => e.corrections.length > 0);
   }
 
   previous() {

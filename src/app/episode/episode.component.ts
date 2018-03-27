@@ -29,7 +29,7 @@ export class EpisodeComponent implements OnInit {
 
   private correctionsCollection: AngularFirestoreCollection<Correction>;
   corrections: Observable<Correction[]>;
-  form: Correction = new Correction();
+  form: Correction = new Correction({});
   user: User;
 
   displayForm = false;
@@ -49,17 +49,7 @@ export class EpisodeComponent implements OnInit {
 
   async ngOnInit() {
     this.route.params.subscribe((params: any) => {
-
       this.loadEpisode(params.episode);
-
-      /*const options =  ref => ref.where('ref', '==', this.episode.ref).where('verified', '==', true);
-      this.correctionsCollection = afs.collection<Correction>('corrections', options);
-      this.corrections = this.correctionsCollection.snapshotChanges().map(actions => {
-        return actions.map(a => {
-          const doc = a.payload.doc;
-          return Object.assign({ id: doc.id }, doc.data()) as Correction;
-        });
-      });*/
     });
 
     this.auth.user$.subscribe(user => this.user = user);
@@ -219,7 +209,7 @@ export class EpisodeComponent implements OnInit {
         episodePrevious = _.last(chapterPrevious.episodes);
       }
     }
-    return (episodePrevious.video) ? episodePrevious : null;
+    return (episodePrevious && episodePrevious.video) ? episodePrevious : null;
   }
 
   getNext() {
@@ -235,7 +225,7 @@ export class EpisodeComponent implements OnInit {
         episodeNext = chapterNext.episodes[0];
       }
     }
-    return (episodeNext.video) ? episodeNext : null;
+    return (episodeNext && episodeNext.video) ? episodeNext : null;
   }
 
   previous() {

@@ -4,6 +4,7 @@
       <th>Titre</th>
       <th>Épisodes</th>
       <th><a routerLink="/version">Qualité</a></th>
+      <th><a routerLink="/correction">Corr.</a></th>
       <th>Date</th>
     </tr>
     <tr *ngFor="let chapter of chapters; let i = index">
@@ -25,6 +26,9 @@
       <td class="text-center">
         <span [class.qualityMax]="chapter.quality === 100" *ngIf="chapter.episodes.length > 0">{{ chapter.quality }}%</span>
         <span *ngIf="chapter.episodes.length === 0">-</span>
+      </td>
+      <td class="text-center">
+        <span *ngIf="chapter.totalCorrections">{{ chapter.totalCorrections }}🐞</span>
       </td>
       <td>
         {{ chapter.date | date }}
