@@ -26,6 +26,7 @@ import { AdminGuard } from './admin.guard';
 
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { LoadingComponent } from './loading/loading.component';
 
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
@@ -41,7 +42,8 @@ registerLocaleData(localeFr, 'fr');
     TableChaptersComponent,
     VersionComponent,
     CorrectionComponent,
-    AdminComponent
+    AdminComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

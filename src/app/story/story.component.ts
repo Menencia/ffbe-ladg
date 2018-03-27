@@ -12,9 +12,9 @@ import { DataService } from '../data.service';
 })
 export class StoryComponent implements OnInit {
 
-  public seasons: Season[] = [];
-  public storyEvents: Chapter[] = [];
-  public specialEvents: Chapter[] = [];
+  public seasons: Season[];
+  public storyEvents: Chapter[];
+  public specialEvents: Chapter[];
 
   linkWebsite = 'http://www.finalfantasyexvius.com/fr/';
   linkAndroid = 'https://play.google.com/store/apps/details?id=com.square_enix.android_googleplay.FFBEWW&hl=fr';
