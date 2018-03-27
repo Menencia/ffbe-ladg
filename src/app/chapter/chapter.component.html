@@ -43,7 +43,7 @@
         <th>Titre</th>
         <th>Durée</th>
         <th *ngIf="hasRegions">Région</th>
-        <th><a routerLink="/version">Version</a></th>
+        <th><a routerLink="/version">Vers.</a></th>
         <th *ngIf="hasCorrections"><a routerLink="/correction">Corr.</a></th>
       </tr>
       <tr *ngFor="let episode of chapter.episodes; let i = index">
@@ -60,7 +60,7 @@
         <td>
           <span *ngIf="episode.video">{{ episode.video.duration }}</span>
         </td>
-        <td class="text-center" *ngIf="hasRegions">
+        <td *ngIf="hasRegions">
           {{ episode.region }} <span *ngIf="episode.isTown">🏠</span>
         </td>
         <td class="text-center">

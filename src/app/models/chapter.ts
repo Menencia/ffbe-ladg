@@ -162,7 +162,7 @@ export class Chapter {
    */
   get quality(): number {
     if (!this._quality) {
-      if (this.episodes.length === 0) {
+      if (this.getAvailableEpisodes().length === 0) {
         this._quality = 0;
       } else {
         const res = _.sumBy(this.episodes, e => e.video && e.video.version >= 5);
