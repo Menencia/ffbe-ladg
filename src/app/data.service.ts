@@ -91,7 +91,7 @@ export class DataService {
   }
 
   init() {
-    Observable.combineLatest([
+    const mainObserver = Observable.combineLatest([
       this.getSeasons(),
       this.getChaptersForSeasons(),
       this.getEpisodesForSeasons(),
@@ -168,6 +168,8 @@ export class DataService {
       }
 
       this.resolve();
+
+      mainObserver.unsubscribe();
     });
   }
 
