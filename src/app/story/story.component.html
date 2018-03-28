@@ -5,32 +5,42 @@
 <ng-template #view>
   <h2>Bienvenue</h2>
 
-  <p><strong>Ce projet consiste à voir/revoir toutes les scènes de l'histoire du jeu
-    <a [href]="linkWebsite" target="_blank" class="pretty">Final Fantasy Brave Exvius</a> au format vidéo.</strong>
-    <em>FFBE</em> est un jeu mobile, réalisé par Square Enix/Gumi, sorti en juin 2016
-    sur <a [href]="linkAndroid" target="_blank" class="pretty">Android</a> et
-    <a [href]="linkIOS" target="_blank" class="pretty">iOS</a>.
-    Le jeu possède une histoire originale, narrant les aventures de Rain et Lasswell,
-    deux chevaliers de Grandshelt entamant un long voyage à la poursuite d'hommes en armure qui
-    menacent de détruire les cristaux de leur monde.</p>
+  <div class="row">
+    <div class="col-sm-8 col-lg-9 col-xl-9">
 
-  <p>Depuis la version 2.3.0, il est possible de revoir les scènes de l'histoire principale directement depuis le
-    jeu, grâce au <em>Livre des Souvenirs</em>. Cependant :</p>
+      <p><strong>Ce projet consiste à voir/revoir toutes les scènes de l'histoire du jeu
+        <a [href]="linkWebsite" target="_blank" class="pretty">Final Fantasy Brave Exvius</a> au format vidéo.</strong>
+        <em>FFBE</em> est un jeu mobile, réalisé par Square Enix/Gumi, sorti en juin 2016
+        sur <a [href]="linkAndroid" target="_blank" class="pretty">Android</a> et
+        <a [href]="linkIOS" target="_blank" class="pretty">iOS</a>.
+        Le jeu possède une histoire originale, narrant les aventures de Rain et Lasswell,
+        deux chevaliers de Grandshelt entamant un long voyage à la poursuite d'hommes en armure qui
+        menacent de détruire les cristaux de leur monde.</p>
 
-  <ul>
-    <li>il faut avoir accès au jeu pour les voir (indisponible lorsqu'il y a une maintenance par exemple)</li>
-    <li>il faut refaire tous les combats contenant des dialogues (ce qui allonge considérablement la durée du visionnage)</li>
-    <li>il est impossible de revoir les événements de l'histoire (ou <em>story events</em>)</li>
-  </ul>
+      <p>Depuis la version 2.3.0, il est possible de revoir les scènes de l'histoire principale directement depuis le
+        jeu, grâce au <em>Livre des Souvenirs</em>. Cependant :</p>
 
-  <p>Pour combler ces lacunes, ce projet propose :</p>
+      <ul>
+        <li>il faut avoir accès au jeu pour les voir (indisponible lorsqu'il y a une maintenance par exemple)</li>
+        <li>il faut refaire tous les combats contenant des dialogues (ce qui allonge considérablement la durée du visionnage)</li>
+        <li>il est impossible de revoir les événements de l'histoire (ou <em>story events</em>)</li>
+      </ul>
 
-  <ul>
-    <li>le visionnage à tout moment (toutes les vidéos sont sur Youtube)</li>
-    <li>de ne pas refaire les combats (les dialogues dans les combats sont inclus dans les vidéos)</li>
-    <li>la possibilité de revoir les événements de l'histoire (à partir du 5è)</li>
-    <li><strong>BONUS:</strong> de contribuer à la <a routerLink="/correction" class="pretty">correction</a> des fautes les plus dramatiques </li>
-  </ul>
+      <p>Pour combler ces lacunes, ce projet propose :</p>
+
+      <ul>
+        <li>le visionnage à tout moment (toutes les vidéos sont sur Youtube)</li>
+        <li>de ne pas refaire les combats (les dialogues dans les combats sont inclus dans les vidéos)</li>
+        <li>la possibilité de revoir les événements de l'histoire (à partir du 5è)</li>
+        <li><strong>BONUS:</strong> de contribuer à la <a routerLink="/correction" class="pretty">correction</a> des fautes les plus dramatiques </li>
+      </ul>
+
+    </div>
+
+    <div class="col-sm-4 col-lg-3 col-xl-3">
+      <img src="/assets/ffbe-cover.webp" alt="cover" width="100%">
+    </div>
+  </div>
 
   <h2>Histoire principale</h2>
 
