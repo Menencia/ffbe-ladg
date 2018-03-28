@@ -45,23 +45,26 @@ export class ChapterComponent implements OnInit {
     await this.data.ready();
 
     // get needed chapter
-    this.chapter = this.data.getChapter(c);
+    const chapter = this.data.getChapter(c);
 
     // load image
     this.storage
-      .ref('images/ffbe_' + this.chapter.getRefForUrl().toLowerCase() + '.jpg')
+      .ref('images/ffbe_' + chapter.getRefForUrl().toLowerCase() + '.jpg')
       .getDownloadURL()
-      .subscribe(k => this.image = k);
+      .subscribe(k => {
+        this.chapter = chapter;
+        this.image = k;
+      });
 
     // shortchut to season
-    if (this.chapter.season) {
-      this.season = this.chapter.season;
+    if (chapter.season) {
+      this.season = chapter.season;
     }
 
     // indicates if we need region column
-    this.hasRegions = _.some(this.chapter.episodes, e => e.region);
+    this.hasRegions = _.some(chapter.episodes, e => e.region);
 
-    this.hasCorrections = _.some(this.chapter.episodes, e => e.corrections.length > 0);
+    this.hasCorrections = _.some(chapter.episodes, e => e.corrections.length > 0);
   }
 
   previous() {

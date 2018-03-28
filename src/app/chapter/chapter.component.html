@@ -10,9 +10,6 @@
   </ol>
 
   <img [src]="image" *ngIf="image" />
-  <div *ngIf="!image">
-    <i class="fas fa-spinner fa-spin"></i>
-  </div>
 
   <div class="submenu">
     <button type="button" class="btn" (click)="previous()" *ngIf="chapter.previousChapter">Chapitre précédent</button>
