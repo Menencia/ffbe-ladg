@@ -13,6 +13,8 @@ import 'rxjs/add/operator/first';
 import { AuthService } from '../auth.service';
 import { User } from '../models/user';
 
+import { YoutubePlayerService } from 'ngx-youtube-player/src/ngx-youtube-player';
+
 @Component({
   selector: 'app-episode',
   templateUrl: './episode.component.html',
@@ -25,12 +27,12 @@ export class EpisodeComponent implements OnInit {
   public episode: Episode;
   public episodePrevious: Episode;
   public episodeNext: Episode;
-  public player: YT.Player;
 
   private correctionsCollection: AngularFirestoreCollection<Correction>;
   corrections: Observable<Correction[]>;
   form: Correction = new Correction({});
   user: User;
+  player: YT.Player;
 
   displayForm = false;
   titleForm: string;
@@ -42,7 +44,7 @@ export class EpisodeComponent implements OnInit {
     public data: DataService,
     public router: Router,
     public auth: AuthService,
-    public afs: AngularFirestore
+    public afs: AngularFirestore,
   ) {
 
   }

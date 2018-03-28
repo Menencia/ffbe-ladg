@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { TableChaptersComponent } from './table-chapters.component';
 
 describe('TableChaptersComponent', () => {
@@ -8,7 +8,8 @@ describe('TableChaptersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TableChaptersComponent ]
+      declarations: [ TableChaptersComponent ],
+      imports: [ RouterTestingModule ]
     })
     .compileComponents();
   }));
