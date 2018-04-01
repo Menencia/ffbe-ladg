@@ -118,6 +118,11 @@ export class EpisodeComponent implements OnInit {
     const [minutes, seconds] = timecode.split(':');
     const totalSeconds = parseInt(minutes, 10) * 60 + parseInt(seconds, 10);
     this.player.seekTo(totalSeconds, false);
+    this.player.addEventListener('onStateChange', (a: any) => {
+      if (a.target.getPlayerState() === 1) { // 1 = PLAYING
+        this.player.pauseVideo();
+      }
+    });
   }
 
   async _addCorrection() {
