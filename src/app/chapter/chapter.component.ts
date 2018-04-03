@@ -19,8 +19,6 @@ export class ChapterComponent implements OnInit {
   public season: Season;
   public chapter: Chapter;
 
-  image;
-
   hasRegions = true;
   hasCorrections = false;
 
@@ -48,13 +46,7 @@ export class ChapterComponent implements OnInit {
     const chapter = this.data.getChapter(c);
 
     // load image
-    this.storage
-      .ref('images/ffbe_' + chapter.getRefForUrl().toLowerCase() + '.jpg')
-      .getDownloadURL()
-      .subscribe(k => {
-        this.chapter = chapter;
-        this.image = k;
-      });
+    this.chapter = chapter;
 
     // shortchut to season
     if (chapter.season) {

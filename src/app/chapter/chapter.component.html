@@ -9,7 +9,7 @@
     <li class="breadcrumb-item active">{{ chapter.getTitle() }}</li>
   </ol>
 
-  <img [src]="image" *ngIf="image" />
+  <img [src]="chapter.getImage()" />
 
   <div class="submenu">
     <button type="button" class="btn" (click)="previous()" *ngIf="chapter.previousChapter">Chapitre précédent</button>

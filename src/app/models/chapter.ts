@@ -187,4 +187,8 @@ export class Chapter {
     }
   }
 
+  getImage(): string {
+    return `https://firebasestorage.googleapis.com/v0/b/ffbe-ladg.appspot.com/o/images%2Fffbe_${this.getRefForUrl()}.jpg?alt=media`;
+  }
+
 }
