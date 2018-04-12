@@ -152,6 +152,20 @@ th a:hover {
   right: 0;
 }
 
+.qualityBad {
+  position: relative;
+}
+
+.qualityBad::after {
+  content: " ";
+  background-color: #af2a12;
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  left: 0;
+  right: 0;
+}
+
 .quality-blue {
   font-weight: normal;
  }

@@ -43,7 +43,7 @@
         <th>Titre</th>
         <th>Durée</th>
         <th *ngIf="hasRegions">Région</th>
-        <th><a routerLink="/version">Vers.</a></th>
+        <th *ngIf="hasVersion"><a routerLink="/version">Vers.</a></th>
         <th *ngIf="hasCorrections"><a routerLink="/correction">Corr.</a></th>
       </tr>
       <tr *ngFor="let episode of chapter.episodes; let i = index">
@@ -52,10 +52,9 @@
         </td>
         <td>
           <span *ngIf="episode.video else noVideo">
-            <a routerLink="/episode/{{ episode.getRefForUrl() }}" *ngIf="episode.title">{{ episode.title }}</a>
-            <a routerLink="/episode/{{ episode.getRefForUrl() }}" *ngIf="episode.originalTitle"><em>{{ episode.originalTitle }}</em></a>
+            <a routerLink="/episode/{{ episode.getRefForUrl() }}">{{ episode.getTitle() }}</a>
           </span>
-          <ng-template #noVideo><em>{{ episode.title }}</em></ng-template>
+          <ng-template #noVideo><em>{{ episode.getTitle() }}</em></ng-template>
         </td>
         <td>
           <span *ngIf="episode.video">{{ episode.video.duration }}</span>
@@ -63,14 +62,14 @@
         <td *ngIf="hasRegions">
           {{ episode.region }} <span *ngIf="episode.isTown">🏠</span>
         </td>
-        <td class="text-center">
-          <span *ngIf="episode.video">
-            <span [class.qualityMax]="episode.video && episode.video.version >= 5">
+        <td *ngIf="hasVersion" class="text-center">
+          <span *ngIf="episode.video && episode.video.version < 5">
+            <span [class.qualityBad]="episode.video && episode.video.version < 5">
               {{ episode.video.version }}
             </span>
           </span>
         </td>
-        <td class="text-center" *ngIf="hasCorrections">
+        <td *ngIf="hasCorrections" class="text-center">
           <span *ngIf="episode.corrections.length > 0">
             {{ episode.corrections.length }}🐞
           </span>

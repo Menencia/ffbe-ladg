@@ -56,7 +56,7 @@ export class Episode {
     if (this.title) {
       string += this.title;
     } else if (this.originalTitle) {
-      string += '<em>' + this.originalTitle + '</em>';
+      string += this.originalTitle + ' (EN)';
     }
     return string;
   }

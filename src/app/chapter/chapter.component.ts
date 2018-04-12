@@ -19,7 +19,8 @@ export class ChapterComponent implements OnInit {
   public season: Season;
   public chapter: Chapter;
 
-  hasRegions = true;
+  hasRegions = false;
+  hasVersion = false;
   hasCorrections = false;
 
   constructor(
@@ -55,6 +56,9 @@ export class ChapterComponent implements OnInit {
 
     // indicates if we need region column
     this.hasRegions = _.some(chapter.episodes, e => e.region);
+
+    // indicates if we need version column
+    this.hasVersion = _.some(chapter.episodes, e => e.video && parseInt(e.video.version, 10) < 5);
 
     this.hasCorrections = _.some(chapter.episodes, e => e.corrections.length > 0);
   }
