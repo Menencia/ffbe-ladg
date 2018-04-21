@@ -50,8 +50,17 @@ export class EpisodeComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.route.params.subscribe((params: any) => {
-      this.loadEpisode(params.episode);
+    this.route.params.subscribe(async (params: any) => {
+      await this.loadEpisode(params.episode);
+
+      const options =  ref => ref.where('ref', '==', this.episode.ref);
+      this.correctionsCollection = this.afs.collection<Correction>('corrections', options);
+      this.corrections = this.correctionsCollection.snapshotChanges().map(actions => {
+        return actions.map(a => {
+          const doc = a.payload.doc;
+          return Object.assign({ id: doc.id }, doc.data()) as Correction;
+        });
+      });
     });
 
     this.auth.user$.subscribe(user => this.user = user);
@@ -106,6 +115,7 @@ export class EpisodeComponent implements OnInit {
 
   addCorrection(correction) {
     this.titleForm = 'Ajouter une correction';
+    this.form = new Correction({});
     this.toggleForm(true);
   }
 
