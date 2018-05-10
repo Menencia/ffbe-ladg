@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { Season } from '../models/season';
@@ -14,13 +14,14 @@ import { AuthService } from '../auth.service';
 import { User } from '../models/user';
 
 import { YoutubePlayerService } from 'ngx-youtube-player/src/ngx-youtube-player';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-episode',
   templateUrl: './episode.component.html',
   styleUrls: ['./episode.component.scss']
 })
-export class EpisodeComponent implements OnInit {
+export class EpisodeComponent implements OnInit, OnDestroy {
 
   public season: Season;
   public chapter: Chapter;
@@ -45,6 +46,7 @@ export class EpisodeComponent implements OnInit {
     public router: Router,
     public auth: AuthService,
     public afs: AngularFirestore,
+    public meta: Meta
   ) {
 
   }
@@ -52,6 +54,11 @@ export class EpisodeComponent implements OnInit {
   async ngOnInit() {
     this.route.params.subscribe(async (params: any) => {
       await this.loadEpisode(params.episode);
+
+      this.meta.updateTag({
+        name: 'og:url',
+        content: `https://www.youtube.com/watch?v=${this.episode.video.yt}`
+      });
 
       const options =  ref => ref.where('ref', '==', this.episode.ref);
       this.correctionsCollection = this.afs.collection<Correction>('corrections', options);
@@ -64,6 +71,10 @@ export class EpisodeComponent implements OnInit {
     });
 
     this.auth.user$.subscribe(user => this.user = user);
+  }
+
+  ngOnDestroy() {
+    this.meta.removeTag('name="og:url"');
   }
 
   async loadEpisode(e) {
