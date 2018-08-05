@@ -114,11 +114,23 @@ export class Chapter {
    */
   getTitle(): string {
     const [season, chapter, part] = this.ref.split('/');
-    let string = 'Chapitre ' + chapter;
-    if (part) {
+    let string = '';
+    if (part && part === '1') {
+      string += 'Chapitre ' + chapter + ' - Partie ' + part;
+    } else if (part) {
       string += ' - Partie ' + part;
+    } else {
+      string += 'Chapitre ' + chapter;
     }
     return string;
+  }
+
+  /**
+   * Returns only title chapter
+   */
+  getTitleChapter() {
+    const [season, chapter, part] = this.ref.split('/');
+    return 'Chapitre ' + chapter;
   }
 
   /**
@@ -127,6 +139,14 @@ export class Chapter {
   getSeasonNumber(): string {
     const [season, ] = this.ref.split('/');
     return season;
+  }
+
+  /**
+   * Return true if part is greater than one
+   */
+  isPartMoreThanOne() {
+    const [season, chapter, part] = this.ref.split('/');
+    return (part && part !== '1');
   }
 
   /**
