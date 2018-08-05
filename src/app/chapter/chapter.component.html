@@ -26,10 +26,6 @@
     <li>
       <strong>Nombre d'épisodes :</strong> {{ chapter.nbEpisodes }}
     </li>
-    <li>
-      <strong><a routerLink="/version">Qualité des épisodes</a> :</strong>
-      <span [class.qualityMax]="chapter.quality === 100">{{ chapter.quality }}%</span>
-    </li>
     <li><strong>Durée totale :</strong> {{ chapter.totalDuration }}</li>
   </ul>
 
