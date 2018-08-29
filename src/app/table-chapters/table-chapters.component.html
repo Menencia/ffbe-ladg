@@ -10,11 +10,11 @@
         {{ chapter.ref }}
       </td>
       <td>
-        <ng-container *ngIf="chapter.episodes.length === 0">
-          <em>{{ chapter.getTitle() }}</em>
-        </ng-container>
         <ng-container *ngIf="chapter.isPartMoreThanOne()">
           <span style="color: #bbb;">{{ chapter.getTitleChapter() }}</span>
+        </ng-container>
+        <ng-container *ngIf="chapter.episodes.length === 0">
+          <em>{{ chapter.getTitle() }}</em>
         </ng-container>
         <ng-container *ngIf="chapter.episodes.length > 0">
           <a routerLink="/chapter/{{chapter.getRefForUrl()}}">{{ chapter.getTitle() }}</a>
