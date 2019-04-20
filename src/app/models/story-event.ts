@@ -20,4 +20,11 @@ export class StoryEvent extends Chapter {
     return this.title;
   }
 
+  /**
+   * Return firebase folder path
+   */
+  getImagePath() {
+    return 'se%2F';
+  }
+
 }

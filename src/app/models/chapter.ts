@@ -209,7 +209,15 @@ export class Chapter {
 
   getImage(): string {
     const ref = this.getRefForUrl().toLocaleLowerCase();
-    return `https://firebasestorage.googleapis.com/v0/b/ffbe-ladg.appspot.com/o/images%2Fffbe_${ref}.jpg?alt=media`;
+    const path = this.getImagePath() + 'ffbe_' + ref + '.jpg';
+    return `https://firebasestorage.googleapis.com/v0/b/ffbe-ladg.appspot.com/o/images%2F${path}?alt=media`;
+  }
+
+  /**
+   * Return firebase folder path
+   */
+  getImagePath() {
+    return 'story%2F';
   }
 
 }

@@ -20,4 +20,11 @@ export class SpecialEvent extends Chapter {
     return this.title;
   }
 
+  /**
+   * Return firebase folder path
+   */
+  getImagePath() {
+    return 'sse%2F';
+  }
+
 }
