@@ -71,9 +71,4 @@ export class ChapterComponent implements OnInit {
     this.router.navigate(['/chapter/', this.chapter.nextChapter.ref.replace(/\//g, '-')]);
   }
 
-  goLink(chapter) {
-    const link = 'https://www.youtube.com/playlist?list=' + chapter.yt;
-    window.open(link, '_blank');
-  }
-
 }
