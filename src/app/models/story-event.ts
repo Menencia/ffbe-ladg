@@ -2,8 +2,8 @@ import { Chapter } from './chapter';
 
 export class StoryEvent extends Chapter {
 
-  constructor(data, season) {
-    super(data, season);
+  constructor(dataObj) {
+    super(dataObj);
   }
 
   /**
@@ -14,7 +14,7 @@ export class StoryEvent extends Chapter {
   }
 
   /**
-   * Return title of the chapter : 'Chapitre X( - Partie Y)'
+   * Return title of the chapter
    */
   getTitle(): string {
     return this.title;

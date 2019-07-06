@@ -2,27 +2,23 @@
     <tr>
       <th>Ref</th>
       <th>Titre</th>
-      <th>Épisodes</th>
       <th>Date</th>
     </tr>
     <tr *ngFor="let chapter of chapters; let i = index">
       <td class="ref">
-        {{ chapter.ref }}
+        {{ chapter.getRef() }}
       </td>
       <td>
         <ng-container *ngIf="chapter.isPartMoreThanOne()">
           <span style="color: #bbb;">{{ chapter.getTitleChapter() }}</span>
         </ng-container>
-        <ng-container *ngIf="chapter.episodes.length === 0">
+        <!--ng-container *ngIf="chapter.episodes.length === 0">
           <em>{{ chapter.getTitle() }}</em>
-        </ng-container>
-        <ng-container *ngIf="chapter.episodes.length > 0">
+        </ng-container-->
+        <ng-container><!-- *ngIf="chapter.episodes.length > 0" -->
           <a routerLink="/chapter/{{chapter.getRefForUrl()}}">{{ chapter.getTitle() }}</a>
         </ng-container>
         <span *ngIf="chapter.featured" class="featured">new</span>
-      </td>
-      <td class="text-center">
-        {{ chapter.displayNbEpisodes() }}
       </td>
       <td>
         {{ chapter.date | date }}

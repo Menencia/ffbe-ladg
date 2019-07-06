@@ -15,7 +15,8 @@ export class VersionComponent implements OnInit {
       {b: '#5', l: `Cette version est faite avec la version 5.x de Nox.
       Ce qui corrige un problème de son pendant les captures.`},
       {b: '#6', l: `Cette version est faite avec la version 6.x de Nox.`},
-      {b: '#7', l: `Cette version est fait depuis la maj 3.0 du jeu.`},
+      {b: '#7', l: `Cette version est faite avec la maj 3.0 du jeu.`},
+      {b: '#8', l: `Cette version est faite avec Memu.`},
     ];
   }
 

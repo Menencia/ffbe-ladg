@@ -5,6 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { Episode } from '../models/episode';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
+import { Observable } from 'rxjs/Observable';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { map } from 'rxjs/operator/map';
 
 @Component({
   selector: 'app-story',
@@ -27,14 +30,19 @@ export class StoryComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    await this.data.ready();
-    this.seasons = this.data.getAllSeasons();
-    this.storyEvents = this.data.getAllStoryEvents();
-    this.specialEvents = this.data.getAllSpecialEvents();
+    this.data.getSeasons().subscribe(seasons => {
+      this.seasons = seasons;
+    });
+    this.data.getStoryEvents().subscribe(storyEvents => {
+      this.storyEvents = storyEvents;
+    });
+    this.data.getSpecialEvents().subscribe(specialEvents => {
+      this.specialEvents = specialEvents;
+    });
   }
 
   goChapter(chapter: Chapter) {
-    this.router.navigate(['/chapter/', chapter.ref.replace(/\//g, '-')]);
+    // this.router.navigate(['/chapter/', chapter.ref.replace(/\//g, '-')]);
   }
 
 }

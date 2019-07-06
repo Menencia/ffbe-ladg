@@ -12,8 +12,8 @@ import { AdminGuard } from './admin.guard';
 
 const appRoutes: Routes = [
   { path: 'story', component: StoryComponent },
-  { path: 'chapter/:chapter', component: ChapterComponent },
-  { path: 'episode/:episode', component: EpisodeComponent },
+  { path: 'chapter/:ref', component: ChapterComponent },
+  { path: 'episode/:ref', component: EpisodeComponent },
   { path: 'correction', component: CorrectionComponent },
   { path: 'version', component: VersionComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },

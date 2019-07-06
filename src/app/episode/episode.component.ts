@@ -4,17 +4,13 @@ import { DataService } from '../data.service';
 import { Season } from '../models/season';
 import { Chapter } from '../models/chapter';
 import { Episode } from '../models/episode';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Correction } from '../models/correction';
-import { Observable } from 'rxjs/Observable';
+import { AngularFirestore } from 'angularfire2/firestore';
 import * as _ from 'lodash';
-import * as moment from 'moment';
 import 'rxjs/add/operator/first';
 import { AuthService } from '../auth.service';
 import { User } from '../models/user';
-
-import { YoutubePlayerService } from 'ngx-youtube-player/src/ngx-youtube-player';
 import { Meta } from '@angular/platform-browser';
+import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-episode',
@@ -29,16 +25,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   public episodePrevious: Episode;
   public episodeNext: Episode;
 
-  private correctionsCollection: AngularFirestoreCollection<Correction>;
-  corrections: Observable<Correction[]>;
-  form: Correction = new Correction({});
   user: User;
   player: YT.Player;
-
-  displayForm = false;
-  titleForm: string;
-  errorsForm: string[];
-  msg: string;
 
   constructor(
     public route: ActivatedRoute,
@@ -52,21 +40,22 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    this.route.params.subscribe(async (params: any) => {
-      await this.loadEpisode(params.episode);
+    this.route.params
+    .pipe(
+      flatMap(params => {
+        const tmp = params.ref.split('-');
+        const s = tmp.shift();
+        const e = tmp.pop();
+        const c = tmp.join('-');
+        return this.data.getCompleteEpisode(s, c, e);
+      })
+    )
+    .subscribe((episode: Episode) => {
+      this.displayEpisode(episode);
 
       this.meta.updateTag({
         name: 'og:url',
-        content: `https://www.youtube.com/watch?v=${this.episode.video.yt}`
-      });
-
-      const options =  ref => ref.where('ref', '==', this.episode.ref);
-      this.correctionsCollection = this.afs.collection<Correction>('corrections', options);
-      this.corrections = this.correctionsCollection.snapshotChanges().map(actions => {
-        return actions.map(a => {
-          const doc = a.payload.doc;
-          return Object.assign({ id: doc.id }, doc.data()) as Correction;
-        });
+        content: `https://www.youtube.com/watch?v=${episode.video.yt}`
       });
     });
 
@@ -77,11 +66,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     this.meta.removeTag('name="og:url"');
   }
 
-  async loadEpisode(e) {
-    // wait for data service
-    await this.data.ready();
-
-    this.episode = this.data.getEpisode(e);
+  displayEpisode(episode) {
+    this.episode = episode;
 
     // shortcut to chapter
     if (this.episode.chapter) {
@@ -97,121 +83,6 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     this.episodeNext = this.getNext();
     if (this.player) {
       this.player.cueVideoById(this.episode.video.yt);
-    }
-  }
-
-  canAdd() {
-    // connected
-    return this.user && !this.user.banned;
-  }
-
-  canEdit() {
-    // connected & admin role
-    return this.user && this.user.admin;
-  }
-
-  canDelete() {
-    // connected & admin role
-    return this.user && this.user.admin;
-  }
-
-  toggleForm(state) {
-    this.displayForm = state;
-    this.errorsForm = [];
-  }
-
-  clearMsg() {
-    this.msg = null;
-  }
-
-  addCorrection(correction) {
-    this.titleForm = 'Ajouter une correction';
-    this.form = new Correction({});
-    this.toggleForm(true);
-  }
-
-  buildMsg(msg) {
-    const regex = new RegExp(/\*\*([^\*]*)\*\*/, 'g');
-    return msg.replace(new RegExp(/\*\*([^\*]*)\*\*/, 'g'), '<b>$1</b>');
-  }
-
-  goto(timecode) {
-    const [minutes, seconds] = timecode.split(':');
-    const totalSeconds = parseInt(minutes, 10) * 60 + parseInt(seconds, 10);
-    this.player.seekTo(totalSeconds, false);
-    this.player.addEventListener('onStateChange', (a: any) => {
-      if (a.target.getPlayerState() === 1) { // 1 = PLAYING
-        this.player.pauseVideo();
-      }
-    });
-  }
-
-  async _addCorrection() {
-
-    // checkings
-    this.errorsForm = [];
-    const {title, message, note} = this.form;
-    const regex = /\d{1,2}:\d{2}/;
-    if (!this.form.timecode) {
-      const error = 'Il faut remplir le champ Timecode';
-      this.errorsForm.push(error);
-    } else if (!regex.test(this.form.timecode)) {
-      const error = 'Le champ Timecode doit être au format "X:YY" (Exemple : "1:08")';
-      this.errorsForm.push(error);
-    }
-    if (!_.some([title, message, note])) {
-      const error = 'Il faut remplir au moins l\'un des 3 champs (Auteur, Réplique, Notes)';
-      this.errorsForm.push(error);
-    }
-
-    if (this.errorsForm.length > 0) {
-      return false;
-    }
-
-    // confirmation
-    if (!confirm('Confirmation ?')) {
-      return false;
-    }
-
-    if (this.canEdit() && this.form.id) { // update
-      const c = this.afs.doc<Correction>('corrections/' + this.form.id);
-      c.update({
-        timecode: this.form.timecode,
-        title: this.form.title ? this.form.title : null,
-        message: this.form.message ? this.form.message : null,
-        note: this.form.note ? this.form.note : null,
-        updated: {author: this.user.name, date: moment().toDate()},
-      });
-      this.msg = 'Correction modifiée !';
-    } else if (this.canAdd() && !this.form.id) { // creation
-      this.correctionsCollection.add({
-        ref: this.episode.ref,
-        timecode: this.form.timecode,
-        title: this.form.title ? this.form.title : null,
-        message: this.form.message ? this.form.message : null,
-        note: this.form.note ? this.form.note : null,
-        verified: this.user.admin,
-        created: {author: this.user.name, date: moment().toDate()},
-      });
-      this.msg = this.user.admin ? 'Correction ajoutée' : `Merci d'avoir proposé cette correction.
-      Attendez qu'un admin la valide pour qu'elle apparaisse en ligne.`;
-    } else {
-      this.msg = 'Vous n\'avez pas les droits !';
-    }
-
-    this.toggleForm(false);
-  }
-
-  editCorrection(correction) {
-    this.titleForm = 'Éditer une correction';
-    this.form = _.clone(correction);
-    this.toggleForm(true);
-  }
-
-  deleteCorrection(correction) {
-    if (this.canDelete() && confirm('Confirmation ?')) {
-      const c = this.afs.doc<Correction>('corrections/' + correction.id);
-      c.delete();
     }
   }
 
@@ -258,13 +129,13 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   previous() {
     if (this.episodePrevious) {
-      this.router.navigate(['/episode/', this.episodePrevious.ref.replace(/\//g, '-')]);
+      // this.router.navigate(['/episode/', this.episodePrevious.ref.replace(/\//g, '-')]);
     }
   }
 
   next() {
     if (this.episodeNext) {
-      this.router.navigate(['/episode/', this.episodeNext.ref.replace(/\//g, '-')]);
+      // this.router.navigate(['/episode/', this.episodeNext.ref.replace(/\//g, '-')]);
     }
   }
 

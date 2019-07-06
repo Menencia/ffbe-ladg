@@ -2,8 +2,8 @@ import { Chapter } from './chapter';
 
 export class SpecialEvent extends Chapter {
 
-  constructor(data, season) {
-    super(data, season);
+  constructor(dataObj) {
+    super(dataObj);
   }
 
   /**

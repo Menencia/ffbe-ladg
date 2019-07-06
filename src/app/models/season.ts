@@ -1,15 +1,20 @@
 import { Chapter } from './chapter';
+import { Model } from './model';
 
-export class Season {
+export class Season extends Model {
 
-  ref: string;
+  uid: string;
   title: string;
   chapters: Chapter[];
 
-  constructor(data) {
-    this.chapters = [];
+  constructor(dataObj) {
 
-    Object.assign(this, data);
+    super(dataObj, {
+      ref: null,
+      title: null,
+    });
+
+    this.chapters = [];
   }
 
 }

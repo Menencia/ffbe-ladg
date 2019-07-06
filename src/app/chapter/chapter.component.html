@@ -19,7 +19,7 @@
   <h2>Informations</h2>
 
   <ul>
-    <li><strong>Réf. :</strong> {{ chapter.ref }}</li>
+    <li><strong>Réf. :</strong> {{ chapter.getRef() }}</li>
     <li *ngIf="chapter.title"><strong>Titre :</strong> {{ chapter.title }}</li>
     <li><strong>Publication :</strong> {{ chapter.date | date }}</li>
     <li>
@@ -43,7 +43,7 @@
       </tr>
       <tr *ngFor="let episode of chapter.episodes; let i = index">
         <td class="ref">
-          {{ episode.ref }}
+          {{ episode.getRef() }}
         </td>
         <td>
           <span *ngIf="episode.video else noVideo">

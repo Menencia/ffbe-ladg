@@ -1,6 +1,6 @@
 import { Chapter } from './chapter';
 import { Correction } from './correction';
-import { Season } from './season';
+import { Model } from './model';
 
 interface Video {
   yt: string;
@@ -8,10 +8,10 @@ interface Video {
   version: number;
 }
 
-export class Episode {
+export class Episode extends Model {
 
   // base attributes
-  ref: string;
+  uid: string;
   title: string;
   originalTitle: string;
   region: string;
@@ -25,22 +25,58 @@ export class Episode {
   /**
    * Build a new episode
    * @param data
-   * @param chapter
    */
-  constructor(data, chapter) {
+  constructor(dataObj) {
+    super(dataObj, {
+      title: null,
+      originalTitle: null,
+      region: null,
+      isTown: null,
+      video: null,
+    });
+
     this.corrections = [];
-
-    Object.assign(this, data);
-
-    this.chapter = chapter;
   }
 
   /**
    * Converts and return chapter ref to URL format
-   * Replace '/' by '-'
    */
   getRefForUrl() {
-    return this.ref.replace(/\//g, '-');
+    if (this.chapter) {
+      if (this.chapter.season) {
+        return [
+          this.chapter.season.uid,
+          this.chapter.uid,
+          this.uid
+        ].join('-');
+      } else {
+        return [
+          this.chapter.uid,
+          this.uid
+        ].join('-');
+      }
+    } else {
+      return this.uid;
+    }
+  }
+
+  getRef() {
+    if (this.chapter) {
+      if (this.chapter.season) {
+        return [
+          this.chapter.season.uid,
+          this.chapter.uid,
+          this.uid
+        ].join('-');
+      } else {
+        return [
+          this.chapter.uid,
+          this.uid
+        ].join('-');
+      }
+    } else {
+      return this.uid;
+    }
   }
 
   /**
@@ -50,8 +86,7 @@ export class Episode {
   getTitle(breadcrump = false) {
     let string = '';
     if (breadcrump) {
-      const [number] = this.ref.split('/').slice(-1);
-      string += '#' + number + ' - ';
+      string += '#' + this.uid + ' - ';
     }
     if (this.title) {
       string += this.title;

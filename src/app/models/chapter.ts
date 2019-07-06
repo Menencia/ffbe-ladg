@@ -4,11 +4,12 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import 'moment-duration-format';
 import { Season } from './season';
+import { Model } from './model';
 
-export class Chapter {
+export class Chapter extends Model {
 
   // base attributes
-  ref: string;
+  uid: string;
   title: string;
   yt: string;
   date: string;
@@ -28,15 +29,14 @@ export class Chapter {
 
   /**
    * Build a new chapter
-   * @param data
-   * @param season
+   * @param dataObj
    */
-  constructor(data, season) {
+  constructor(dataObj) {
+    super(dataObj, {
+      title: null,
+    });
+
     this.episodes = [];
-
-    Object.assign(this, data);
-
-    this.season = season;
   }
 
   /**
@@ -96,10 +96,30 @@ export class Chapter {
 
   /**
    * Converts and return chapter ref to URL format
-   * Replace '/' by '-'
    */
   getRefForUrl(): string {
-    return this.ref.replace(/\//g, '-');
+    if (this.season) {
+      return [
+        this.season.uid,
+        this.uid
+      ].join('-');
+    } else {
+      return this.uid;
+    }
+  }
+
+    /**
+   * Converts and return chapter ref to URL format
+   */
+  getRef(): string {
+    if (this.season) {
+      return [
+        this.season.uid,
+        this.uid
+      ].join('-');
+    } else {
+      return this.uid;
+    }
   }
 
   /**
@@ -113,7 +133,7 @@ export class Chapter {
    * Return title of the chapter : 'Chapitre X( - Partie Y)'
    */
   getTitle(): string {
-    const [season, chapter, part] = this.ref.split('/');
+    const [chapter, part] = this.uid.split('-');
     let string = '';
     if (part && part === '1') {
       string += 'Chapitre ' + chapter + ' - Partie ' + part;
@@ -129,7 +149,7 @@ export class Chapter {
    * Returns only title chapter
    */
   getTitleChapter() {
-    const [season, chapter, part] = this.ref.split('/');
+    const [chapter, ] = this.uid.split('-');
     return 'Chapitre ' + chapter;
   }
 
@@ -137,15 +157,14 @@ export class Chapter {
    * Return season number of the chapter
    */
   getSeasonNumber(): string {
-    const [season, ] = this.ref.split('/');
-    return season;
+    return this.season ? this.season.uid : null;
   }
 
   /**
    * Return true if part is greater than one
    */
   isPartMoreThanOne() {
-    const [season, chapter, part] = this.ref.split('/');
+    const [chapter, part] = this.uid.split('-');
     return (part && part !== '1');
   }
 
@@ -208,7 +227,7 @@ export class Chapter {
   }
 
   getImage(): string {
-    const ref = this.getRefForUrl().toLocaleLowerCase();
+    const ref = this.getRef().toLocaleLowerCase();
     const path = this.getImagePath() + 'ffbe_' + ref + '.jpg';
     return `https://firebasestorage.googleapis.com/v0/b/ffbe-ladg.appspot.com/o/images%2F${path}?alt=media`;
   }
